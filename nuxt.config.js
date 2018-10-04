@@ -14,8 +14,8 @@ module.exports = {
     ]
   },
   router: {
-    base: '/app/'
-},
+      // base: '/app/'
+  },
   /*
   ** Customize the progress bar color
   */
