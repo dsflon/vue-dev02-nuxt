@@ -1,6 +1,7 @@
 <template>
   <section class="container">
     <div>
+      <app-logo/>
       <h1 class="title">
         vue-dev02-nuxt
       </h1>

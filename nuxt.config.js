@@ -16,6 +16,8 @@ module.exports = {
   router: {
       // base: '/app/'
   },
+  // srcDir: 'public/',
+  mode:'spa',
   /*
   ** Customize the progress bar color
   */

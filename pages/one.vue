@@ -1,4 +1,57 @@
 <template>
+    <div>
+
+        <p v-if="this.$store.state.user">userName : {{ this.$store.state.user }}</p>
+        <!-- <p>computed : {{ getSplitUser }}</p> -->
+
+        <!-- <button class="button--green" @click="$store.commit('login', 'test_user')">Test ログイン</button> -->
+        <button class="button--green" @click="login()">ログイン</button>
+        <button class="button--green" @click="writeUser()">Actions WriteUsere</button>
+    </div>
+</template>
+
+<script>
+export default {
+    // data () {
+    //     return {
+    //         userName: null,
+    //     }
+    // },
+    mounted: function() {
+    },
+    computed: {
+        getSplitUser () {
+            return this.$store.getters.getSplitUser
+        }
+    },
+    methods: {
+
+        login: function() {
+            // this.$store.commit('login', "test_user")
+            this.$store.dispatch('login',"test_user")
+        },
+        writeUser: function() {
+
+            // 独自にcallbackを用いることも出来なくはないけど
+            // this.$store.dispatch('writeUser', {
+            //     name: "test_user",
+            //     complete: (data) => console.log("complete", data)
+            // })
+
+            // Promise を使うのが良い
+            this.$store.dispatch('writeUser', {
+                name: "test_user"
+            }).then((data) => {
+                console.log("complete", data)
+                // this.userName = data;
+            })
+
+        }
+    }
+}
+</script>
+
+<!-- <template>
   <section class="container">
     <div>
         <h1 class="title">page one</h1>
@@ -46,4 +99,4 @@ export default {
 .links {
   padding-top: 15px;
 }
-</style>
+</style> -->
