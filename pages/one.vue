@@ -1,12 +1,18 @@
 <template>
     <div>
 
-        <p v-if="this.$store.state.user">userName : {{ this.$store.state.user }}</p>
+        <p
+        class="subtitle"
+        v-if="this.$store.state.user">userName : {{ this.$store.state.user }}</p>
         <!-- <p>computed : {{ getSplitUser }}</p> -->
 
         <!-- <button class="button--green" @click="$store.commit('login', 'test_user')">Test ログイン</button> -->
         <button class="button--green" @click="login()">ログイン</button>
         <button class="button--green" @click="writeUser()">Actions WriteUsere</button>
+
+        <br>
+
+        <p><router-link class="button--green" to="/">Back</router-link></p>
     </div>
 </template>
 

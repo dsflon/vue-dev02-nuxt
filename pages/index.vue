@@ -8,6 +8,10 @@
       <h2 class="subtitle">
         Nuxt.js project
       </h2>
+      <p
+      class="subtitle"
+      v-if="this.$store.state.user">userName : {{ this.$store.state.user }}</p>
+
       <div class="links">
         <!-- <a
           href="https://nuxtjs.org/"
@@ -31,6 +35,8 @@ import AppLogo from '~/components/AppLogo.vue'
 export default {
   components: {
     AppLogo
+  },
+  mounted: function() {
   }
 }
 </script>

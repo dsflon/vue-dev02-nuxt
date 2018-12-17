@@ -16,6 +16,14 @@ module.exports = {
   router: {
       // base: '/app/'
   },
+  css: [
+    // node モジュールを直接ロードする (ここでは SASS ファイル)
+    // 'bulma',
+    // プロジェクト内の CSS ファイル
+    // '@/assets/css/main.css',
+    // プロジェクト内の SCSS ファイル
+    '@/assets/css/main.scss'
+],
   // srcDir: 'public/',
   mode:'spa',
   /*
