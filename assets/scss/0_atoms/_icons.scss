@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+.fw {
+
+    // ----------------------------------------------------------
+    // Icons
+    // ----------------------------------------------------------
+    .a-icon {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 1;
+
+        &.is_gray { color: $black50; }
+        &.is_blue { color: $blue; }
+        &.is_red { color: $red; }
+        &.is_pink { color: $pink; }
+        &.is_pink { color: $pink; }
+        &.is_fb { color: #4267b2; }
+    }
+
+    .a-icon_txt {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 1;
+    }
+
+    .a-icon + .a-icon_txt { margin-left: 5px; }
+    .a-icon_txt + .a-icon { margin-right: 5px; }
+
+    .a-icon.a-icon-1_5x + .a-icon_txt { margin-left: 8px; }
+
+}//.fw

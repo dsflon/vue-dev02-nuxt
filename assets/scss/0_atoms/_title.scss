@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+.fw {
+
+    // ----------------------------------------------------------
+    // Title
+    // ----------------------------------------------------------
+    .a-ttl {
+        @include bold;
+        line-height: 1.2;
+
+        &.is_mb {
+            margin-bottom: 25px;
+        }
+        &.is_mb_s {
+            margin-bottom: 15px;
+        }
+
+        &.is_l {
+            font-size: 22px;
+        }
+
+        &.is_m {
+            font-size: 14px;
+        }
+
+        &.is_s {
+            font-size: 12px;
+        }
+
+        &.is_bg {
+            background: #FFF;
+            line-height: 1;
+            padding: 15px;
+        }
+
+    }
+
+
+
+}//.fw

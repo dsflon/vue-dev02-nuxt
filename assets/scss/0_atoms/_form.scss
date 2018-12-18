@@ -1,0 +1,34 @@
+@charset "utf-8";
+
+.fw {
+
+    // ----------------------------------------------------------
+    // Select
+    // ----------------------------------------------------------
+    .a-form_select {
+        width: 100%; height: 44px;
+        background: url(../images/common/select.svg) no-repeat right center;
+        background-size: auto 16px;
+    }
+
+    // ----------------------------------------------------------
+    // Input
+    // ----------------------------------------------------------
+    .a-form_input {
+        width: 100%; height: 44px;
+
+        @include placeholder {
+            color: $black40;
+            font-size: 14px;
+        }
+    }
+
+    .a-form_error {
+        color: $red;
+        @include bold;
+        line-height: 1;
+        font-size: 12px;
+    }
+
+
+}//.fw

@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+.m-form {
+
+}
+
+.m-form_label {
+    position: relative;
+    display: block;
+}
+
+.m-form_line {
+    border-bottom: 2px solid $black30;
+}
+label.m-form_line {
+    display: block;
+}
