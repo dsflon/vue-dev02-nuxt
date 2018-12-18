@@ -1,0 +1,22 @@
+[
+  {
+    "station_id": "1",
+    "station_name": "station1"
+  },
+  {
+    "station_id": "2",
+    "station_name": "station2_test"
+  },
+  {
+    "station_id": "3",
+    "station_name": "station3_example"
+  },
+  {
+    "station_id": "4",
+    "station_name": "station4"
+  },
+  {
+    "station_id": "5",
+    "station_name": "station5"
+  }
+]

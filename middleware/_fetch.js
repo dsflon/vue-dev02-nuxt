@@ -18,7 +18,7 @@ const Fetch = (url,body,sucess,error) => {
         mode: 'cors'
     } : null;
 
-    console.log("postData: ",data);
+    // console.log("postData: ",data);
 
     fetch(url, data)
     .then( (response) => {

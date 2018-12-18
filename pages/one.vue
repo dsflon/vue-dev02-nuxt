@@ -3,7 +3,7 @@
 
         <p
         class="subtitle"
-        v-if="this.$store.state.user">userName : {{ this.$store.state.user }}</p>
+        v-if="this.$store.state.__index.user">userName : {{ this.$store.state.__index.user }}</p>
         <!-- <p>computed : {{ getSplitUser }}</p> -->
 
         <!-- <button class="button--green" @click="$store.commit('login', 'test_user')">Test ログイン</button> -->
@@ -23,18 +23,16 @@ export default {
     //         userName: null,
     //     }
     // },
-    mounted: function() {
-    },
     computed: {
         getSplitUser () {
-            return this.$store.getters.getSplitUser
+            return this.$store.getters.__index.getSplitUser
         }
     },
     methods: {
 
         login: function() {
             // this.$store.commit('login', "test_user")
-            this.$store.dispatch('login',"test_user")
+            this.$store.dispatch('__index/login',"test_user")
         },
         writeUser: function() {
 
@@ -45,14 +43,30 @@ export default {
             // })
 
             // Promise を使うのが良い
-            this.$store.dispatch('writeUser', {
-                name: "test_user"
-            }).then((data) => {
-                console.log("complete", data)
-                // this.userName = data;
-            })
+            // this.$store.dispatch('__index/writeUser', {
+            //     name: "test_user"
+            // }).then((data) => {
+            //     console.log("complete", data)
+            //     // this.userName = data;
+            // })
 
         }
+    },
+
+    mounted: function() {
+        this.$store.dispatch('__index/writeUser', {
+            name: "test_user"
+        }).then((data) => {
+            console.log("complete", data)
+            // this.userName = data;
+        })
+    },
+    beforeUpdate: function() {
+        console.log("beforeUpdate");
+    },
+    updated: function() {
+        console.log("updated");
+        // console.log(this.$store.state.home.searchResult);
     }
 }
 </script>
