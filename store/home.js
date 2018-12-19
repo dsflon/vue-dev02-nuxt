@@ -9,7 +9,7 @@ import Api from '~/plugins/_api';
 export const state = () => ({
     searchResult: null,
     searchResultOrigin: null,
-    filter: null
+    filterData: null
 })
 
 /**
@@ -17,11 +17,14 @@ export const state = () => ({
  *
  */
 export const mutations = {
-    SetSearchResult(state, data) {
+    registerSearchResult(state, data) {
         state.searchResult = data
     },
-    SetSearchResultOrigin(state, data) {
+    registerSearchResultOrigin(state, data) {
         state.searchResultOrigin = data
+    },
+    registerFilterData(state, data) {
+        state.filterData = data
     }
 }
 
@@ -39,14 +42,14 @@ export const actions = {
         return new Promise((resolve, reject) => {
 
             Fetch(Api.search, postData, (json) => {
-                // context.commit('SetSearchResultOrigin', json)
+                context.commit('registerSearchResultOrigin', json)
                 // if(this.filter && Object.values(this.filter)[0]) {
                     // ListFilter( json, this.filter, (data) => {
                     //     this.actions.Result(data);
                     //     console.log(data);
                     // })
                 // } else {
-                    context.commit('SetSearchResult', json)
+                    context.commit('registerSearchResult', json)
                     resolve(json)
                 // }
             },() => {
@@ -54,6 +57,22 @@ export const actions = {
             });
 
         })
+    },
+
+    /**
+     * 検索結果を格納する
+     * @param {object} data - 検索結界のリストデータ
+     */
+    SetSearchResult(context, data) {
+        context.commit('registerSearchResult', data)
+    },
+
+    /**
+     * フィルタリングデータを格納する
+     * @param {object} filterData - filterDataのオブジェクト
+     */
+    SetFilterData(context, filterData) {
+        context.commit('registerFilterData', filterData)
     }
 
 }

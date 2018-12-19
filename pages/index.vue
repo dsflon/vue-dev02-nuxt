@@ -1,10 +1,7 @@
 <template>
     <div>
 
-        <app-header
-            title=""
-            userId="1"
-            icon=""/>
+        <app-header icon="user" />
 
         <main id="home">
             <div class="lists contents">
@@ -12,10 +9,10 @@
                 <div class="lists_ttl">
                     <p class="lists_ttl_txt" ref="lists_ttl_txt"></p>
                     <div class="lists_ttl_btns">
-                        <button onClick={this.Reload.bind(this)}>
+                        <button @click="SearchStart">
                             <i class="a-icon a-icon-rotate_right a-icon-lg is_gray"></i>
                         </button>
-                        <button onClick={this.ToggleFilter.bind(this)}>
+                        <button @click="ToggleFilter">
                             <i class="a-icon a-icon-plus a-icon-lg is_blue"></i>
                         </button>
                     </div>
@@ -26,6 +23,11 @@
                 <list-items />
 
             </div>
+
+            <transition name="filter">
+                <list-filter v-if="showFilter" id="filter" :ToggleFilter="ToggleFilter" />
+            </transition>
+
         </main>
 
         <app-footer />
@@ -37,42 +39,56 @@
 import AppHeader from '~/components/common/Header.vue'
 import AppFooter from '~/components/common/Footer.vue'
 import ListItems from '~/components/home/ListItems.vue'
+import ListFilter from '~/components/home/ListFilter.vue'
 
 export default {
+    data () {
+        return {
+            showFilter: false
+        }
+    },
     components: {
         AppHeader,
         AppFooter,
-        ListItems
+        ListItems,
+        ListFilter
     },
-    created: function() {
-        // console.log("created");
+    methods: {
+        ToggleFilter: function() {
+            this.showFilter = !this.showFilter
+        },
+        SearchStart: function() {
+            let postData = "test"
+
+            this.$store.dispatch('home/GetSearchResult',postData)
+            .then((data) => {
+                // console.log("complete", data)
+                // window.Loading.Hide();
+            }).catch((error)=>{
+                console.error(error);
+                // this.refs.no_r.style.display = "block";
+                // this.refs.no_r_m.innerHTML = "サーバーに接続できませんでした。";
+                // window.Loading.Hide();
+            })
+        }
     },
-    beforeMount: function() {
-        // console.log("beforeMount");
-    },
+    // created: function() {
+    //     // console.log("created");
+    // },
+    // beforeMount: function() {
+    //     // console.log("beforeMount");
+    // },
     mounted: function() {
         // console.log("mounted");
-
-        let postData = "test"
-
-        this.$store.dispatch('home/GetSearchResult',postData)
-        .then((data) => {
-            // console.log("complete", data)
-            // window.Loading.Hide();
-        }).catch((error)=>{
-            console.error(error);
-            // this.refs.no_r.style.display = "block";
-            // this.refs.no_r_m.innerHTML = "サーバーに接続できませんでした。";
-            // window.Loading.Hide();
-        })
-
+        this.SearchStart();
     },
-    beforeUpdate: function() {
-        // console.log("beforeUpdate");
-    },
+    // beforeUpdate: function() {
+    //     // console.log("beforeUpdate");
+    // },
     updated: function() {
         // console.log("updated");
         // console.log(this.$store.state.home.searchResult);
+        // console.log(this.$store.state.home.filterData);
     }
 }
 </script>

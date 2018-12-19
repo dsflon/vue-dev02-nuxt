@@ -1,7 +1,6 @@
 <template>
     <div v-if="this.$store.state.home.searchResult">
-        <img src="/assets/images/spacer.gif" @load="imgOnload" :style="{display: 'none'}" />
-        <ul class="lists_inner" ref="lists_inner">
+        <ul class="lists_inner">
 
             <li class="list"
                 v-for="item in this.$store.state.home.searchResult"
@@ -9,9 +8,9 @@
                 <button :id="item.user_id" class="list_btn" onClick={this.props.GetPage.bind(this)}>
 
                     <div
+                        ref="list_user"
                         class="list_user"
                         :data-src="item.user_icon">
-                        <!-- :style="{ backgroundImage: `url(${item.user_icon}` }"> -->
                         <div class="list_user_wrap">
                             <p class="list_user_access">{{item.access_info}}</p>
                             <p class="list_user_name">{{item.user_name}}</p>
@@ -48,6 +47,7 @@
             </li>
 
         </ul>
+        <!-- <img src="/assets/images/spacer.gif" @load="imgOnload" :style="{display: 'none'}" /> -->
     </div>
 </template>
 
@@ -61,12 +61,15 @@ export default {
     components: {
         ChangeTimeString
     },
+    // methods: {
+    //     imgOnload: function() {
+    //         DelayLoader( this.$refs.list_user );
+    //     }
+    // },
     mounted: function() {
     },
-    methods: {
-        imgOnload: function() {
-            DelayLoader( document.getElementsByClassName("list_user") );
-        }
+    updated: function() {
+        DelayLoader( this.$refs.list_user );
     }
 }
 </script>

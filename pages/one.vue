@@ -12,7 +12,7 @@
 
         <br>
 
-        <p><router-link class="button--green" to="/">Back</router-link></p>
+        <p><a class="button--green" to="/">Back</a></p>
     </div>
 </template>
 

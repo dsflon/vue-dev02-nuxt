@@ -2,7 +2,6 @@
     <header id="header">
         <div id="header_inner">
 
-
             <h1 v-if="title" class="header_ttl">
                 {{title}}
             </h1>
@@ -10,9 +9,8 @@
                 <img src="~/assets/images/common/logo.svg" alt="Step Lack">
             </h1>
 
-
             <div v-if="icon == 'user'" class="header_user">
-                <router-Link class="a-btn_user" to="/signin"></router-Link>
+                <router-link class="a-btn_user" to="/signin"></router-link>
             </div>
             <div v-else-if="icon == 'followed'" class="header_user">
                 <button
@@ -23,18 +21,15 @@
                 </button>
             </div>
 
-
         </div>
     </header>
 </template>
 
 
 <script>
-// import TtlLogo from '~/components/TtlLogo.vue';
 
 export default {
     components: {
-        // TtlLogo
     },
 
     props: [

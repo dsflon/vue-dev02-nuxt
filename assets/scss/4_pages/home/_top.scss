@@ -161,22 +161,18 @@
 
     }//.lists
 
-
     #filter {
         position: fixed;
         top: 0; left: 0;
         width: 100vw; height: 100vh;
         background: $black0;
-        transition: all 0.2s ease;
-        opacity: 0;
-        pointer-events: none;
-        transform: translateY(10px);
         z-index: 9999;
-        &.is_show {
-            opacity: 1;
-            pointer-events: inherit;
-            transform: translateY(0px);
-        }
+
+        &.filter-enter-active,
+        &.filter-leave-active { transition: all 0.2s ease;  }
+        &.filter-enter,
+        &.filter-leave-to { opacity: 0; transform: translateY(10px); }
+
         .filter-inner {
             padding: 25px 15px;
             > * {
