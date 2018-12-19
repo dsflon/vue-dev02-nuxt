@@ -172,7 +172,7 @@ export default {
             // console.log("Search");
 
             let data = this.$store.state.home.searchResultOrigin;
-console.log(this.end_time);
+
             ListFilter(
                 data,
                 {

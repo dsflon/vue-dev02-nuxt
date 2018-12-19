@@ -1,5 +1,6 @@
 import Vuex from 'vuex'
 import Fetch from '~/middleware/_fetch';
+import ListFilter from '~/middleware/_listFilter';
 import Api from '~/plugins/_api';
 
 /**
@@ -39,21 +40,22 @@ export const actions = {
      * @param {object} postData - postするデータ
      */
     GetSearchResult(context, postData) {
+
         return new Promise((resolve, reject) => {
 
             Fetch(Api.search, postData, (json) => {
-                context.commit('registerSearchResultOrigin', json)
-                // if(this.filter && Object.values(this.filter)[0]) {
-                    // ListFilter( json, this.filter, (data) => {
-                    //     this.actions.Result(data);
-                    //     console.log(data);
-                    // })
-                // } else {
+                if(context.state.filterData && Object.values(context.state.filterData)[0]) {
+                    ListFilter( json, context.state.filterData, (data) => {
+                        context.commit('registerSearchResult', data)
+                        resolve(data)
+                    })
+                } else {
                     context.commit('registerSearchResult', json)
                     resolve(json)
-                // }
+                }
+                context.commit('registerSearchResultOrigin', json)
             },() => {
-                reject("Error!! : home/GetSearchResult");
+                reject("Error!! : home/GetSearchResult","サーバーに接続できませんでした。");
             });
 
         })

@@ -18,9 +18,16 @@
                     </div>
                 </div>
 
-                <!-- {filteredData} -->
+                <list-items v-if="!error" />
 
-                <list-items />
+                <div v-else class="no_result">
+                    <p>{{error}}</p>
+                    <p>もう一度検索を行ってください。</p>
+                    <router-link to="/search">
+                        <i class="a-icon a-icon-search f-font_l"></i>
+                        <span class="a-icon_txt">検索する</span>
+                    </router-link>
+                </div>
 
             </div>
 
@@ -44,7 +51,8 @@ import ListFilter from '~/components/home/ListFilter.vue'
 export default {
     data () {
         return {
-            showFilter: false
+            showFilter: false,
+            error: null
         }
     },
     components: {
@@ -64,10 +72,9 @@ export default {
             .then((data) => {
                 // console.log("complete", data)
                 // window.Loading.Hide();
-            }).catch((error)=>{
+            }).catch((error,txt)=>{
                 console.error(error);
-                // this.refs.no_r.style.display = "block";
-                // this.refs.no_r_m.innerHTML = "サーバーに接続できませんでした。";
+                this.error = txt;
                 // window.Loading.Hide();
             })
         }
