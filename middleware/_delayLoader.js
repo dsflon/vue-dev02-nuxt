@@ -11,17 +11,9 @@ const GetOffset = (el) => {
 
 const DelayLoader = (target) => {
 
-    // let positions = [];
-
     if( !target || target.length < 0 ) return false;
 
-    // for (var i = 0; i < target.length; i++) {
-    //     let item = target[i];
-    //     positions.push(GetOffset( item ).top);
-    // }
-
     loadingImage();
-    // window.onscroll = loadingImage;
     window.removeEventListener("scroll", loadingImage);
     window.addEventListener("scroll", loadingImage);
 
@@ -42,14 +34,6 @@ const DelayLoader = (target) => {
             }
 
         }
-        // for (var i = 0; i < positions.length; i++) {
-        //     if( scrollVal > positions[i] && target[i].dataset.src ) {
-        //         let src = target[i].dataset.src;
-        //         target[i].style.backgroundImage = "url("+src+")";
-        //         target[i].removeAttribute("data-src")
-        //     }
-        // }
-
     }
 
 }
