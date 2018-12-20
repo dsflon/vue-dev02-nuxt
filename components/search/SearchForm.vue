@@ -5,14 +5,14 @@
             <div class="m-form_line">
                 <select
                     v-if="$store.state.search.jobList"
-                    v-model="selectedJob.v"
+                    v-model="selectedVal"
                     class="a-form_select"
                     tabIndex="-1"
-                    ref="search_job">
+                    ref="select">
                     <option
                         v-for="item in $store.state.search.jobList"
                         :key="item.job_id"
-                        :value="item.job_id">
+                        :value="item.job_id+','+item.job_name">
                         {{ item.job_name }}
                     </option>
                 </select>
@@ -39,10 +39,7 @@ export default {
     ],
     data () {
         return {
-            selectedJob: {
-                v: this.$store.state.search.jobList[0].job_id,
-                t: this.$store.state.search.jobList[0].job_name
-            }
+            selectedVal: this.$store.state.search.jobList[0].job_id+","+this.$store.state.search.jobList[0].job_name,
         }
     },
     created: function() {
@@ -51,10 +48,7 @@ export default {
     mounted: function() {
 
         if(this.$store.state.search.postData) {
-            this.selectedJob = {
-                v: this.$store.state.search.postData.search_job,
-                t: this.$store.state.search.postData.search_job_name
-            }
+            // this.selectedVal = this.$store.state.search.postData.search_job+","+this.$store.state.search.postData.search_job_name
         }
 
     }

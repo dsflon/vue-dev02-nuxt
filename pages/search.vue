@@ -65,9 +65,9 @@ export default {
                 stationName = target.innerText,
                 stationId = target.id;
 
-            let selectedJob = this.$refs.search_form._data.selectedJob,
-                selectedJobName = selectedJob.t,
-                selectedJobVal = selectedJob.v;
+            let selectedJob = this.$refs.search_form._data.selectedVal.split(","),
+                selectedJobName = selectedJob[1],
+                selectedJobVal = selectedJob[0];
 
             let postData = {
                 search_job: Number(selectedJobVal),
@@ -86,7 +86,6 @@ export default {
                 language_flg: "ja"
             }
 
-            console.log(postData);
 
             window.Loading.Show();
             localStorage.setItem(window.LSPost, JSON.stringify(postData));
@@ -95,7 +94,7 @@ export default {
             //
             setTimeout( () => {
                 this.$router.push('/')
-            }, 500)
+            }, 100)
 
         }
     },
