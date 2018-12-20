@@ -69,24 +69,10 @@
         will-change: transform;
         will-change: opacity;
 
-        &-enter {
-            transform: translate(0,10%);
-            opacity: 0;
-        }
-        &-enter-active {
-            transform: translate(0,0);
-            opacity: 1;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-        &-exit {
-            transform: translate(0,0);
-            opacity: 1;
-        }
-        &-exit-active {
-            transform: translate(0,10%);
-            opacity: 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
+        &-enter-active,
+        &-leave-active { transition: all 0.2s ease;  }
+        &-enter,
+        &-leave-to { opacity: 0; transform: translateY(10px); }
 
         .inputbox_input {
             height: 52px;
@@ -189,7 +175,7 @@
             // }
             .inputbox_list {
                 position: static;
-                height: inherit;
+                // height: inherit;
                 .inputbox_list_inner {
                     overflow: visible;
                     height: inherit;

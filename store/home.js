@@ -10,9 +10,9 @@ import Api from '~/plugins/_api';
  *
  */
 export const state = () => ({
-    searchResult: null,
-    searchResultOrigin: null,
-    filterData: null
+    searchResult: null, // 検索結界のリストデータ（加工済みのものも入る）
+    searchResultOrigin: null, // 検索結界のリストデータ
+    filterData: null // フィルターの項目
 })
 
 /**
@@ -64,7 +64,7 @@ export const actions = {
     },
 
     /**
-     * 検索結果を格納する
+     * 検索結果を登録する
      * @param {object} data - 検索結界のリストデータ
      */
     SetSearchResult(context, data) {
@@ -72,7 +72,7 @@ export const actions = {
     },
 
     /**
-     * フィルタリングデータを格納する
+     * フィルタリングデータを登録する
      * @param {object} filterData - filterDataのオブジェクト
      */
     SetFilterData(context, filterData) {

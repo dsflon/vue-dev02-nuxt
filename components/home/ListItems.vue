@@ -1,10 +1,10 @@
 <template>
     <ul
-        v-if="this.$store.state.home.searchResult && this.$store.state.home.searchResult[0]"
+        v-if="$store.state.home.searchResult && $store.state.home.searchResult[0]"
         class="lists_inner">
 
         <li class="list"
-            v-for="item in this.$store.state.home.searchResult"
+            v-for="item in $store.state.home.searchResult"
             :key="item.user_name">
             <button :id="item.user_id" class="list_btn" onClick={this.props.GetPage.bind(this)}>
 

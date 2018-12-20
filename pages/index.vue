@@ -7,7 +7,7 @@
             <div class="lists contents">
 
                 <div class="lists_ttl">
-                    <p class="lists_ttl_txt" ref="lists_ttl_txt">{{searchTitle}}</p>
+                    <p class="lists_ttl_txt">{{SearchKey}}</p>
                     <div class="lists_ttl_btns">
                         <button @click="SearchStart">
                             <i class="a-icon a-icon-rotate_right a-icon-lg is_gray"></i>
@@ -54,8 +54,6 @@ import FilteredText from '~/components/home/FilteredText.vue'
 export default {
     data () {
         return {
-            // searchTitle: this.postData.search_job_name  + " / " + this.postData.search_station_name
-            searchTitle: "titleが入ります",
             showFilter: false,
             error: null
         }
@@ -72,36 +70,57 @@ export default {
             this.showFilter = !this.showFilter
         },
         SearchStart: function() {
-            let postData = "test"
+
+            window.Loading.Show();
+
+            let postData = this.$store.state.search.postData
 
             this.$store.dispatch('home/GetSearchResult',postData)
             .then((data) => {
                 // console.log("complete", data)
-                // window.Loading.Hide();
+                window.Loading.Hide();
             }).catch((error,txt)=>{
                 console.error(error);
                 this.error = txt;
-                // window.Loading.Hide();
+                window.Loading.Hide();
             })
         }
     },
-    // created: function() {
-    //     // console.log("created");
-    // },
+    computed: {
+        SearchKey() {
+
+            let statePt = this.$store.state.search.postData,
+                localPt = localStorage.getItem(window.LSPost);
+
+            if(statePt) { // searchから来た場合はstateから
+                return statePt.search_job_name  + " / " + statePt.search_station_name;
+            } else if ( !statePt && localPt ) { // localStorageから
+                localPt = JSON.parse(localPt);
+                return localPt.search_job_name  + " / " + localPt.search_station_name;
+            } else {
+                return "検索項目がありません";
+            }
+
+        }
+    },
+    created: function() {
+        // console.log("created");
+        this.SearchStart();
+
+    },
     // beforeMount: function() {
     //     // console.log("beforeMount");
     // },
-    mounted: function() {
-        // console.log("mounted");
-        this.SearchStart();
-    },
+    // mounted: function() {
+    //     // console.log("mounted");
+    // },
     // beforeUpdate: function() {
     //     // console.log("beforeUpdate");
     // },
-    updated: function() {
-        // console.log("updated");
-        // console.log(this.$store.state.home.searchResult);
-        // console.log(this.$store.state.home.filterData);
-    }
+    // updated: function() {
+    //     // console.log("updated");
+    //     // console.log(this.$store.state.home.searchResult);
+    //     // console.log(this.$store.state.home.filterData);
+    // }
 }
 </script>

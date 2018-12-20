@@ -1,0 +1,128 @@
+<template>
+    <div id="search">
+
+        <div class="search_inner">
+
+            <div class="search_user"><icon-user /></div>
+
+            <div class="contents">
+                <div class="searchbox">
+                    <h1><img src="~/assets/images/common/logo.svg" alt="Step Lack"></h1>
+                    <search-form ref="search_form" :ToggleInputBox="ToggleInputBox" />
+                </div>
+            </div>
+
+        </div>
+
+        <transition name="inputbox">
+            <input-box
+                v-if="showInputBox"
+                :ToggleInputBox="ToggleInputBox"
+                :SearchStart="SearchStart" />
+        </transition>
+
+    </div>
+</template>
+
+<script>
+import IconUser from '~/components/common/IconUser.vue'
+import SearchForm from '~/components/search/SearchForm.vue'
+import InputBox from '~/components/search/InputBox.vue'
+
+export default {
+    components: {
+        IconUser,
+        SearchForm,
+        InputBox
+    },
+    data () {
+        return {
+            showInputBox: false,
+            postData: null,
+            jobList: null
+        }
+    },
+    methods: {
+        ToggleInputBox: function() {
+            this.showInputBox = !this.showInputBox
+
+            this.$store.dispatch('search/SetStationList',null)
+        },
+        CheckLocalStrage: function() {
+            // localStorageを参照
+            let postData = localStorage.getItem(window.LSPost);
+            this.postData = postData ? JSON.parse(postData) : null;
+
+            let jobList = localStorage.getItem(window.LSJob);
+            this.jobList = jobList ? JSON.parse(jobList) : null;
+
+            if(this.jobList) this.$store.dispatch('search/SetJobList',this.jobList)
+            if(this.postData) this.$store.dispatch('search/SetPostData',this.postData)
+        },
+        SearchStart(e) {
+
+            let target = e.currentTarget,
+                stationName = target.innerText,
+                stationId = target.id;
+
+            let selectedJob = this.$refs.search_form._data.selectedJob,
+                selectedJobName = selectedJob.t,
+                selectedJobVal = selectedJob.v;
+
+            let postData = {
+                search_job: Number(selectedJobVal),
+                search_job_name: selectedJobName,
+                search_station_id: Number(stationId),
+                search_station_name: stationName,
+
+                // ここ考える余地あり
+                user_id: window.userData ? window.userData["user_id"] : null,
+                // ここ考える余地あり
+
+                start_price: null,
+                end_price: null,
+                start_price: null,
+                end_price: null,
+                language_flg: "ja"
+            }
+
+            console.log(postData);
+
+            window.Loading.Show();
+            localStorage.setItem(window.LSPost, JSON.stringify(postData));
+            // // this.actions.Result(null);
+            this.$store.dispatch('search/SetPostData',postData)
+            //
+            setTimeout( () => {
+                this.$router.push('/')
+            }, 500)
+
+        }
+    },
+    created: function() {
+
+        window.Loading.Show();
+
+        this.CheckLocalStrage();
+
+        // サーバから取得
+        this.$store.dispatch('search/GetJobList')
+        .then((data) => {
+            // console.log("complete", data)
+            window.Loading.Hide();
+        }).catch((error,txt)=>{
+            console.error(error);
+            window.Loading.Hide();
+        })
+
+    },
+    mounted: function() {
+
+        window.scrollTop = 0;
+        // this.actions.InputBox(false);
+        this.$store.dispatch('search/SetStationList',null)
+
+    },
+
+}
+</script>
