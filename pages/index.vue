@@ -7,7 +7,7 @@
             <div class="lists contents">
 
                 <div class="lists_ttl">
-                    <p class="lists_ttl_txt" ref="lists_ttl_txt"></p>
+                    <p class="lists_ttl_txt" ref="lists_ttl_txt">{{searchTitle}}</p>
                     <div class="lists_ttl_btns">
                         <button @click="SearchStart">
                             <i class="a-icon a-icon-rotate_right a-icon-lg is_gray"></i>
@@ -17,6 +17,8 @@
                         </button>
                     </div>
                 </div>
+
+                <filtered-text v-if="$store.state.home.filterData" />
 
                 <list-items v-if="!error" />
 
@@ -47,10 +49,13 @@ import AppHeader from '~/components/common/Header.vue'
 import AppFooter from '~/components/common/Footer.vue'
 import ListItems from '~/components/home/ListItems.vue'
 import ListFilter from '~/components/home/ListFilter.vue'
+import FilteredText from '~/components/home/FilteredText.vue'
 
 export default {
     data () {
         return {
+            // searchTitle: this.postData.search_job_name  + " / " + this.postData.search_station_name
+            searchTitle: "titleが入ります",
             showFilter: false,
             error: null
         }
@@ -59,7 +64,8 @@ export default {
         AppHeader,
         AppFooter,
         ListItems,
-        ListFilter
+        ListFilter,
+        FilteredText
     },
     methods: {
         ToggleFilter: function() {

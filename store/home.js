@@ -27,7 +27,6 @@ export const mutations = {
         state.searchResultOrigin = data
     },
     registerFilterData(state, data) {
-        console.log(data);
         state.filterData = data
     }
 }
