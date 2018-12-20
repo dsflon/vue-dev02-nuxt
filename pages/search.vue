@@ -8,18 +8,24 @@
             <div class="contents">
                 <div class="searchbox">
                     <h1><img src="~/assets/images/common/logo.svg" alt="Step Lack"></h1>
-                    <search-form ref="search_form" :ToggleInputBox="ToggleInputBox" />
+                    <search-form
+                        v-if="this.$store.state.search.jobList"
+                        ref="search_form"
+                        :ToggleInputBox="ToggleInputBox" />
                 </div>
             </div>
 
         </div>
 
-        <transition name="inputbox">
+        <!-- <transition name="inputbox"> -->
+            <!-- <input-box
+                v-if="showInputBox" -->
             <input-box
-                v-if="showInputBox"
+                ref="inputbox"
+                :class="{is_show: showInputBox}"
                 :ToggleInputBox="ToggleInputBox"
                 :SearchStart="SearchStart" />
-        </transition>
+        <!-- </transition> -->
 
     </div>
 </template>
@@ -44,9 +50,17 @@ export default {
     },
     methods: {
         ToggleInputBox: function() {
-            this.showInputBox = !this.showInputBox
-
+            this.showInputBox = !this.showInputBox;
             this.$store.dispatch('search/SetStationList',null)
+
+            // inputのfocusをここで当てないとiosで効かない
+            if(this.showInputBox) {
+                this.$refs.inputbox.$refs.input.focus()
+                this.$refs.inputbox.$refs.input.value = "";
+            } else {
+                this.$refs.inputbox.$refs.input.blur()
+                window.onscroll = null;
+            }
         },
         CheckLocalStrage: function() {
             // localStorageを参照

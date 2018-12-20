@@ -27,6 +27,10 @@ module.exports = {
     plugins: ['~/plugins/'],
     // srcDir: 'public/',
     mode:'spa',
+    server: {
+        port: 5003, // デフォルト: 3000
+        host: '0.0.0.0', // デフォルト: localhost
+      },
     /*
     ** Customize the progress bar color
     */

@@ -69,10 +69,18 @@
         will-change: transform;
         will-change: opacity;
 
-        &-enter-active,
-        &-leave-active { transition: all 0.2s ease;  }
-        &-enter,
-        &-leave-to { opacity: 0; transform: translateY(10px); }
+        // &-enter-active,
+        // &-leave-active { transition: all 0.2s ease;  }
+        // &-enter,
+        // &-leave-to { opacity: 0; transform: translateY(10px); }
+
+        transition: all 0.2s ease;
+        opacity: 0; transform: translateY(10px);
+        pointer-events: none;
+        &.is_show {
+            opacity: 1; transform: translateY(0px);
+            pointer-events: inherit;
+        }
 
         .inputbox_input {
             height: 52px;

@@ -61,6 +61,14 @@ export default {
             inputLabelClass: ""
         }
     },
+    directives: {
+        focus: {
+            // ディレクティブ定義
+            inserted: function (el) {
+                // this.$nextTick( () => el.focus() )
+            }
+        }
+    },
     methods: {
         Input(e) {
 
@@ -117,14 +125,18 @@ export default {
                 }
 
             }
+        },
+        SetFocus: function() {
+            this.$refs.input.focus()
+            console.log(1);
         }
     },
     mounted: function() {
-
-        this.$refs.input.focus();
-
+        // this.$nextTick( () => this.$refs.input.focus() )
+        // if( this.os === "ios" ) this.Ios();
+    },
+    updated: function() {
         if( this.os === "ios" ) this.Ios();
-
     },
     destroyed: function() {
         window.onscroll = null;
