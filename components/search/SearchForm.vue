@@ -48,7 +48,7 @@ export default {
     mounted: function() {
 
         if(this.$store.state.search.postData) {
-            // this.selectedVal = this.$store.state.search.postData.search_job+","+this.$store.state.search.postData.search_job_name
+            this.selectedVal = this.$store.state.search.postData.search_job+","+this.$store.state.search.postData.search_job_name
         }
 
     }
