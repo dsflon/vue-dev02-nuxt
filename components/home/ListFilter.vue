@@ -171,10 +171,8 @@ export default {
         Search: function(e) {
             // console.log("Search");
 
-            let data = this.$store.state.home.searchResultOrigin;
-
             ListFilter(
-                data,
+                this.$store.state.home.searchResultOrigin,
                 {
                     min_price: this.min_price,
                     max_price: this.max_price,

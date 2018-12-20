@@ -1,7 +1,5 @@
 const Sort = ( type, data ) => {
 
-    if(!type) return data
-
     switch (type) {
 
         case "min_price":
@@ -16,17 +14,16 @@ const Sort = ( type, data ) => {
 
 const ListFilter = ( originData, filterData, callback ) => {
 
-    let newFilterData = {};
-
-    // console.log(filterData);
+    let newFilterData = {},
+        copyData = Object.assign([], originData)
 
     // Price Min
     new Promise((resolve, reject) => {
         if(filterData.min_price && filterData.min_price.n) {
             newFilterData.min_price = filterData.min_price;
-            resolve( originData.filter( data => data.min_price >= filterData.min_price.n) );
+            resolve( copyData.filter( data => data.min_price >= filterData.min_price.n) );
         } else {
-            resolve(originData);
+            resolve(copyData);
         }
     })
 

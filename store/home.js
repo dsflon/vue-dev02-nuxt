@@ -3,6 +3,8 @@ import Fetch from '~/middleware/_fetch';
 import ListFilter from '~/middleware/_listFilter';
 import Api from '~/plugins/_api';
 
+// export const strict = false;
+
 /**
  * State
  *
@@ -25,6 +27,7 @@ export const mutations = {
         state.searchResultOrigin = data
     },
     registerFilterData(state, data) {
+        console.log(data);
         state.filterData = data
     }
 }
