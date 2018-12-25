@@ -47,6 +47,10 @@ import FooterBtns from '~/components/common/FooterBtns.vue'
 import DetailItem from '~/components/detail/DetailItem.vue'
 
 export default {
+    transition (to, from) {
+        return to.name == 'user-userid' ? 'user' : ''
+        // return +to.query.page < +from.query.page ? 'slide-right' : 'slide-left'
+    },
     data () {
         return {
             error: null,

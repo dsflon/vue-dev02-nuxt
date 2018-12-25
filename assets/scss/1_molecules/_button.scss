@@ -38,7 +38,7 @@
     }
     &:not(.is_flex) li {
         display: inline-block;
-        margin-right: 15px;
+        margin-right: 10px;
         &:last-child { margin-right: 0; }
     }
     &.is_s {
@@ -52,12 +52,12 @@
     }
     &.is_m {
         li {
-            .a-icon { font-size: 18px }
+            .a-icon { font-size: 16px }
             .a-icon_txt { @include bold }
             @include max(xs) {
-            margin-right: 10px;
-            .a-icon { }
-            .a-icon_txt { font-size: 12px;  }
+                margin-right: 10px;
+                .a-icon { }
+                .a-icon_txt { font-size: 12px;  }
             }
         }
     }

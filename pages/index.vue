@@ -52,6 +52,10 @@ import ListFilter from '~/components/home/ListFilter.vue'
 import FilteredText from '~/components/home/FilteredText.vue'
 
 export default {
+    transition (to, from) {
+        if(from) return from.name === 'user-userid' ? 'home' : ''
+        // return +to.query.page < +from.query.page ? 'slide-right' : 'slide-left'
+    },
     data () {
         return {
             showFilter: false,
@@ -100,9 +104,7 @@ export default {
         }
     },
     created: function() {
-        // console.log("created");
         this.SearchStart();
-
     },
     // beforeMount: function() {
     //     // console.log("beforeMount");
