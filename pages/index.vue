@@ -71,18 +71,14 @@ export default {
         },
         SearchStart: function() {
 
-            window.Loading.Show();
-
             let postData = this.$store.state.search.postData
 
             this.$store.dispatch('home/GetSearchResult',postData)
             .then((data) => {
                 // console.log("complete", data)
-                window.Loading.Hide();
             }).catch((error,txt)=>{
                 console.error(error);
                 this.error = txt;
-                window.Loading.Hide();
             })
         }
     },

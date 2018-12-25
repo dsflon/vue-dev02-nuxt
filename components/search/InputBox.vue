@@ -31,7 +31,7 @@
                         </button>
                     </li>
                 </ul>
-                <p v-else>検索候補がありません</p>
+                <p v-else class="no_result">検索候補がありません</p>
             </div>
         </div>
 

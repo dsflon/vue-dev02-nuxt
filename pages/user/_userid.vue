@@ -68,11 +68,9 @@ export default {
 
         } else {
 
-            window.Loading.Show();
-
             let postData = {
-                "search_user_id": "this.userId",
-                "user_id": window.myData ? window.myData["user_id"] : null,
+                "search_user_id": this.$route.params.userid,
+                "user_id": this.$store.state.user.myData ? this.$store.state.user.myData.user_id : null,
                 "language_flg": "ja"
             };
 
@@ -81,11 +79,9 @@ export default {
                 // console.log("complete", json)
                 this.error = null;
                 this.userData = json.data;
-                window.Loading.Hide();
             }).catch((error,txt)=>{
                 console.error(txt);
                 this.error = txt;
-                window.Loading.Hide();
             })
 
         }

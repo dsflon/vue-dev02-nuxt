@@ -43,9 +43,12 @@ export const actions = {
      */
     GetSearchResult(context, postData) {
 
+        window.Loading.Show();
+
         return new Promise((resolve, reject) => {
 
             Fetch(Api.search, postData, (json) => {
+                window.Loading.Hide();
                 if(context.state.filterData && Object.values(context.state.filterData)[0]) {
                     ListFilter( json, context.state.filterData, (data) => {
                         context.commit('registerSearchResult', data)
@@ -57,6 +60,7 @@ export const actions = {
                 }
                 context.commit('registerSearchResultOrigin', json)
             },() => {
+                window.Loading.Hide();
                 reject("Error!! : home/GetSearchResult","サーバーに接続できませんでした。");
             });
 

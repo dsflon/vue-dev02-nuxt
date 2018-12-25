@@ -12,7 +12,7 @@ export default {
     components: {},
     created: function() {
         Sign.Check( (data) => {
-            this.$store.dispatch('mydata/SetMyData',data)
+            this.$store.dispatch('user/SetMyData',data)
         });
     },
     mounted: function() {

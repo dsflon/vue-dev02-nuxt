@@ -43,13 +43,18 @@ export const actions = {
     * @param {object} postData - postするデータ
     */
     GetJobList(context) {
+
+        window.Loading.Show();
+
         return new Promise((resolve, reject) => {
 
             Fetch(Api.jobList, null, (json) => {
+                window.Loading.Hide();
                 localStorage.setItem(window.LSJob, JSON.stringify(json));
                 context.commit('registerJobList', json)
                 resolve(json)
             },() => {
+                window.Loading.Hide();
                 reject("Error!! : search/GetJobList","サーバーに接続できませんでした。");
             });
 

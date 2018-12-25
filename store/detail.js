@@ -38,14 +38,17 @@ export const actions = {
      */
     GetDetailResult(context, postData) {
 
+        window.Loading.Show();
+
         return new Promise((resolve, reject) => {
 
             Fetch(Api.detail, postData, (json) => {
                 context.commit('registerDetailResult', json.data)
                 context.commit('registerFollowed', Boolean(json.data.followed))
-
+                window.Loading.Hide();
                 resolve(json)
             },() => {
+                window.Loading.Hide();
                 reject("Error!! : detail/GetDetailResult","サーバーに接続できませんでした。");
             });
 
@@ -58,26 +61,22 @@ export const actions = {
      */
     SetFollowed(context, followData) {
 
+        window.Loading.Show();
+
         return new Promise((resolve, reject) => {
 
             Fetch(Api.follow, followData, () => {
-                let followed = !context.state.followed;
+
+                let followed = followData && followData.user_id ? true : false;
                 window.BodyMessage.AutoPlay( followed ? "フォローしました。" : "フォローを解除しました。" );
+                window.Loading.Hide();
                 context.commit('registerFollowed', followed)
                 resolve(followed)
+
             },() => {
                 reject("Error!! : detail/SetFollow","サーバーに接続できませんでした。");
+                window.Loading.Hide();
             });
-
-            // console.log("follow:", {
-            //     "search_user_id": Number(e.currentTarget.id),
-            //     "user_id": window.userData ? window.userData["user_id"] : null,
-            //     "language_flg": "ja"
-            // });
-            //
-            // setTimeout( () => {
-            //     context.commit('registerFollowed', follow)
-            // }, 1000)
 
         })
 

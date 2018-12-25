@@ -114,18 +114,14 @@ export default {
     },
     created: function() {
 
-        window.Loading.Show();
-
         this.CheckLocalStrage();
 
         // サーバから取得
         this.$store.dispatch('search/GetJobList')
         .then((data) => {
             // console.log("complete", data)
-            window.Loading.Hide();
         }).catch((error,txt)=>{
             console.error(error);
-            window.Loading.Hide();
         })
 
     },
