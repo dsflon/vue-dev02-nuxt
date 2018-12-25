@@ -10,7 +10,7 @@
             </h1>
 
             <icon-user v-if="icon == 'user'" />
-            
+
             <icon-followed v-else-if="icon == 'followed'" />
 
         </div>
@@ -32,9 +32,6 @@ export default {
         "title",
         "userId",
         "icon"
-    ],
-
-    mounted: function() {
-    }
+    ]
 }
 </script>

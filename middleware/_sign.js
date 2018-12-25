@@ -1,19 +1,21 @@
 
 const Sign = {
 
-    Check: () => {
+    Check: ( callback ) => {
 
-        let user = localStorage.getItem(window.LSUser);
+        let user = localStorage.getItem(window.LSUser),
+            myData;
 
         if(user) {
-            window.userData = JSON.parse(user);
+            myData = JSON.parse(user);
         } else {
-            let userData = {
+            myData = {
                 "user_id": 4
             }
-            localStorage.setItem(window.LSUser, JSON.stringify(userData));
-            window.userData = userData;
+            localStorage.setItem(window.LSUser, JSON.stringify(myData));
         }
+
+        callback(myData)
 
     },
 

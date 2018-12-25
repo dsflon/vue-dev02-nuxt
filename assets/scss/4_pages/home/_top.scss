@@ -138,6 +138,7 @@
                     padding: 10px;
                     line-height: 1;
                     @include bold;
+                    color: $color_text;
                     .list_info_wrap {
                         margin-top: 10px;
                         font-size: 10px;

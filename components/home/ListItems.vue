@@ -6,7 +6,7 @@
         <li class="list"
             v-for="item in $store.state.home.searchResult"
             :key="item.user_name">
-            <button :id="item.user_id" class="list_btn" onClick={this.props.GetPage.bind(this)}>
+            <router-link  class="list_btn" :to="'/user/' + item.user_id">
 
                 <div
                     ref="list_user"
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                 </div>
-            </button>
+            </router-link>
         </li>
 
     </ul>
