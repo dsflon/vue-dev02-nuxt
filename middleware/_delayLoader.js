@@ -24,10 +24,11 @@ const DelayLoader = (target) => {
 
         for (var i = 0; i < target.length; i++) {
 
-            let item = target[i],
+            let item = target[i].classList ? target[i] : target[i].$el,
                 position = GetOffset( item ).top;
 
-            if( scrollVal > position - 100 && item.dataset.src ) {
+            // if( scrollVal > position + 100 && item.dataset.src ) {
+            if( scrollVal > position && item.dataset.src ) {
                 let src = item.dataset.src;
                 item.style.backgroundImage = "url("+src+")";
                 item.removeAttribute("data-src")

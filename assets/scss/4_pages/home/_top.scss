@@ -6,7 +6,6 @@
 }
 .home-enter {
     opacity: 0;
-    // transform: translateX(-50%);
 }
 
 .home-leave-active {
@@ -25,7 +24,6 @@
 .user-leave-active {
     transition: opacity $pageanim ease;
     opacity: 0;
-    // transform: translateX(-50%);
 }
 .home-leave-active,
 .user-enter-active {

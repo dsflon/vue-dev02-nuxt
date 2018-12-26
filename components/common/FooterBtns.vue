@@ -1,12 +1,12 @@
 <template>
 
-    <div v-if="type.page == 'detail'" class="m-btns is_sticky">
+    <div v-if="type == 'detail'" class="m-btns is_sticky">
         <button class="a-btn" @click="goBack">
             <i class="a-icon a-icon-arrow_left"></i>
         </button>
         <button
-            v-if="!type.followed"
-            :id="type.userId"
+            v-if="!this.$store.state.detail.followed"
+            :id="this.$route.params.userid"
             class="a-btn is_l is_pink"
             @click="follow">
             <i class="a-icon a-icon-friends_plus"></i>
@@ -16,7 +16,7 @@
         </router-link>
     </div>
 
-    <div v-else-if="type.page == 'post'" class="m-btns is_sticky">
+    <div v-else-if="type == 'post'" class="m-btns is_sticky">
         <button class="a-btn" @click="goBack">
             <i class="a-icon a-icon-cross"></i>
         </button>

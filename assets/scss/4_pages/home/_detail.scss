@@ -2,16 +2,9 @@
 
 .fw #detail {
 
-    // position: fixed;
-    // overflow-x: hidden;
-    // overflow-y: auto;
-    // -webkit-overflow-scrolling: touch;
-    // width: 100%; height: 100%; top: 0; left: 0;
-    will-change: auto;
     background: $black0;
 
-    #detail_inner {
-    }
+    .contents { overflow-x: visible; }
 
     .user_inner {
 
@@ -72,39 +65,46 @@
 
     .user_tab {
 
-        .slick-slider {
+        .VueCarousel {
             display: flex;
             flex-flow: row wrap;
             user-select: text;
 
-            .slick-list {
+            .VueCarousel-wrapper {
                 order: 2;
                 width: 100%;
                 // transition: height 1s;
                 min-height: 50vh;
             }
-            .slick-dots {
+            .VueCarousel-pagination {
                 order: 1;
                 width: 100%;
-                background: #FFF;
-                display: flex !important;
-                flex-flow: row wrap;
                 height: 46px;
                 margin-bottom: 20px;
-                padding: 0 15px;
                 position: sticky;
                 top: 0; left: 0;
+                .VueCarousel-dot-container {
+                    background: #FFF;
+                    display: flex !important;
+                    flex-flow: row wrap;
+                    padding: 0 15px;
+                }
                 li {
+                    margin: 0 !important;
+                    padding: 0 !important;
                     width: 33.33%;
                     button {
                         display: block;
                         text-align: center;
-                        width: 100%; height: 46px;
+                        width: 100% !important;
+                        height: 46px !important;
                         color: $black50;
                         font-weight: bold;
-
+                        background: none !important;
+                        border-radius: 0;
+                        outline: none;
                     }
-                    &.slick-active button {
+                    &.VueCarousel-dot--active button {
                         color: $color_link;
                         @include triangle($color:#FFF, $width:20, $height:10, $direction:bottom);
                     }
@@ -124,7 +124,7 @@
                 li {
                     width: 33.33%;
                     padding: 1px;
-                    button {
+                    .photos_btn {
                         width: 100%; height: 0;
                         padding-bottom: 100%;
                         background-position: center;

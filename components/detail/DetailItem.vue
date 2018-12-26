@@ -44,26 +44,43 @@
 
         </div>
 
-        <!-- <Slider
-            history={this.props.history}
-            photos={userData.photo}
-            info={userData.info}
-            menu={userData.menus} /> -->
+        <div class="user_tab">
+            <carousel :perPage="1" :minSwipeDistance="100">
+                <slide>
+                    <detail-item-slider-photos :photosData="userData.photo"  />
+                </slide>
+                <slide>
+                    <detail-item-slider-info :infoData="userData.info" />
+                </slide>
+                <slide>
+                    <detail-item-slider-menu :menuData="userData.menus" />
+                </slide>
+            </carousel>
+        </div>
 
     </div>
 </template>
 
 <script>
+import { Carousel, Slide } from 'vue-carousel';
 
-import DelayLoader from '~/middleware/_delayLoader';
 import ChangeTimeString from '~/components/common/ChangeTimeString.vue'
+
+import DetailItemSliderPhotos from '~/components/detail/DetailItemSliderPhotos.vue'
+import DetailItemSliderInfo from '~/components/detail/DetailItemSliderInfo.vue'
+import DetailItemSliderMenu from '~/components/detail/DetailItemSliderMenu.vue'
 
 export default {
     props: [
         "userData"
     ],
     components: {
-        ChangeTimeString
+        ChangeTimeString,
+        DetailItemSliderPhotos,
+        DetailItemSliderInfo,
+        DetailItemSliderMenu,
+        Carousel,
+        Slide
     },
     methods: {
         userTxt: function() {
@@ -82,10 +99,19 @@ export default {
                 height = target.scrollHeight;
             target.style.height = "inherit";
             btn.style.display = "none";
+        },
+        AjustTabName() {
+            let tab = document.getElementsByClassName('VueCarousel-dot-button'),
+                tabTxt = [ "写真", "基本情報", "メニュー"];
+
+            for (var i = 0; i < tab.length; i++) {
+                tab[i].innerText = tabTxt[i];
+            }
         }
     },
     mounted: function() {
         this.userTxt()
+        setTimeout( this.AjustTabName, 1 )
     }
 
 }

@@ -104,10 +104,16 @@ export default {
         }
     },
     created: function() {
-
-        if( window.prev !== "user" ) this.SearchStart();
-
+        if( window.prev !== "user" ) {
+            this.SearchStart();
+        } else if( window.prev === "user" && !this.$store.state.home.searchResult ) {
+            console.log(this.$store.state.home.searchResult);
+            this.SearchStart();
+        }
     },
+    destroyed: function() {
+        window.prev = "home";
+    }
     // beforeMount: function() {
     //     // console.log("beforeMount");
     // },

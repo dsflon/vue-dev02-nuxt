@@ -28,11 +28,7 @@
 
                 <footer-btns
                     v-if="!error"
-                    :type="{
-                        page: 'detail',
-                        userId: this.$route.params.userid,
-                        followed: this.$store.state.detail.followed
-                    }" />
+                    type="detail" />
             </div>
 
         </main>

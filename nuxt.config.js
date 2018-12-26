@@ -24,7 +24,7 @@ module.exports = {
         // プロジェクト内の SCSS ファイル
         '@/assets/scss/style.scss'
     ],
-    plugins: ['~/plugins/'],
+    plugins: ['~/plugins/','~/plugins/vue-components.js'],
     // srcDir: 'public/',
     mode:'spa',
     server: {
