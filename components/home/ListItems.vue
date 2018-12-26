@@ -70,12 +70,8 @@ export default {
     components: {
         ChangeTimeString
     },
-    // methods: {
-    //     imgOnload: function() {
-    //         DelayLoader( this.$refs.list_user );
-    //     }
-    // },
     mounted: function() {
+        DelayLoader( this.$refs.list_user );
     },
     updated: function() {
         DelayLoader( this.$refs.list_user );

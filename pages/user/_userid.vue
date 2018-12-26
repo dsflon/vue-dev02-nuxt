@@ -89,6 +89,9 @@ export default {
             })
 
         }
+    },
+    destroyed: function() {
+        window.prev = "user";
     }
 }
 </script>

@@ -104,7 +104,9 @@ export default {
         }
     },
     created: function() {
-        this.SearchStart();
+
+        if( window.prev !== "user" ) this.SearchStart();
+
     },
     // beforeMount: function() {
     //     // console.log("beforeMount");
