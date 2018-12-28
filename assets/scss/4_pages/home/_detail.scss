@@ -160,6 +160,8 @@
                         }
                         .info_box_inner_txt {
                             line-height: 1.4;
+                            white-space: pre-wrap;
+                            word-wrap: break-word;
                         }
                     }
                 }
@@ -173,6 +175,8 @@
                 padding: 15px;
                 margin-bottom: 2px;
                 position: relative;
+                display: block;
+                color: $color_text;
                 &:last-child { margin-bottom: 0; }
                 .menu_box_ttl {
                     line-height: 1.4;
@@ -193,6 +197,8 @@
                     font-size: 12px;
                     line-height: 1.4;
                     margin-top: 15px;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
                 }
             }
 

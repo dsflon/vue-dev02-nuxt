@@ -1,7 +1,7 @@
 <template>
 
     <div class="user_tab_inner user_tab_photos">
-        <ul>
+        <ul v-if="photosData && photosData.length !== 0">
             <li
                 v-for="data in photosData"
                 :key="data.post_id">
@@ -9,10 +9,11 @@
                     class="photos_btn"
                     ref="photos_btn"
                     :data-src="data.post_image"
-                    :to="'./post/'+data.post_id">
+                    :to="$route.params.userid+'/post/'+data.post_id">
                 </router-link>
             </li>
         </ul>
+        <p v-else class="no_result">投稿写真がありません。</p>
     </div>
 
 </template>

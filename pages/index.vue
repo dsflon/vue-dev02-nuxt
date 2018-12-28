@@ -53,8 +53,12 @@ import FilteredText from '~/components/home/FilteredText.vue'
 
 export default {
     transition (to, from) {
-        if(from) return from.name === 'user-userid' ? 'home' : ''
+
+        let pages = {
+            'user-userid': 'home'
+        }
         // return +to.query.page < +from.query.page ? 'slide-right' : 'slide-left'
+        return to.name ? pages[to.name] : null;
     },
     data () {
         return {

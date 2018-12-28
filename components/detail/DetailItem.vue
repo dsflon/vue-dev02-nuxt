@@ -45,15 +45,15 @@
         </div>
 
         <div class="user_tab">
-            <carousel :perPage="1" :minSwipeDistance="100">
+            <carousel :adjustableHeight="true" :perPage="1" :minSwipeDistance="100">
                 <slide>
-                    <detail-item-slider-photos :photosData="userData.photo"  />
+                    <detail-item-slider-photos :photosData="userData.photo ? userData.photo : null"  />
                 </slide>
                 <slide>
-                    <detail-item-slider-info :infoData="userData.info" />
+                    <detail-item-slider-info :infoData="userData.info? userData.info : null" />
                 </slide>
                 <slide>
-                    <detail-item-slider-menu :menuData="userData.menus" />
+                    <detail-item-slider-menu :menuData="userData.menus? userData.menus : null" />
                 </slide>
             </carousel>
         </div>
