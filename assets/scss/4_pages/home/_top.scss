@@ -1,59 +1,5 @@
 @charset "utf-8";
 
-//
-.home-enter-active {
-    transition: opacity $pageanim ease;
-}
-.home-enter {
-    opacity: 0;
-}
-
-.home-leave-active {
-    transition: transform $pageanim ease, opacity $pageanim ease;
-    opacity: 0;
-    transform: translateX(10%);
-}
-
-.user-enter-active {
-    transition: transform $pageanim ease, opacity $pageanim ease;
-}
-.user-enter {
-    opacity: 0;
-    transform: translateX(10%);
-}
-.user-leave-active {
-    transition: opacity $pageanim ease;
-    opacity: 0;
-}
-.home-leave-active,
-.user-enter-active {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-}
-
-// .home-enter {
-//     transform: translate(-50%,0);
-//     opacity: 0;
-//     // &:after { opacity: 1; }
-// }
-// .home-enter-active {
-//     transition: transform $pageanim ease, opacity $pageanim ease;
-//     transform: translate(0,0);
-//     opacity: 1;
-//     // &:after { transition: opacity $pageanim ease; opacity: 0; }
-// }
-// .home-leave {
-//     transform: translate(0,0);
-//     opacity: 1;
-//     // &:after { opacity: 0; }
-// }
-// .home-leave-active {
-//     transition: transform $pageanim ease, opacity $pageanim ease;
-//     transform: translate(-50%,0);
-//     opacity: 0;
-//     // &:after { transition: opacity $pageanim ease; opacity: 1; }
-// }
 
 .fw #home {
 

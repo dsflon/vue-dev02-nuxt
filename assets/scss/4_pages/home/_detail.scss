@@ -206,25 +206,4 @@
 
     }//.user_tab
 
-    &.user-enter {
-        transform: translate(100%,0);
-    }
-    &.user-enter-active {
-        position: fixed;
-        width: 100%; height: 100%; top: 0; left: 0;
-        z-index: 9999;
-        transition: transform $pageanim ease;
-        transform: translate(0,0);
-    }
-    &.user-exit {
-        position: fixed;
-        width: 100%; height: 100%; top: 0; left: 0;
-        z-index: 9999;
-        transform: translate(0,0);
-    }
-    &.user-exit-active {
-        transition: transform $pageanim ease;
-        transform: translate(100%,0);
-    }
-
 }//.fw

@@ -54,11 +54,14 @@ import FilteredText from '~/components/home/FilteredText.vue'
 export default {
     transition (to, from) {
 
-        let pages = {
-            'user-userid': 'home'
+        to = to ? to.name : null
+        from = from ? from.name : null
+
+        if( to == "index" && from == "user-userid" ) {
+            // user detailから来たとき
+            return "home-user"
         }
-        // return +to.query.page < +from.query.page ? 'slide-right' : 'slide-left'
-        return to.name ? pages[to.name] : null;
+
     },
     data () {
         return {
@@ -111,7 +114,6 @@ export default {
         if( window.prev !== "user" ) {
             this.SearchStart();
         } else if( window.prev === "user" && !this.$store.state.home.searchResult ) {
-            console.log(this.$store.state.home.searchResult);
             this.SearchStart();
         }
     },

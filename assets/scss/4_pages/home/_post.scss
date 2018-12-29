@@ -32,40 +32,29 @@
             }
             .post_txt {
                 line-height: 1.4;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
+            .post_photo {
+                width: 100%;
+                height: 0;
+                padding-bottom: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                // background-color: $black30;
+            }
+            .VueCarousel-pagination {
+                position: absolute;
+                bottom: 5px; left: 0;
+                .VueCarousel-dot {
+                    margin: 0 6px !important;
+                    padding: 0 !important;
+                }
             }
         }
 
     }
 
-    &.post-enter {
-        // transform: scale(1.01,1.01);
-        transform: translateY(10px);
-        opacity: 0;
-    }
-    &.post-enter-active {
-        transition: transform $pageanim ease, opacity $pageanim ease;
-        // transform: scale(1.0,1.0);
-        transform: translateY(0);
-        opacity: 1;
-
-        // position: absolute;
-        // width: 100%; height: 100%; top: 0; left: 0;
-        // z-index: 9999;
-    }
-    &.post-exit {
-        // transform: scale(1.0,1.0);
-        transform: translateY(0px);
-        opacity: 1;
-
-        // position: absolute;
-        // width: 100%; height: 100%; top: 0; left: 0;
-        // z-index: 9999;
-    }
-    &.post-exit-active {
-        transition: transform 0.2s ease 0.2s, opacity 0.2s ease 0.2s;
-        // transform: scale(1.01,1.01);
-        transform: translateY(10px);
-        opacity: 0;
-    }
 
 }//.fw

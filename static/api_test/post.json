@@ -4,7 +4,11 @@
     "data": {
         "user_id": "1",
         "user_name": "@sdfgsdfgsdfg",
-        "user_icon": "/assets/images/dammy/user_01.jpg",
+        "post_photos": [
+            "/assets/images/dammy/user_01.jpg",
+            "/assets/images/dammy/user_02.jpg",
+            "/assets/images/dammy/user_03.jpg"
+        ],
         "count_likes": 1999,
         "like": true,
         "description": "外国人風スタイル。エッジの効いたカラーやカットやパーマ。ハイライトなどのデザインカラーが得意。\r\n\r\n外国人風スタイル。エッジの効いたカラーやカットやパーマ。\r\nハイライトなどのデザインカラーが得意。"

@@ -1,0 +1,75 @@
+@charset "utf-8";
+
+$pageanim: 0.2s;
+
+
+// ----------------------------------------------------------
+// home-user
+// ----------------------------------------------------------
+.home-user-leave-active,
+.user-home-enter-active {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100vw;
+	// height: 100vh;
+	overflow: hidden;
+}
+
+.home-user-enter-active {
+    transition: opacity $pageanim ease;
+}
+.home-user-enter {
+    opacity: 0;
+}
+.home-user-leave-active {
+    transition: transform $pageanim ease, opacity $pageanim ease;
+    opacity: 0;
+    transform: translateX(10%);
+}
+
+.user-home-enter-active {
+    transition: transform $pageanim ease, opacity $pageanim ease;
+}
+.user-home-enter {
+    opacity: 0;
+    transform: translateX(10%);
+}
+.user-home-leave-active {
+    transition: opacity $pageanim ease;
+    opacity: 0;
+}
+
+
+// ----------------------------------------------------------
+// home-post
+// ----------------------------------------------------------
+// .user-post-leave-active,
+// .post-user-enter-active {
+//     position: fixed;
+//     top: 0; left: 0;
+//     width: 100vw; height: 100vh;
+// }
+
+.user-post-enter-active {
+    transition: transform $pageanim ease, opacity $pageanim ease;
+}
+.user-post-enter {
+    opacity: 0;
+    transform: translateY(10px);
+}
+.user-post-leave-active {
+    transition: opacity $pageanim ease;
+    opacity: 0;
+}
+
+.post-user-enter-active {
+    transition: opacity $pageanim ease;
+}
+.post-user-enter {
+    opacity: 0;
+}
+.post-user-leave-active {
+    transition: transform $pageanim ease, opacity $pageanim ease;
+    transform: translateY(10px);
+    opacity: 0;
+}

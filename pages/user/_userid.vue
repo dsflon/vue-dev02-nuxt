@@ -1,38 +1,39 @@
 <template>
     <div>
+        <!-- <div class="detail-wrap" ref="detail_wrap"> -->
 
-        <app-header
-            :title="userData ? userData.user_name : ''"
-            :userId=" $route.params.userid ? $route.params.userid : ''"
-            :icon="$store.state.detail.followed ? 'followed' : ''" />
+            <app-header
+                :title="userData ? userData.user_name : ''"
+                :userId=" $route.params.userid ? $route.params.userid : ''"
+                :icon="$store.state.detail.followed ? 'followed' : ''" />
 
-        <main id="detail">
+            <main id="detail">
 
-            <div class="detail_inner">
+                <div class="detail_inner">
 
-                <div class="contents">
+                    <div class="contents">
 
-                    <detail-item
-                        v-if="!error && this.userData"
-                        :userData="this.userData" />
+                        <detail-item
+                            v-if="!error && this.userData"
+                            :userData="this.userData" />
 
-                    <div v-else class="no_result">
-                        <p>{{error}}</p>
-                        <router-link to="/">
-                            <i class="a-icon a-icon-arrow_left f-font_l"></i>
-                            <span class="a-icon_txt">戻る</span>
-                        </router-link>
+                        <div v-else class="no_result">
+                            <p>{{error}}</p>
+                            <router-link to="/">
+                                <i class="a-icon a-icon-arrow_left f-font_l"></i>
+                                <span class="a-icon_txt">戻る</span>
+                            </router-link>
+                        </div>
+
                     </div>
 
+                    <footer-btns
+                        type="detail" />
                 </div>
 
-                <footer-btns
-                    v-if="!error"
-                    type="detail" />
-            </div>
+            </main>
 
-        </main>
-
+        <!-- </div> -->
     </div>
 </template>
 
@@ -45,17 +46,25 @@ import DetailItem from '~/components/detail/DetailItem.vue'
 export default {
     transition (to, from) {
 
-        let pages = {
-            'user-userid': 'user'
+        to = to ? to.name : null
+        from = from ? from.name : null
+
+        if( to == "user-userid" && from == "index" ) {
+            // homeから来たとき
+            return "user-home"
+        }
+        else if( to == "user-userid" && from == "user-post_userid-post-postid" ) {
+            // postから来たとき
+            return "post-user"
         }
 
-        return to.name ? pages[to.name] : null;
     },
     data () {
         return {
             error: null,
             title: null,
-            userData: null
+            userData: null,
+            // scrollVal: 0
         }
     },
     components: {
@@ -64,13 +73,8 @@ export default {
         DetailItem,
         FooterBtns
     },
-    created: function() {
-
-        if(!this.$route.params.userid) {
-
-            this.error = "ユーザーが見つかりませんでした。"
-
-        } else {
+    methods: {
+        GetStart: function() {
 
             let postData = {
                 "search_user_id": this.$route.params.userid,
@@ -80,9 +84,12 @@ export default {
 
             this.$store.dispatch('detail/GetDetailResult',postData)
             .then((json) => {
-                // console.log("complete", json)
-                this.error = null;
-                this.userData = json.data;
+                if(!json) {
+                    this.error = "データが存在しません。";
+                } else {
+                    this.error = null;
+                    this.userData = json.data;
+                }
             }).catch((error,txt)=>{
                 console.error(txt);
                 this.error = txt;
@@ -90,8 +97,36 @@ export default {
 
         }
     },
+    created: function() {
+
+        if(this.$store.state.detail.detailResult) this.userData = this.$store.state.detail.detailResult;
+
+        if(!this.$route.params.userid) {
+
+            this.error = "ユーザーが見つかりませんでした。"
+
+        } else {
+
+            if( window.prev !== "post" ) {
+                this.GetStart();
+            } else if( window.prev === "post" && !this.$store.state.detail.detailResult ) {
+                this.GetStart();
+            }
+
+        }
+    },
+    mounted: function() {
+        // window.onscroll = () => {
+        //     this.scrollVal = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+        // }
+    },
+    beforeDestroy: function() {
+        // console.log(this.scrollVal);
+        // this.$refs.detail_wrap.style.transform = "translateY(-"+this.scrollVal+"px)"
+    },
     destroyed: function() {
         window.prev = "user";
+        // window.onscroll = null;
     }
 }
 </script>
