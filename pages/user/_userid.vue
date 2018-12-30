@@ -55,10 +55,17 @@ export default {
         }
 
     },
+    head () {
+        return {
+            title: this.userData ? this.userData.user_name + " | User | Step Lack" : "ユーザーが見つかりません。 | User Page | Step Lack",
+            meta: [
+                { hid: 'description', name: 'description', content: this.userData ? this.userData.user_name + "さんのページです。" : "ユーザーが見つかりません。" }
+            ]
+        }
+    },
     data () {
         return {
             error: null,
-            title: null,
             userData: null,
             // scrollVal: 0
         }
@@ -110,6 +117,8 @@ export default {
             }
 
         }
+
+        localStorage.setItem('steplack_lastpage', location.pathname);
     },
     mounted: function() {
         // window.onscroll = () => {
@@ -123,6 +132,7 @@ export default {
     destroyed: function() {
         window.prev = "user";
         // window.onscroll = null;
+        localStorage.removeItem('steplack_lastpage');
     }
 }
 </script>

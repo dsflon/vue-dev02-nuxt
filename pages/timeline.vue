@@ -24,6 +24,14 @@ export default {
         AppHeader,
         AppFooter
     },
+    head () {
+        return {
+            title: "Timeline | Step Lack",
+            meta: [
+                { hid: 'description', name: 'description', content: "" }
+            ]
+        }
+    },
     data () {
         return {
         }

@@ -63,6 +63,14 @@ export default {
         }
 
     },
+    head () {
+        return {
+            title: this.SearchKey + "の検索結果 | Home | Step Lack",
+            meta: [
+                { hid: 'description', name: 'description', content: this.SearchKey + "の検索結果です。 | Step Lack" }
+            ]
+        }
+    },
     data () {
         return {
             showFilter: false,

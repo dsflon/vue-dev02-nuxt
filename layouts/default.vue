@@ -10,10 +10,15 @@ import Sign from '~/middleware/_sign';
 
 export default {
     components: {},
+    beforeCreate: function() {
+        // let lastPage = localStorage.getItem('steplack_lastpage');
+        // if(lastPage) this.$router.replace(lastPage);
+    },
     created: function() {
         Sign.Check( (data) => {
             this.$store.dispatch('user/SetMyData',data)
         });
+
     },
     mounted: function() {
         window.BodyMessage = new BodyMessage(this.$refs.app);

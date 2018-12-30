@@ -41,6 +41,14 @@ export default {
         SearchForm,
         InputBox
     },
+    head () {
+        return {
+            title: "Search | Step Lack",
+            meta: [
+                { hid: 'description', name: 'description', content: "駅名と職業で検索します。" }
+            ]
+        }
+    },
     data () {
         return {
             showInputBox: false,

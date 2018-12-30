@@ -62,6 +62,14 @@ export default {
     components: {
         Validate
     },
+    head () {
+        return {
+            title: "Signup | Step Lack",
+            meta: [
+                { hid: 'description', name: 'description', content: "" }
+            ]
+        }
+    },
     data () {
         return {
             userid: false,

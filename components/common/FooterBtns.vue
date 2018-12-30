@@ -1,7 +1,7 @@
 <template>
 
     <div v-if="type == 'detail'" class="m-btns is_sticky">
-        <button class="a-btn" @click="goBack">
+        <button class="a-btn" @click="goBackUser">
             <i class="a-icon a-icon-arrow_left"></i>
         </button>
         <button
@@ -17,7 +17,7 @@
     </div>
 
     <div v-else-if="type == 'post'" class="m-btns is_sticky">
-        <button class="a-btn" @click="goBack">
+        <button class="a-btn" @click="goBackPost">
             <i class="a-icon a-icon-cross"></i>
         </button>
         <router-link to="/message" class="a-btn is_l is_blue">
@@ -35,9 +35,19 @@ export default {
         "type"
     ],
     methods: {
-        goBack() {
-            // this.$router.go(-1)
-            this.$router.back()
+        goBackUser() {
+            if(history.length <= 3) {
+                this.$router.push( "/" )
+            } else {
+                this.$router.back()
+            }
+        },
+        goBackPost() {
+            if(history.length <= 3) {
+                this.$router.push( location.pathname.split("/post")[0] )
+            } else {
+                this.$router.back()
+            }
         },
         follow() {
 
@@ -60,6 +70,8 @@ export default {
             })
 
         }
+    },
+    mounted: function() {
     }
 
 }

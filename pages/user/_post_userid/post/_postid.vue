@@ -55,9 +55,18 @@ export default {
         }
 
     },
+    head () {
+        return {
+            title: this.postData ? this.postData.user_name + "さんの投稿 | Post | User | Step Lack" : "投稿が見つかりません。 | Post | User | Step Lack",
+            meta: [
+                { hid: 'description', name: 'description', content: this.postData ? this.postData.user_name + "さんの投稿です。" : "ユーザーが見つかりません。" }
+            ]
+        }
+    },
     data () {
         return {
             postData: null,
+            userName: null,
             error: null
         }
     },
@@ -93,9 +102,12 @@ export default {
 
         this.GetStart();
 
+        localStorage.setItem('steplack_lastpage', location.pathname);
+
     },
     destroyed: function() {
         window.prev = "post";
+        localStorage.removeItem('steplack_lastpage');
     }
 }
 </script>
