@@ -15,7 +15,7 @@
                     <h3 class="info_box_inner_ttl">{{child.title}}</h3>
 
                     <p v-if="checkLink(child.text)" class="info_box_inner_txt">
-                        <a :href="child.text" class="a-link" target="_blank">{{child.text}}</a>
+                        <a :href="child.text" class="a-link">{{child.text}}</a>
                     </p>
                     <p v-else class="info_box_inner_txt">{{child.text}}</p>
 

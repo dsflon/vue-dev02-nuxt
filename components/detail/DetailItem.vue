@@ -45,7 +45,7 @@
         </div>
 
         <div class="user_tab">
-            <carousel :adjustableHeight="true" :perPage="1" :minSwipeDistance="100">
+            <carousel :adjustableHeight="true" :perPage="1" :minSwipeDistance="50">
                 <slide>
                     <detail-item-slider-photos :photosData="userData.photo ? userData.photo : null"  />
                 </slide>

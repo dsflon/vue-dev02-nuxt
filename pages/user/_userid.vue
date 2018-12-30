@@ -19,10 +19,6 @@
 
                         <div v-else class="no_result">
                             <p>{{error}}</p>
-                            <router-link to="/">
-                                <i class="a-icon a-icon-arrow_left f-font_l"></i>
-                                <span class="a-icon_txt">戻る</span>
-                            </router-link>
                         </div>
 
                     </div>
