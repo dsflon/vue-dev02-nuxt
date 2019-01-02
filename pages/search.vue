@@ -17,15 +17,11 @@
 
         </div>
 
-        <!-- <transition name="inputbox"> -->
-            <!-- <input-box
-                v-if="showInputBox" -->
-            <input-box
-                ref="inputbox"
-                :class="{is_show: showInputBox}"
-                :ToggleInputBox="ToggleInputBox"
-                :SearchStart="SearchStart" />
-        <!-- </transition> -->
+        <input-box
+            ref="inputbox"
+            :class="{is_show: showInputBox}"
+            :ToggleInputBox="ToggleInputBox"
+            :SearchStart="SearchStart" />
 
     </div>
 </template>

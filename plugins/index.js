@@ -26,7 +26,6 @@ if( UA.isIphone || UA.isIpod || UA.isIpad ) {
     window.os = "android";
 }
 
-
-
-let lastPage = localStorage.getItem('steplack_lastpage');
-if(lastPage && location.pathname !== lastPage) location.replace(lastPage);
+//
+// let lastPage = localStorage.getItem('steplack_lastpage');
+// if(lastPage && location.pathname !== lastPage) location.replace(lastPage);

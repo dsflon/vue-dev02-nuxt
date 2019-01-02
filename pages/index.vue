@@ -124,6 +124,10 @@ export default {
         } else if( window.prev === "user" && !this.$store.state.home.searchResult ) {
             this.SearchStart();
         }
+
+        if( !localStorage.getItem(window.LSPost) ) {
+            this.$router.replace("/search");    
+        }
     },
     destroyed: function() {
         window.prev = "home";

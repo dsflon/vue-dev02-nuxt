@@ -6,21 +6,22 @@ module.exports = {
         title: 'Step Lack',
         meta: [
             { charset: 'utf-8' },
-            { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-            { hid: 'description', name: 'description', content: 'Step Lack' }
+            // { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+            { name: 'viewport', content: 'width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, viewport-fit=cover' },
+            { hid: 'description', name: 'description', content: 'Step Lack' },
+            { name: 'format-detection', content: 'telephone=no' },
+            { name: 'theme-color', content: '#4C85B7' },
+            { name: 'apple-mobile-web-app-title', content: 'Step Lack' }
         ],
         link: [
-            { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+            { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+            { rel: 'apple-touch-icon-precomposed', href: '/assets/images/icons/icon-256x256_ios.png' }
         ]
     },
     router: {
         // base: '~/public/'
     },
     css: [
-        // node モジュールを直接ロードする (ここでは SASS ファイル)
-        // 'bulma',
-        // プロジェクト内の CSS ファイル
-        // '@/assets/css/main.css',
         // プロジェクト内の SCSS ファイル
         '@/assets/scss/style.scss'
     ],
