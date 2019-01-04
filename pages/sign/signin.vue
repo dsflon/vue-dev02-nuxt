@@ -16,7 +16,8 @@
                                 class="a-form_input"
                                 type="email"
                                 placeholder="ユーザー名 or メールアドレス"
-                                @input="UserId"/>
+                                @input="UserId"
+                                @keypress="KeyPress"/>
                         </label>
                         <p class="a-form_error" ref="error"></p>
                     </div>
@@ -25,7 +26,8 @@
                             class="a-form_input"
                             type="password"
                             @input="Password"
-                            placeholder="パスワード"/>
+                            placeholder="パスワード"
+                            @keypress="KeyPress"/>
                     </div>
                     <div class="signin-btn">
                         <button
@@ -55,7 +57,7 @@
             </div>
 
             <div class="signin-new">
-                <router-link to="signup" class="signin-new_btn">アカウントをお持ちでない方はこちら</router-link>
+                <router-link to="/sign/signup" class="signin-new_btn">アカウントをお持ちでない方はこちら</router-link>
             </div>
 
         </div>
@@ -104,12 +106,18 @@ export default {
             this.pass = val ? true : false;
             this.BtnDisabled();
         },
+        KeyPress: function(e) {
+            if(e.keyCode === 13) {
+                e.preventDefault();
+            }
+        },
         BtnDisabled: function() {
             this.disabled = this.userid && this.pass ? false : true;
         },
         Cancel: function(e) {
             e.preventDefault();
-            this.$router.back()
+            // this.$router.back()
+            this.$router.push("/search")
         },
         Signin: function(e) {
             e.preventDefault();

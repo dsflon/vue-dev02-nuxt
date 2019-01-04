@@ -16,9 +16,8 @@ export default {
     },
     created: function() {
         Sign.Check( (data) => {
-            this.$store.dispatch('user/SetMyData',data)
+            if(data) this.$store.dispatch('user/SetMyData',data)
         });
-
     },
     mounted: function() {
         window.BodyMessage = new BodyMessage(this.$refs.app);

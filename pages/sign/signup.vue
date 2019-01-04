@@ -16,7 +16,9 @@
                             class="a-form_input"
                             type="email"
                             placeholder="メールアドレス"
-                            @input="InputEmail"/>
+                            v-model="email"
+                            @input="InputEmail"
+                            @keypress="KeyPress"/>
                         </label>
                         <p class="a-form_error" ref="error"></p>
                     </div>
@@ -25,7 +27,7 @@
                         type="button"
                         class="a-btn_txt is_bg_blue"
                         :disabled="disabled"
-                        @click="SendMail">メールを送信する</button>
+                        @click="SendMail">メールアドレスを送信する</button>
                     </div>
 
                 </form>
@@ -33,30 +35,33 @@
                 <div class="signin-sns">
                     <p class="signin-sns_ttl">または</p>
                     <button
-                    class="signin-sns_btn"
-                    @click="FBsignin">
-                    <i class="a-icon a-icon-fb a-icon-1_5x"></i>
-                    <span class="a-icon_txt">Facebookでサインアップ</span>
-                </button>
+                        class="signin-sns_btn"
+                        @click="FBsignin">
+                        <i class="a-icon a-icon-fb a-icon-1_5x"></i>
+                        <span class="a-icon_txt">Facebookでサインアップ</span>
+                    </button>
+                </div>
+
+                <div class="signin-cancel">
+                    <button
+                    @click="Cancel">
+                        <i class="a-icon a-icon-arrow_left"></i>
+                        <span class="a-icon_txt">戻る</span>
+                    </button>
+                </div>
+
             </div>
 
-            <div class="signin-cancel">
-                <button
-                @click="Cancel">
-                <i class="a-icon a-icon-arrow_left"></i>
-                <span class="a-icon_txt">戻る</span>
-            </button>
         </div>
 
     </div>
-
-</div>
-
-</div>
 </template>
 
 <script>
 import Validate from '~/middleware/_validate';
+import Fetch from '~/middleware/_fetch';
+import Api from '~/plugins/_api';
+
 
 export default {
     components: {
@@ -72,8 +77,7 @@ export default {
     },
     data () {
         return {
-            userid: false,
-            pass: false,
+            email: null,
             disabled: true
         }
     },
@@ -84,7 +88,6 @@ export default {
                 errorTxt = validate !== true ? validate.message : null;
             if(!val) {
                 this.$refs.error.innerHTML = null;
-                this.setState({ disabled: true })
                 return false;
             }
             this.$refs.error.innerHTML = errorTxt ? errorTxt : null;
@@ -93,27 +96,47 @@ export default {
         SendMail(e) {
             e.preventDefault();
             window.Loading.Show();
-            setTimeout( () => {
+
+            let postData = {
+                email: this.email,
+                language_flg: "ja"
+            }
+
+            Fetch(Api.sendEmail, postData, (json) => {
+
                 window.Loading.Hide();
 alert(`ご入力いただいたメールアドレスに
-「info@steplack.com」からメールをお送りいたしました。
+「register@steplack.com」からメールをお送りいたしました。
 
-メールに記載されているURLより本登録を済ませてください。`)
-            }, 2000)
+メールに記載されているワンタイムパスワードを次のページで入力してください。`)
+
+                this.$router.replace("/sign/one-time-password?email="+this.email)
+
+            },() => {
+                window.Loading.Hide();
+                alert("Error!! : メールアドレスを送信できませんでした。")
+            });
+
         },
-        Cancel: function(e) {
-            e.preventDefault();
-            this.$router.back()
+        KeyPress: function(e) {
+            if(e.keyCode === 13) {
+                e.preventDefault();
+            }
         },
         FBsignin: function(e) {
             e.preventDefault();
             alert("Facebook signin !!")
+        },
+        Cancel: function(e) {
+            e.preventDefault();
+            // this.$router.back()
+            this.$router.replace("/sign/signin");
         }
     },
     mounted: function() {
     },
     destroyed: function() {
-        window.prev = "signin";
+        window.prev = "signup";
     }
 
 }

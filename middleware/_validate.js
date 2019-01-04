@@ -53,6 +53,26 @@ const validate = {
 
         }
 
+    },
+
+    number: (val) => {
+
+        if(!val) return false;
+        let checker = !CheckCharType(val,"numeric") ? "numeric" : true;
+
+        switch (checker) {
+
+            case "alphanumeric":
+            return {
+                type: "alphanumeric",
+                message:"全角文字が入力されています"
+            };
+
+            default:
+            return true;
+
+        }
+
     }
 
 }
