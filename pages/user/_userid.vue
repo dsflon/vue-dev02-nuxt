@@ -5,7 +5,7 @@
             <app-header
                 :title="userData ? userData.user_name : ''"
                 :userId=" $route.params.userid ? $route.params.userid : ''"
-                :icon="$store.state.detail.followed ? 'followed' : ''" />
+                icon="followed" />
 
             <main id="detail">
 

@@ -90,11 +90,16 @@ export default {
         },
         SearchStart: function() {
 
-            let postData = this.$store.state.search.postData
+            let postData = this.$store.state.search.postData,
+                localPt = localStorage.getItem(window.LSPost);
+
+                // storeに入ってなかったらlocalStorageから取得
+                postData = !postData && localPt ? JSON.parse(localPt) : postData;
 
             this.$store.dispatch('home/GetSearchResult',postData)
             .then((data) => {
                 // console.log("complete", data)
+                localStorage.setItem(window.LSResult, JSON.stringify(data));
             }).catch((error,txt)=>{
                 console.error(error);
                 this.error = txt;
@@ -119,6 +124,10 @@ export default {
         }
     },
     created: function() {
+
+        let lsResult = localStorage.getItem(window.LSResult)
+        if( lsResult ) this.$store.dispatch('home/SetSearchResult',JSON.parse(lsResult))
+
         if( window.prev !== "user" ) {
             this.SearchStart();
         } else if( window.prev === "user" && !this.$store.state.home.searchResult ) {
@@ -126,7 +135,7 @@ export default {
         }
 
         if( !localStorage.getItem(window.LSPost) ) {
-            this.$router.replace("/search");    
+            this.$router.replace("/search");
         }
     },
     destroyed: function() {

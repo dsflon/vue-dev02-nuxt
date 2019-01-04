@@ -1,11 +1,10 @@
 <template>
 
-    <div class="header_user">
+    <div v-if="$store.state.detail" class="header_user">
         <button
-            id={userId}
-            class="a-btn_header"
+            :class="['a-btn_header', $store.state.detail.followed ? 'is_pink' :  'is_gray']"
             @click="follow">
-            <i class="a-icon a-icon-friends_check a-icon-1_75x f-txt_pink"></i>
+            <i class="a-icon a-icon-friends_check a-icon-1_75x"></i>
         </button>
     </div>
 
@@ -18,9 +17,11 @@ export default {
     methods: {
         follow() {
 
+            let userId = this.$store.state.user.myData ? this.$store.state.user.myData.user_id : null;
+
             let postData = {
-                "search_user_id": this.$route.params.userid,
-                "user_id": null,
+                "search_user_id": !this.$route.params.userid ? this.$route.params.userid :  null,
+                "user_id": !this.$store.state.detail.followed ? userId :  null,
                 "language_flg": "ja"
             };
 

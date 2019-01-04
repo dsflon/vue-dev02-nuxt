@@ -182,6 +182,7 @@ export default {
                 },
                 (data,filter) => {
                     this.ToggleFilter();
+                    localStorage.setItem(window.LSResult, JSON.stringify(data));
                     this.$store.dispatch('home/SetSearchResult',data)
                     this.$store.dispatch('home/SetFilterData',filter)
                 }

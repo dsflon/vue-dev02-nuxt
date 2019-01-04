@@ -107,7 +107,6 @@ export default {
 
             window.Loading.Show();
             localStorage.setItem(window.LSPost, JSON.stringify(postData));
-            // // this.actions.Result(null);
             this.$store.dispatch('search/SetPostData',postData)
             //
             setTimeout( () => {
