@@ -9,7 +9,8 @@ import Api from '~/plugins/_api';
  *
  */
 export const state = () => ({
-    myData: null
+    myData: null,
+    signupData: null
 })
 
 /**
@@ -19,6 +20,9 @@ export const state = () => ({
 export const mutations = {
     registerMyData(state, data) {
         state.myData = data
+    },
+    registerSignupData(state, data) {
+        state.signupData = data
     }
 }
 
@@ -37,6 +41,19 @@ export const actions = {
         return new Promise((resolve, reject) => {
 
             context.commit('registerMyData', data);
+
+        })
+    },
+
+    /**
+     * サインアップ時のデータを一時保存する
+     * @param {object} data - My Data
+     */
+    SetSignupData(context, data) {
+
+        return new Promise((resolve, reject) => {
+
+            context.commit('registerSignupData', data);
 
         })
     }

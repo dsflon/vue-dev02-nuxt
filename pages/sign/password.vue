@@ -10,27 +10,43 @@
 
                 <form class="signin-form">
 
+                    <p class="f-font_b">* 半角英数6文字以上</p>
+
                     <div class="signin-input">
                         <label class="m-form_line">
                             <input
                             class="a-form_input"
-                            type="number"
+                            type="password"
+                            placeholder="パスワード"
+                            minlength='6'
                             autofocus
                             required
-                            placeholder="ワンタイムパスワード"
-                            maxlength="6"
                             v-model="pass"
-                            @input="InputOnetimePass"
+                            @input="InputPass"
                             @keypress="KeyPress"/>
                         </label>
-                        <p class="a-form_error"></p>
+                        <p class="a-form_error">{{error}}</p>
+                    </div>
+                    <div class="signin-input">
+                        <label class="m-form_line">
+                            <input
+                            class="a-form_input"
+                            type="password"
+                            placeholder="パスワード再入力"
+                            minlength='6'
+                            required
+                            v-model="passConf"
+                            @input="InputPassConf"
+                            @keypress="KeyPress"/>
+                        </label>
+                        <p class="a-form_error">{{errorConf}}</p>
                     </div>
                     <div class="signin-btn">
                         <button
                         type="button"
                         class="a-btn_txt is_bg_blue"
                         :disabled="disabled"
-                        @click="SendPass">ワンタイムパスワードを送信する</button>
+                        @click="SendPass">パスワードを送信する</button>
                     </div>
 
                 </form>
@@ -63,7 +79,7 @@ export default {
     },
     head () {
         return {
-            title: "Enter a one time password | Step Lack",
+            title: "Enter a password | Step Lack",
             meta: [
                 { hid: 'description', name: 'description', content: "" }
             ]
@@ -72,28 +88,47 @@ export default {
     data () {
         return {
             pass: null,
+            passConf: null,
+            error: null,
+            errorConf: null,
             disabled: true
         }
     },
     methods: {
-        InputOnetimePass(e) {
-            let val = e.currentTarget.value;
-            this.disabled = val.length !== 6 ? true : false;
+        InputPass(e) {
+            this.error = this.pass.length < 6 ? "6文字以上必要です" : null;
+            if( this.passConf ) this.InputPassConf()
+        },
+        InputPassConf(e) {
+
+            if( !this.pass || this.pass !== this.passConf ) {
+                this.errorConf = "パスワードが一致しません";
+            } else {
+                this.errorConf = null;
+            }
+
+            this.BtnDisabled()
+        },
+        BtnDisabled() {
+            this.disabled = this.pass && this.passConf && !this.error && !this.errorConf ? false : true;
         },
         SendPass(e) {
             e.preventDefault();
             window.Loading.Show();
 
             let postData = this.$store.state.user.signupData;
-            postData["confirmed_code"] = this.pass;
+            postData["password__"] = this.pass;
+            delete postData.confirmed_code;
 
-            Fetch(Api.sendOnetimePass, postData, (json) => {
+            Fetch(Api.sendPass, postData, (json) => {
 
                 window.Loading.Hide();
 alert(`ワンタイムパスワードを確認いたしました。
 
-引き続き、パスワードを設定してください。`)
-                this.$router.replace("/sign/password");
+プロフィール編集画面に移動します。
+引き続き Step Lack をお楽しみください。`)
+                // this.$router.push("/user/edit/");
+                this.$router.push("/search");
             },() => {
                 window.Loading.Hide();
                 alert("Error!! : ワンタイムパスワードを送信できませんでした。")
@@ -107,14 +142,14 @@ alert(`ワンタイムパスワードを確認いたしました。
         },
         Cancel: function(e) {
             e.preventDefault();
-            this.$router.push("/sign/signup");
+            this.$router.replace("/sign/signup");
         }
     },
     beforeCreate: function() {
-        if( window.prev !== "signup" || !this.$store.state.user.signupData ) this.$router.replace("/sign/signup");
+        // if( window.prev !== "onetimepassword" || !this.$store.state.user.signupData ) this.$router.replace("/sign/signup");
     },
     destroyed: function() {
-        window.prev = "onetimepassword";
+        window.prev = "password";
     }
 
 }

@@ -16,11 +16,13 @@
                             class="a-form_input"
                             type="email"
                             placeholder="メールアドレス"
+                            autofocus
+                            required
                             v-model="email"
                             @input="InputEmail"
                             @keypress="KeyPress"/>
                         </label>
-                        <p class="a-form_error" ref="error"></p>
+                        <p class="a-form_error">{{error}}</p>
                     </div>
                     <div class="signin-btn">
                         <button
@@ -78,6 +80,7 @@ export default {
     data () {
         return {
             email: null,
+            error: null,
             disabled: true
         }
     },
@@ -87,10 +90,10 @@ export default {
                 validate = Validate.mail(val),
                 errorTxt = validate !== true ? validate.message : null;
             if(!val) {
-                this.$refs.error.innerHTML = null;
+                this.error = null;
                 return false;
             }
-            this.$refs.error.innerHTML = errorTxt ? errorTxt : null;
+            this.error = errorTxt ? errorTxt : null;
             this.disabled = errorTxt ? true : false;
         },
         SendMail(e) {
@@ -110,7 +113,8 @@ alert(`ご入力いただいたメールアドレスに
 
 メールに記載されているワンタイムパスワードを次のページで入力してください。`)
 
-                this.$router.replace("/sign/one-time-password?email="+this.email)
+                this.$store.dispatch('user/SetSignupData',postData)
+                this.$router.push("/sign/one-time-password");
 
             },() => {
                 window.Loading.Hide();
@@ -130,7 +134,7 @@ alert(`ご入力いただいたメールアドレスに
         Cancel: function(e) {
             e.preventDefault();
             // this.$router.back()
-            this.$router.replace("/sign/signin");
+            this.$router.push("/sign/signin");
         }
     },
     mounted: function() {

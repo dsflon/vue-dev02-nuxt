@@ -16,16 +16,18 @@
                                 class="a-form_input"
                                 type="email"
                                 placeholder="ユーザー名 or メールアドレス"
+                                required
                                 @input="UserId"
                                 @keypress="KeyPress"/>
                         </label>
-                        <p class="a-form_error" ref="error"></p>
+                        <p class="a-form_error">{{error}}</p>
                     </div>
                     <div class="signin-input m-form_line">
                         <input
                             class="a-form_input"
                             type="password"
                             @input="Password"
+                            required
                             placeholder="パスワード"
                             @keypress="KeyPress"/>
                     </div>
@@ -35,6 +37,7 @@
                             :disabled="disabled"
                             class="a-btn_txt is_bg_blue"
                             @click="Signin">サインイン</button>
+                            <p class="a-form_error">{{errorPass}}</p>
                     </div>
 
                 </form>
@@ -84,6 +87,8 @@ export default {
         return {
             userid: false,
             pass: false,
+            error: null,
+            errorPass: null,
             disabled: true
         }
     },
@@ -93,11 +98,11 @@ export default {
                 validate = Validate.userid(val),
                 errorTxt = validate !== true ? validate.message : null;
             if(!val) {
-                this.$refs.error.innerHTML = null;
+                this.error = null;
                 this.userid = false;
                 return false;
             }
-            this.$refs.error.innerHTML = errorTxt ? errorTxt : null;
+            this.error = errorTxt ? errorTxt : null;
             this.userid = errorTxt ? false : true;
             this.BtnDisabled();
         },

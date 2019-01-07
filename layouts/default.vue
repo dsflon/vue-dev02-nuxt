@@ -11,6 +11,7 @@ import Sign from '~/middleware/_sign';
 export default {
     components: {},
     beforeCreate: function() {
+        console.log(history.state);
         let lastPage = localStorage.getItem('steplack_lastpage');
         if(lastPage && location.pathname !== lastPage) this.$router.replace(lastPage);
     },

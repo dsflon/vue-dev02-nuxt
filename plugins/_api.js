@@ -18,7 +18,8 @@ const Api = location.hostname.indexOf("steplack.com") !== -1
     post: "/api_test/post.json",
     follow: "/api_test/dammy.json",
     sendEmail: "/api_test/dammy.json",
-    sendOnetimePass: "/api_test/dammy.json"
+    sendOnetimePass: "/api_test/dammy.json",
+    sendPass: "/api_test/dammy.json"
 }
 
 export default Api;
