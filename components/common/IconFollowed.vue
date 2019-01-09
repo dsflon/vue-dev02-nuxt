@@ -19,19 +19,27 @@ export default {
 
             let userId = this.$store.state.user.myData ? this.$store.state.user.myData.user_id : null;
 
-            let postData = {
-                "search_user_id": !this.$route.params.userid ? this.$route.params.userid :  null,
-                "user_id": !this.$store.state.detail.followed ? userId :  null,
-                "language_flg": "ja"
-            };
+            if( userId ) {
 
-            this.$store.dispatch('detail/SetFollowed',postData)
-            .then((data) => {
-                // console.log("complete", data)
-            }).catch((error,txt)=>{
-                console.error(error);
-                alert(txt)
-            })
+                let postData = {
+                    "search_user_id": !this.$route.params.userid ? this.$route.params.userid :  null,
+                    "user_id": !this.$store.state.detail.followed ? userId :  null,
+                    "language_flg": "ja"
+                };
+
+                this.$store.dispatch('detail/SetFollowed',postData)
+                .then((data) => {
+                    // console.log("complete", data)
+                }).catch((error,txt)=>{
+                    console.error(error);
+                    alert(txt)
+                })
+
+            } else {
+
+                alert(`ユーザー登録が必要です。`)
+
+            }
 
         }
     }

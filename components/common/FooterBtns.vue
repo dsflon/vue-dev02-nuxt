@@ -1,7 +1,7 @@
 <template>
 
     <div v-if="type == 'detail'" class="m-btns is_sticky">
-        <button class="a-btn" @click="goBackUser">
+        <button class="a-btn" @click="backHome">
             <i class="a-icon a-icon-arrow_left"></i>
         </button>
         <!-- <button
@@ -17,7 +17,7 @@
     </div>
 
     <div v-else-if="type == 'post'" class="m-btns is_sticky">
-        <button class="a-btn" @click="goBackPost">
+        <button class="a-btn" @click="backUserDetail">
             <i class="a-icon a-icon-cross"></i>
         </button>
         <router-link to="/message" class="a-btn is_l is_blue">
@@ -35,18 +35,40 @@ export default {
         "type"
     ],
     methods: {
-        goBackUser() {
-            if(history.length <= 2) {
-                this.$router.push( "/" )
-            } else {
-                this.$router.back()
+        backHome() {
+            if( history.length < 2 ) {
+                this.$router.replace( "/" )
+                return false;
+            }
+            switch (window.prev) {
+                case "home":
+                case "timeline":
+                case "notification":
+                case "message":
+                    this.$router.back();
+                break;
+
+                default:
+                    this.$router.replace( "/" )
+
             }
         },
-        goBackPost() {
-            if(history.length <= 2) {
-                this.$router.push( location.pathname.split("/post")[0] )
-            } else {
-                this.$router.back()
+        backUserDetail() {
+            if( history.length < 2 ) {
+                this.$router.replace( location.pathname.split("/post")[0] )
+                return false;
+            }
+            switch (window.prev) {
+                case "user":
+                case "timeline":
+                case "notification":
+                case "message":
+                    this.$router.back();
+                break;
+
+                default:
+                    this.$router.replace( location.pathname.split("/post")[0] )
+
             }
         },
         // follow() {

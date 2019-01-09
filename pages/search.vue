@@ -104,7 +104,6 @@ export default {
                 language_flg: "ja"
             }
 
-
             window.Loading.Show();
             localStorage.setItem(window.LSPost, JSON.stringify(postData));
             this.$store.dispatch('search/SetPostData',postData)
