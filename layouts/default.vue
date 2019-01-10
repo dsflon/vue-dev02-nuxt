@@ -11,6 +11,12 @@ import Sign from '~/middleware/_sign';
 export default {
     components: {},
     beforeCreate: function() {
+        // let standalone = navigator.standalone || (screen.height-window.innerHeight<120)
+        // if (standalone) {
+        //     console.log("standalone");
+        //     let lastPage = localStorage.getItem('steplack_lastpage');
+        //     if(lastPage && location.pathname !== lastPage) this.$router.replace(lastPage);
+        // }
     },
     created: function() {
         Sign.Check( (data) => {
@@ -19,9 +25,6 @@ export default {
     },
     mounted: function() {
         window.BodyMessage = new BodyMessage(this.$refs.app);
-        
-        let lastPage = localStorage.getItem('steplack_lastpage');
-        if(lastPage && location.pathname !== lastPage) this.$router.replace(lastPage);
     }
 }
 </script>

@@ -26,6 +26,9 @@ if( UA.isIphone || UA.isIpod || UA.isIpad ) {
     window.os = "android";
 }
 
-//
-// let lastPage = localStorage.getItem('steplack_lastpage');
-// if(lastPage && location.pathname !== lastPage) location.replace(lastPage);
+let standalone = navigator.standalone || (screen.height-window.innerHeight<120)
+if (standalone) {
+    console.log("standalone");
+    let lastPage = localStorage.getItem('steplack_lastpage');
+    if(lastPage && location.pathname !== lastPage) location.replace(lastPage);
+}
