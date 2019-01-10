@@ -2,63 +2,59 @@
 
     <div id="signin">
 
-        <div class="contents">
+        <div class="signin-inner">
 
-            <div class="signin-inner">
+            <h1><img src="~/assets/images/common/logo.svg" alt="Step Lack"></h1>
 
-                <h1><img src="~/assets/images/common/logo.svg" alt="Step Lack"></h1>
+            <form class="signin-form">
 
-                <form class="signin-form">
+                <p class="f-font_b">* 半角英数6文字以上</p>
 
-                    <p class="f-font_b">* 半角英数6文字以上</p>
-
-                    <div class="signin-input">
-                        <label class="m-form_line">
-                            <input
-                            class="a-form_input"
-                            type="password"
-                            placeholder="パスワード"
-                            minlength='6'
-                            autofocus
-                            required
-                            v-model="pass"
-                            @input="InputPass"
-                            @keypress="KeyPress"/>
-                        </label>
-                        <p class="a-form_error">{{error}}</p>
-                    </div>
-                    <div class="signin-input">
-                        <label class="m-form_line">
-                            <input
-                            class="a-form_input"
-                            type="password"
-                            placeholder="パスワード再入力"
-                            minlength='6'
-                            required
-                            v-model="passConf"
-                            @input="InputPassConf"
-                            @keypress="KeyPress"/>
-                        </label>
-                        <p class="a-form_error">{{errorConf}}</p>
-                    </div>
-                    <div class="signin-btn">
-                        <button
-                        type="button"
-                        class="a-btn_txt is_bg_blue"
-                        :disabled="disabled"
-                        @click="SendPass">パスワードを送信する</button>
-                    </div>
-
-                </form>
-
-                <div class="signin-cancel">
+                <div class="signin-input">
+                    <label class="m-form_line">
+                        <input
+                        class="a-form_input"
+                        type="password"
+                        placeholder="パスワード"
+                        minlength='6'
+                        autofocus
+                        required
+                        v-model="pass"
+                        @input="InputPass"
+                        @keypress="KeyPress"/>
+                    </label>
+                    <p class="a-form_error">{{error}}</p>
+                </div>
+                <div class="signin-input">
+                    <label class="m-form_line">
+                        <input
+                        class="a-form_input"
+                        type="password"
+                        placeholder="パスワード再入力"
+                        minlength='6'
+                        required
+                        v-model="passConf"
+                        @input="InputPassConf"
+                        @keypress="KeyPress"/>
+                    </label>
+                    <p class="a-form_error">{{errorConf}}</p>
+                </div>
+                <div class="signin-btn">
                     <button
-                        @click="Cancel">
-                        <i class="a-icon a-icon-arrow_left"></i>
-                        <span class="a-icon_txt">もう一度メールを送信する</span>
-                    </button>
+                    type="button"
+                    class="a-btn_txt is_bg_blue"
+                    :disabled="disabled"
+                    @click="SendPass">パスワードを送信する</button>
                 </div>
 
+            </form>
+
+            <div class="signin-cancel">
+                <button
+                    @click="Cancel">
+                    <i class="a-icon a-icon-arrow_left"></i>
+                    <span class="a-icon_txt">もう一度メールを送信する</span>
+                </button>
             </div>
 
         </div>
@@ -74,6 +70,20 @@ import Api from '~/plugins/_api';
 
 
 export default {
+    transition (to, from) {
+
+        to = to ? to.name : null
+        from = from ? from.name : null
+
+        if( to == "sign-password" && from == "sign-one-time-password" ) {
+            return "slide-left"
+        }
+        else {
+            // 通常遷移
+            return "slide-down"
+        }
+
+    },
     components: {
         Validate
     },

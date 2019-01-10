@@ -2,67 +2,63 @@
 
     <div id="signin">
 
-        <div class="contents">
+        <div class="signin-inner">
 
-            <div class="signin-inner">
+            <h1><img src="~/assets/images/common/logo.svg" alt="Step Lack"></h1>
 
-                <h1><img src="~/assets/images/common/logo.svg" alt="Step Lack"></h1>
+            <form class="signin-form">
 
-                <form class="signin-form">
-
-                    <div class="signin-input">
-                        <label class="m-form_line">
-                            <input
-                                class="a-form_input"
-                                type="email"
-                                placeholder="ユーザー名 or メールアドレス"
-                                required
-                                @input="UserId"
-                                @keypress="KeyPress"/>
-                        </label>
-                        <p class="a-form_error">{{error}}</p>
-                    </div>
-                    <div class="signin-input m-form_line">
+                <div class="signin-input">
+                    <label class="m-form_line">
                         <input
                             class="a-form_input"
-                            type="password"
-                            @input="Password"
+                            type="email"
+                            placeholder="ユーザー名 or メールアドレス"
                             required
-                            placeholder="パスワード"
+                            @input="UserId"
                             @keypress="KeyPress"/>
-                    </div>
-                    <div class="signin-btn">
-                        <button
-                            type="button"
-                            :disabled="disabled"
-                            class="a-btn_txt is_bg_blue"
-                            @click="Signin">サインイン</button>
-                            <p class="a-form_error">{{errorPass}}</p>
-                    </div>
-
-                </form>
-
-                <div class="signin-sns">
-                    <p class="signin-sns_ttl">または</p>
-                    <button class="signin-sns_btn" @click="FBsignin">
-                        <i class="a-icon a-icon-fb a-icon-1_5x"></i>
-                        <span class="a-icon_txt">Facebookでサインイン</span>
-                    </button>
+                    </label>
+                    <p class="a-form_error">{{error}}</p>
+                </div>
+                <div class="signin-input m-form_line">
+                    <input
+                        class="a-form_input"
+                        type="password"
+                        @input="Password"
+                        required
+                        placeholder="パスワード"
+                        @keypress="KeyPress"/>
+                </div>
+                <div class="signin-btn">
+                    <button
+                        type="button"
+                        :disabled="disabled"
+                        class="a-btn_txt is_bg_blue"
+                        @click="Signin">サインイン</button>
+                        <p class="a-form_error">{{errorPass}}</p>
                 </div>
 
-                <div class="signin-cancel">
-                    <button @click="Cancel">
-                        <i class="a-icon a-icon-arrow_left"></i>
-                        <span class="a-icon_txt">戻る</span>
-                    </button>
-                </div>
+            </form>
 
+            <div class="signin-sns">
+                <p class="signin-sns_ttl">または</p>
+                <button class="signin-sns_btn" @click="FBsignin">
+                    <i class="a-icon a-icon-fb a-icon-1_5x"></i>
+                    <span class="a-icon_txt">Facebookでサインイン</span>
+                </button>
             </div>
 
-            <div class="signin-new">
-                <router-link to="/sign/signup" class="signin-new_btn">アカウントをお持ちでない方はこちら</router-link>
+            <div class="signin-cancel">
+                <button @click="Cancel">
+                    <i class="a-icon a-icon-arrow_left"></i>
+                    <span class="a-icon_txt">戻る</span>
+                </button>
             </div>
 
+        </div>
+
+        <div class="signin-new">
+            <router-link to="/sign/signup" class="signin-new_btn">アカウントをお持ちでない方はこちら</router-link>
         </div>
 
     </div>
@@ -72,6 +68,20 @@
 import Validate from '~/middleware/_validate';
 
 export default {
+    transition (to, from) {
+
+        to = to ? to.name : null
+        from = from ? from.name : null
+
+        if( to == "sign-one-time-password" && from == "sign-signup" ) {
+            return "slide-left"
+        }
+        else {
+            // 通常遷移
+            return "slide-down"
+        }
+
+    },
     components: {
         Validate
     },

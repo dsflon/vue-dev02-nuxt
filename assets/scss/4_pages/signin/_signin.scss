@@ -2,6 +2,9 @@
 
 .fw #signin {
 
+    position: absolute;
+    width: 100%; height: 100%;
+
     .signin-cancel {
         // position: fixed;
         // right: 10px; top: 10px;
@@ -13,12 +16,13 @@
 
     .signin-inner {
 
-        position: fixed;
+        position: absolute;
         width: 100%;
         left: 0; top: 50%;
         transform: translate(0,-50%);
         padding: 0 20px;
-        min-height: 415px;
+        // min-height: 415px;
+        // min-height: calc( 100vh - 50px);
 
         h1 {
             width: 52%;
@@ -60,7 +64,7 @@
 
     }
     .signin-new {
-        position: fixed;
+        position: absolute;
         left: 0; bottom: 0;
         width: 100%;
         border-top: 1px solid $black20;

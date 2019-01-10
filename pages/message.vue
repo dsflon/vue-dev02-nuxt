@@ -20,6 +20,20 @@ import AppHeader from '~/components/common/Header.vue'
 import AppFooter from '~/components/common/Footer.vue'
 
 export default {
+    transition (to, from) {
+
+        to = to ? to.name : null
+        from = from ? from.name : null
+
+        // if( to == "index" && from == "user-userid" ) {
+            // user detailから来たとき
+            // return "home-user"
+        // } else {
+            // 通常遷移
+            return "slide-down"
+        // }
+
+    },
     components: {
         AppHeader,
         AppFooter

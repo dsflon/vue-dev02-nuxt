@@ -61,6 +61,13 @@ export default {
             // user detailから来たとき
             return "home-user"
         }
+        else if( to == "index" && from == "search" ) {
+            return "slide-left"
+        }
+        else {
+            // 通常遷移
+            return "slide-down"
+        }
 
     },
     head () {

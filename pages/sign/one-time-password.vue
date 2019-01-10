@@ -2,52 +2,48 @@
 
     <div id="signin">
 
-        <div class="contents">
+        <div class="signin-inner">
 
-            <div class="signin-inner">
+            <h1><img src="~/assets/images/common/logo.svg" alt="Step Lack"></h1>
 
-                <h1><img src="~/assets/images/common/logo.svg" alt="Step Lack"></h1>
+            <form class="signin-form">
 
-                <form class="signin-form">
-
-                    <div class="signin-input">
-                        <label class="m-form_line">
-                            <input
-                            class="a-form_input"
-                            type="number"
-                            autofocus
-                            required
-                            placeholder="ワンタイムパスワード"
-                            maxlength="6"
-                            v-model="pass"
-                            @input="InputOnetimePass"
-                            @keypress="KeyPress"/>
-                        </label>
-                        <p class="a-form_error"></p>
-                    </div>
-                    <div class="signin-btn">
-                        <button
-                        type="button"
-                        class="a-btn_txt is_bg_blue"
-                        :disabled="disabled"
-                        @click="SendPass">ワンタイムパスワードを送信する</button>
-                    </div>
-
-                </form>
-
-                <div class="signin-cancel">
+                <div class="signin-input">
+                    <label class="m-form_line">
+                        <input
+                        class="a-form_input"
+                        type="number"
+                        autofocus
+                        required
+                        placeholder="ワンタイムパスワード"
+                        maxlength="6"
+                        v-model="pass"
+                        @input="InputOnetimePass"
+                        @keypress="KeyPress"/>
+                    </label>
+                    <p class="a-form_error"></p>
+                </div>
+                <div class="signin-btn">
                     <button
-                        @click="Cancel">
-                        <i class="a-icon a-icon-arrow_left"></i>
-                        <span class="a-icon_txt">もう一度メールを送信する</span>
-                    </button>
+                    type="button"
+                    class="a-btn_txt is_bg_blue"
+                    :disabled="disabled"
+                    @click="SendPass">ワンタイムパスワードを送信する</button>
                 </div>
 
-            </div>
+            </form>
 
+            <div class="signin-cancel">
+                <button
+                @click="Cancel">
+                <i class="a-icon a-icon-arrow_left"></i>
+                <span class="a-icon_txt">もう一度メールを送信する</span>
+            </button>
         </div>
 
     </div>
+
+</div>
 
 </template>
 
@@ -58,6 +54,23 @@ import Api from '~/plugins/_api';
 
 
 export default {
+    transition (to, from) {
+
+        to = to ? to.name : null
+        from = from ? from.name : null
+
+        if( to == "sign-one-time-password" && from == "sign-signup" ) {
+            return "slide-left"
+        }
+        else if( to == "sign-password" && from == "sign-one-time-password" ) {
+            return "slide-right"
+        }
+        else {
+            // 通常遷移
+            return "slide-down"
+        }
+
+    },
     components: {
         Validate
     },
