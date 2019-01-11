@@ -23,7 +23,7 @@
             <i class="a-icon a-icon-cross"></i>
         </button>
         <button class="a-btn is_l is_blue">
-            <i class="a-icon a-icon-send_plus"></i>
+            <i class="a-icon a-icon-picture_plus"></i>
         </button>
     </div>
 
@@ -99,6 +99,7 @@ export default {
         },
         saveData() {
             alert("Save data !")
+            this.backMyPage();
         }
     },
     mounted: function() {
