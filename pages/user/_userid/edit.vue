@@ -51,6 +51,9 @@ export default {
         else if( to == "user-userid" && from == "user-userid-post-postid" ) {
             // postから来たとき
             return "post-user"
+        } else {
+            // 通常遷移
+            return "slide-down"
         }
 
     },
