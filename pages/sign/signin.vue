@@ -131,8 +131,8 @@ export default {
         },
         Cancel: function(e) {
             e.preventDefault();
-            // this.$router.back()
-            this.$router.push("/search")
+            this.$router.back()
+            // this.$router.push("/search")
         },
         Signin: function(e) {
             e.preventDefault();

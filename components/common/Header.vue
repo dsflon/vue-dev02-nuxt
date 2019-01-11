@@ -1,5 +1,6 @@
 <template>
     <header id="header">
+
         <div id="header_inner">
 
             <h1 v-if="title" class="header_ttl">
@@ -20,6 +21,24 @@
             </div>
 
         </div>
+
+        <transition name="slide-down">
+            <div v-if="$store.state.common.menu && $store.state.user.myData" id="header_menu">
+                <div class="header_menu_inner">
+                    <ul>
+                        <li>
+                            <router-link
+                                class="header_menu_btn is_arw"
+                                :to="'/user/'+$store.state.user.myData.user_id">プロフィール</router-link>
+                        </li>
+                        <li>
+                            <button class="header_menu_btn" @click="SignOut()">サインアウト</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </transition>
+
     </header>
 </template>
 
@@ -33,11 +52,28 @@ export default {
         IconUser,
         IconFollowed
     },
-
     props: [
         "title",
         "userId",
         "icon"
-    ]
+    ],
+    methods: {
+        SignOut: function() {
+            let res = confirm("サインアウトしますか？");
+            if( res == true ) {
+
+                this.$store.dispatch('user/SetMyData',null).then( (data)=> {
+                    localStorage.removeItem(window.LSUser);
+                })
+                if(this.$store.state.common.menu) this.$store.dispatch('common/ToggleMenu')
+
+            } else {
+                // window.Loading.Hide();
+            }
+        }
+    },
+    destroyed: function() {
+        if(this.$store.state.common.menu) this.$store.dispatch('common/ToggleMenu')
+    }
 }
 </script>

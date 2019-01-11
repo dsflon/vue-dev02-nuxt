@@ -1,6 +1,9 @@
 <template>
     <div id="app" ref="app" data-message>
         <nuxt/>
+        <div
+            @click="ToggleMenu()"
+            :class="['overlay', $store.state.common.menu ? 'is_menu': null]"></div>
     </div>
 </template>
 
@@ -10,7 +13,10 @@ import Sign from '~/middleware/_sign';
 
 export default {
     components: {},
-    beforeCreate: function() {
+    methods: {
+        ToggleMenu: function() {
+            this.$store.dispatch('common/ToggleMenu')
+        }
     },
     created: function() {
         Sign.Check( (data) => {

@@ -8,6 +8,9 @@
     #header {
 
         background: #FFF;
+        position: sticky;
+        top: 0; left: 0;
+        z-index: 2;
 
         #header_inner {
             display: flex;
@@ -33,59 +36,31 @@
     }
 
 
-    #header_nav {
-        position: absolute;
-        top: 50px; right: 10px;
-        max-width: calc(100% - 20px);
+
+    #header_menu {
+        position: fixed;
+        top: 56px; right: 10px;
+        width: 60vw;
         background: #FFF;
-        z-index: 2;
+        z-index: 99;
         box-shadow: 0 0 6px 0 rgba(#000,0.2);
         border-radius: 4px;
         overflow: hidden;
-        opacity: 0;
-        pointer-events: none;
-        transform: translate(0,5px);
-        transition: opacity 0.2s ease 0.1s, transform 0.2s ease 0.1s;
-        &.nav_show {
-            opacity: 1;
-            transform: translate(0,0);
-            pointer-events: inherit;
-        }
-        .header_btns {
-            // height: 50px;
-            // padding: 0 42px 0 20px;
-            // background: $color_text;
-            // line-height: 1;
-            // display: table-cell;
-            // vertical-align: middle;
-            // color: #FFF;
-            // @include arrowAbs($color: #FFF, $size:8, $width:1, $layout:right, $position:20, $direction:right);
-            // p {
-            //     display: inline;
-            // }
-            // span {
-            //     display: inline;
-            //     font-size: 10px;
-            // }
-        }
+
         ul {
             li {
                 border-bottom: 1px solid $black10;
                 &:last-child { border-bottom: none; }
-                button,a {
+                .header_menu_btn {
                     display: block;
                     width: 100%;
                     line-height: 1;
                     padding:  20px;
                     text-align: left;
-                }
-                a {
                     color: $color_text;
-                    // @include arrowAbs($color: $color_text, $size:8, $width:1, $layout:right, $position:20, $direction:right);
-                }
-                button {
-                    color: $color_text;
-                    // @include arrowAbs($color: $color_text, $size:8, $width:1, $layout:right, $position:20, $direction:right);
+                    &.is_arw {
+                        @include arrowAbs($color: $color_text, $size:8, $width:1, $layout:right, $position:20, $direction:right);
+                    }
                 }
             }
         }

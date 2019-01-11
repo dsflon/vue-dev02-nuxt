@@ -2,7 +2,7 @@
 
     <div v-if="$store.state.detail" class="header_btns">
         <button
-            :class="['a-btn_header', $store.state.detail.followed ? 'is_pink' :  'is_gray']"
+            :class="['a-btn_header is_m', $store.state.detail.followed ? 'is_pink' :  'is_gray']"
             @click="follow">
             <i class="a-icon a-icon-friends_check a-icon-1_75x"></i>
         </button>

@@ -76,21 +76,18 @@ const Sign = {
 
     },
 
-    Out: (data,callback) => {
-
-        let res = confirm("サインアウトしますか？");
-        if( res == true ) {
-
-            // window.Loading.Show();
-            //
-            // let signinData = {};
-            //     signinData[data] = null;
-            // localStorage.setItem(window.LSUser, JSON.stringify(signinData));
-
-            if(callback) callback();
-        } else {
-            // window.Loading.Hide();
-        }
+    Out: (callback) => {
+        // 
+        // let res = confirm("サインアウトしますか？");
+        // if( res == true ) {
+        //
+        //     this.$store.dispatch('user/SetMyData',null).then( (data)=> {
+        //         localStorage.removeItem(window.LSUser, null);
+        //     })
+        //
+        // } else {
+        //     // window.Loading.Hide();
+        // }
 
     },
 

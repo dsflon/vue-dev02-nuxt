@@ -6,38 +6,38 @@ $pageanim: 0.15s;
 // ----------------------------------------------------------
 // home-user
 // ----------------------------------------------------------
-.home-user-leave-active,
-.user-home-enter-active {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100vw;
-	// height: 100vh;
-	overflow: hidden;
-}
-
-.home-user-enter-active {
-    transition: opacity $pageanim ease;
-}
-.home-user-enter {
-    opacity: 0;
-}
-.home-user-leave-active {
-    transition: transform $pageanim * 2 ease, opacity $pageanim ease;
-    opacity: 0;
-    transform: translateX(10%);
-}
-
-.user-home-enter-active {
-    transition: transform $pageanim * 2 ease, opacity $pageanim ease;
-}
-.user-home-enter {
-    opacity: 0;
-    transform: translateX(10%);
-}
-.user-home-leave-active {
-    transition: opacity $pageanim ease;
-    opacity: 0;
-}
+// .home-user-leave-active,
+// .user-home-enter-active {
+//     position: absolute;
+//     top: 0; left: 0;
+//     width: 100vw;
+// 	// height: 100vh;
+// 	overflow: hidden;
+// }
+//
+// .home-user-enter-active {
+//     transition: opacity $pageanim ease;
+// }
+// .home-user-enter {
+//     opacity: 0;
+// }
+// .home-user-leave-active {
+//     transition: transform $pageanim * 2 ease, opacity $pageanim ease;
+//     opacity: 0;
+//     transform: translateX(10%);
+// }
+//
+// .user-home-enter-active {
+//     transition: transform $pageanim * 2 ease, opacity $pageanim ease;
+// }
+// .user-home-enter {
+//     opacity: 0;
+//     transform: translateX(10%);
+// }
+// .user-home-leave-active {
+//     transition: opacity $pageanim ease;
+//     opacity: 0;
+// }
 
 
 // ----------------------------------------------------------
@@ -89,14 +89,6 @@ $pageanim: 0.15s;
 // ----------------------------------------------------------
 // slide-left | slide-right
 // ----------------------------------------------------------
-// .slide-left-leave-active,
-// .slide-right-enter-active {
-//     position: absolute;
-//     top: 0; left: 0;
-//     width: 100vw;
-// 	// height: 100vh;
-// 	overflow: hidden;
-// }
 .slide-left-enter-active {
     transition: transform $pageanim ease, opacity $pageanim ease;
 }

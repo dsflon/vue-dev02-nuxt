@@ -45,7 +45,11 @@ export default {
 
         if( to == "user-userid" && from == "index" ) {
             // homeから来たとき
-            return "user-home"
+            // return "user-home"
+            return "slide-left"
+        }
+        if( to == "user-userid" && from == "user-userid-edit" ) {
+            return "slide-right"
         }
         else if( to == "user-userid" && from == "user-userid-post-postid" ) {
             // postから来たとき

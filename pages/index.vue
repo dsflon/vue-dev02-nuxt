@@ -59,7 +59,8 @@ export default {
 
         if( to == "index" && from == "user-userid" ) {
             // user detailから来たとき
-            return "home-user"
+            // return "home-user"
+                return "slide-right"
         }
         else if( to == "index" && from == "search" ) {
             return "slide-left"

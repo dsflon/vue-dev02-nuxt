@@ -44,14 +44,10 @@ export default {
         to = to ? to.name : null
         from = from ? from.name : null
 
-        if( to == "user-userid" && from == "index" ) {
-            // homeから来たとき
-            return "user-home"
+        if( to == "user-userid-edit" && from == "user-userid" ) {
+            return "slide-left"
         }
-        else if( to == "user-userid" && from == "user-userid-post-postid" ) {
-            // postから来たとき
-            return "post-user"
-        } else {
+        else {
             // 通常遷移
             return "slide-down"
         }
