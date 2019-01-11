@@ -29,7 +29,8 @@ if( UA.isIphone || UA.isIpod || UA.isIpad ) {
 /*
 ** Redirect
 */
-if ( navigator.standalone || (screen.height - window.innerHeight < 120) ) {
+// if ( navigator.standalone || (screen.height - window.innerHeight < 120) ) {
+if ( navigator.standalone ) { // ios only
     console.log("standalone");
     let lastPage = localStorage.getItem('steplack_lastpage');
         lastPage = lastPage ? JSON.parse(lastPage) : null;
