@@ -102,7 +102,11 @@ export default {
 
         this.GetStart();
 
-        localStorage.setItem('steplack_lastpage', location.pathname);
+        localStorage.setItem('steplack_lastpage', JSON.stringify({
+            "page": location.pathname,
+            "scroll": (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop,
+            "time": new Date().getTime()
+        }));
 
     },
     destroyed: function() {

@@ -11,12 +11,6 @@ import Sign from '~/middleware/_sign';
 export default {
     components: {},
     beforeCreate: function() {
-        // let standalone = navigator.standalone || (screen.height-window.innerHeight<120)
-        // if (standalone) {
-        //     console.log("standalone");
-        //     let lastPage = localStorage.getItem('steplack_lastpage');
-        //     if(lastPage && location.pathname !== lastPage) this.$router.replace(lastPage);
-        // }
     },
     created: function() {
         Sign.Check( (data) => {
@@ -25,6 +19,25 @@ export default {
     },
     mounted: function() {
         window.BodyMessage = new BodyMessage(this.$refs.app);
+
+        // if ( navigator.standalone || (screen.height-window.innerHeight<120) ) {
+        //     console.log("standalone");
+        //     let lastPage = localStorage.getItem('steplack_lastpage');
+        //         lastPage = lastPage ? JSON.parse(lastPage) : null;
+        //
+        //     if(lastPage) {
+        //         let limit = new Date().getTime() - lastPage.time;
+        //             limit = limit / (1000 * 60 * 60); // hour
+        //
+        //         // 離脱して24時間以内はリダイレクト
+        //         if(
+        //             location.pathname !== lastPage.page && Math.floor(limit) <= 24
+        //         ) {
+        //             this.$router.replace(lastPage.page);
+        //         }
+        //     }
+        // }
+
     }
 }
 </script>

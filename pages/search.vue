@@ -144,7 +144,6 @@ export default {
     mounted: function() {
 
         window.scrollTop = 0;
-        // this.actions.InputBox(false);
         this.$store.dispatch('search/SetStationList',null)
     },
     destroyed: function() {

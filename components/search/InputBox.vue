@@ -24,14 +24,14 @@
 
         <div class="inputbox_list">
             <div class="inputbox_list_inner">
-                <ul v-if="$store.state.search.stationList">
+                <ul v-if="!error">
                     <li v-for="item in $store.state.search.stationList" :key="item.station_id">
                         <button :id="item.station_id" type="button" @click="SearchStart">
                             {{item.station_name}}
                         </button>
                     </li>
                 </ul>
-                <p v-else class="no_result">検索候補がありません</p>
+                <p v-else class="no_result">{{ error }}</p>
             </div>
         </div>
 
@@ -58,7 +58,8 @@ export default {
         return {
             os: window.os,
             inputTimer: null,
-            inputLabelClass: ""
+            inputLabelClass: "",
+            error: null
         }
     },
     directives: {
@@ -83,11 +84,15 @@ export default {
             } else {
                 this.inputTimer = setTimeout( () => {
                     this.$store.dispatch('search/GetStationList',value)
+                    .then(()=>{
+                        this.error = null;
+                    })
                     .catch((error,txt)=>{
                         console.error(error);
+                        this.error = txt;
                         aletr(txt)
                     })
-                }, 250);
+                }, 200);
             }
 
         },
@@ -137,6 +142,8 @@ export default {
     },
     updated: function() {
         if( this.os === "ios" ) this.Ios();
+        this.error = !this.$store.state.search.stationList || this.$store.state.search.stationList.length === 0
+            ? "検索候補がありません" : null;
     },
     destroyed: function() {
         window.onscroll = null;

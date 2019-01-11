@@ -26,9 +26,24 @@ if( UA.isIphone || UA.isIpod || UA.isIpad ) {
     window.os = "android";
 }
 
-let standalone = navigator.standalone || (screen.height-window.innerHeight<120)
-if (standalone) {
+/*
+** Redirect
+*/
+if ( navigator.standalone || (screen.height - window.innerHeight < 120) ) {
     console.log("standalone");
     let lastPage = localStorage.getItem('steplack_lastpage');
-    if(lastPage && location.pathname !== lastPage) location.replace(lastPage);
+        lastPage = lastPage ? JSON.parse(lastPage) : null;
+
+    if(lastPage) {
+        let limit = new Date().getTime() - lastPage.time;
+            limit = limit / (1000 * 60 * 60); // hour
+
+        // 離脱して24時間以内はリダイレクト
+        if(
+            location.pathname !== lastPage.page
+            && Math.floor(limit) <= 24
+        ) {
+            location.replace(lastPage.page);
+        }
+    }
 }

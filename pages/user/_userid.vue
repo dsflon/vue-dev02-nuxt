@@ -118,20 +118,19 @@ export default {
 
         }
 
-        localStorage.setItem('steplack_lastpage', location.pathname);
+        localStorage.setItem('steplack_lastpage', JSON.stringify({
+            "page": location.pathname,
+            "scroll": (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop,
+            "time": new Date().getTime()
+        }));
+
     },
     mounted: function() {
-        // window.onscroll = () => {
-        //     this.scrollVal = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
-        // }
     },
     beforeDestroy: function() {
-        // console.log(this.scrollVal);
-        // this.$refs.detail_wrap.style.transform = "translateY(-"+this.scrollVal+"px)"
     },
     destroyed: function() {
         window.prev = "user";
-        // window.onscroll = null;
         localStorage.removeItem('steplack_lastpage');
     }
 }
