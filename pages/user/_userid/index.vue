@@ -1,35 +1,33 @@
 <template>
     <div>
-        <!-- <div class="detail-wrap" ref="detail_wrap"> -->
 
-            <app-header
-                :title="userData ? userData.user_name : ''"
-                :userId=" $route.params.userid ? $route.params.userid : ''"
-                icon="followed" />
+        <app-header
+            :title="userData ? userData.user_name : ''"
+            :userId=" $route.params.userid ? $route.params.userid : ''"
+            :icon="checkId ? 'edit' : 'followed'" />
 
-            <main id="detail">
+        <main id="detail">
 
-                <div class="detail_inner">
+            <div class="detail_inner">
 
-                    <div class="contents">
+                <div class="contents">
 
-                        <detail-item
-                            v-if="!error && this.userData"
-                            :userData="this.userData" />
+                    <detail-item
+                        v-if="!error && this.userData"
+                        :userData="this.userData" />
 
-                        <div v-else class="no_result">
-                            <p>{{error}}</p>
-                        </div>
-
+                    <div v-else class="no_result">
+                        <p>{{error}}</p>
                     </div>
 
-                    <footer-btns
-                        type="detail" />
                 </div>
 
-            </main>
+                <footer-btns
+                    :type="checkId ? 'mypage' : 'detail'" />
+            </div>
 
-        <!-- </div> -->
+        </main>
+
     </div>
 </template>
 
@@ -49,7 +47,7 @@ export default {
             // homeから来たとき
             return "user-home"
         }
-        else if( to == "user-userid" && from == "user-post_userid-post-postid" ) {
+        else if( to == "user-userid" && from == "user-userid-post-postid" ) {
             // postから来たとき
             return "post-user"
         }
@@ -57,7 +55,7 @@ export default {
     },
     head () {
         return {
-            title: this.userData ? this.userData.user_name + " | User | Step Lack" : "ユーザーが見つかりません。 | User Page | Step Lack",
+            title: this.userData ? this.userData.user_name + " | User | Step Lack" : "ユーザーが見つかりません。 | User | Step Lack",
             meta: [
                 { hid: 'description', name: 'description', content: this.userData ? this.userData.user_name + "さんのページです。" : "ユーザーが見つかりません。" }
             ]
@@ -66,8 +64,7 @@ export default {
     data () {
         return {
             error: null,
-            userData: null,
-            // scrollVal: 0
+            userData: null
         }
     },
     components: {
@@ -75,6 +72,11 @@ export default {
         AppFooter,
         DetailItem,
         FooterBtns
+    },
+    computed : {
+        checkId () {
+            return this.$store.state.user.myData && this.$store.state.user.myData.user_id === this.$route.params.userid
+        }
     },
     methods: {
         GetStart: function() {

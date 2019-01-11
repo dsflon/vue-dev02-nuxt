@@ -67,7 +67,7 @@
 import Validate from '~/middleware/_validate';
 import Fetch from '~/middleware/_fetch';
 import Api from '~/plugins/_api';
-
+import Sign from '~/middleware/_sign';
 
 export default {
     transition (to, from) {
@@ -137,11 +137,16 @@ alert(`ワンタイムパスワードを確認いたしました。
 
 プロフィール編集画面に移動します。
 引き続き Step Lack をお楽しみください。`)
-                // this.$router.push("/user/edit/");
-                this.$router.push("/search");
+
+                this.$store.dispatch('user/SetMyData',{
+                    "user_id": json.data.user_id
+                }).then( (data)=> {
+                    localStorage.setItem(window.LSUser, JSON.stringify(data));
+                    this.$router.replace("/user/"+data.user_id+"/edit");
+                })
             },() => {
                 window.Loading.Hide();
-                alert("Error!! : ワンタイムパスワードを送信できませんでした。")
+                alert("Error!! : パスワードを送信できませんでした。")
             });
 
         },

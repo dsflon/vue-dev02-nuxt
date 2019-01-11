@@ -4,13 +4,6 @@
         <button class="a-btn" @click="backHome">
             <i class="a-icon a-icon-arrow_left"></i>
         </button>
-        <!-- <button
-            v-show="!this.$store.state.detail.followed"
-            :id="this.$route.params.userid"
-            class="a-btn is_l is_pink"
-            @click="follow">
-            <i class="a-icon a-icon-friends_plus"></i>
-        </button> -->
         <router-link to="/message" class="a-btn is_l is_blue">
             <i class="a-icon a-icon-mail"></i>
         </router-link>
@@ -23,6 +16,24 @@
         <router-link to="/message" class="a-btn is_l is_blue">
             <i class="a-icon a-icon-mail"></i>
         </router-link>
+    </div>
+
+    <div v-else-if="type == 'mypage'" class="m-btns is_sticky">
+        <button class="a-btn" @click="backHome">
+            <i class="a-icon a-icon-cross"></i>
+        </button>
+        <button class="a-btn is_l is_blue">
+            <i class="a-icon a-icon-send_plus"></i>
+        </button>
+    </div>
+
+    <div v-else-if="type == 'edit'" class="m-btns is_sticky">
+        <button class="a-btn" @click="backMyPage">
+            <i class="a-icon a-icon-cross"></i>
+        </button>
+        <button class="a-btn is_blue" @click="saveData">
+            <i class="a-icon a-icon-check"></i>
+        </button>
     </div>
 
 </template>
@@ -71,23 +82,24 @@ export default {
 
             }
         },
-        // follow() {
-        //
-        //     let postData = {
-        //         "search_user_id": this.$route.params.userid,
-        //         "user_id": this.$store.state.user.myData ? this.$store.state.user.myData.user_id : null,
-        //         "language_flg": "ja"
-        //     };
-        //
-        //     this.$store.dispatch('detail/SetFollowed',postData)
-        //     .then((data) => {
-        //         // console.log("complete", data)
-        //     }).catch((error,txt)=>{
-        //         console.error(error);
-        //         alert(txt)
-        //     })
-        //
-        // }
+        backMyPage() {
+            if( history.length < 2 ) {
+                this.$router.replace( location.pathname.split("/edit")[0] )
+                return false;
+            }
+            switch (window.prev) {
+                case "detail":
+                    this.$router.back();
+                break;
+
+                default:
+                    this.$router.replace( location.pathname.split("/edit")[0] )
+
+            }
+        },
+        saveData() {
+            alert("Save data !")
+        }
     },
     mounted: function() {
     }

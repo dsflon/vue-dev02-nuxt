@@ -11,10 +11,10 @@ const Sign = {
         }
         // ログイン機能ができたらここは消す。
         // else {
-            // myData = {
-            //     "user_id": 4
-            // }
-            // localStorage.setItem(window.LSUser, JSON.stringify(myData));
+        //     myData = {
+        //         "user_id": "test"
+        //     }
+        //     localStorage.setItem(window.LSUser, JSON.stringify(myData));
         // }
         // ログイン機能ができたらここは消す。
 

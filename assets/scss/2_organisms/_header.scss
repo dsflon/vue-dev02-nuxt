@@ -51,22 +51,22 @@
             transform: translate(0,0);
             pointer-events: inherit;
         }
-        .header_user {
-            height: 50px;
-            padding: 0 42px 0 20px;
-            background: $color_text;
-            line-height: 1;
-            display: table-cell;
-            vertical-align: middle;
-            color: #FFF;
-            @include arrowAbs($color: #FFF, $size:8, $width:1, $layout:right, $position:20, $direction:right);
-            p {
-                display: inline;
-            }
-            span {
-                display: inline;
-                font-size: 10px;
-            }
+        .header_btns {
+            // height: 50px;
+            // padding: 0 42px 0 20px;
+            // background: $color_text;
+            // line-height: 1;
+            // display: table-cell;
+            // vertical-align: middle;
+            // color: #FFF;
+            // @include arrowAbs($color: #FFF, $size:8, $width:1, $layout:right, $position:20, $direction:right);
+            // p {
+            //     display: inline;
+            // }
+            // span {
+            //     display: inline;
+            //     font-size: 10px;
+            // }
         }
         ul {
             li {

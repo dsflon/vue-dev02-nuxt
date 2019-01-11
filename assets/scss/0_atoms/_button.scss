@@ -49,6 +49,10 @@
     .a-btn_header {
         width: 30px; height: 30px;
         display: block;
+        text-align: right;
+        .a-icon {
+            vertical-align: bottom;
+        }
     }
     .a-btn_user {
         width: 30px; height: 30px;

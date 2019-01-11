@@ -14,14 +14,6 @@
                         </carousel>
 
                         <div class="post_wrap">
-                            <!-- <ul class="m-info_counts is_l">
-                                <li>
-                                    <button onClick={this.Like.bind(this,userId,postId)}>
-                                        <i class={"a-icon a-icon-heart_plus "+( like.bool ? "is_pink" : "is_gray")}></i>
-                                        <span class="a-icon_txt">{(like.count||0).toLocaleString()}</span>
-                                    </button>
-                                </li>
-                            </ul> -->
                             <div class="post_txt">{{postData.description}}</div>
                         </div>
                     </div>
@@ -49,7 +41,7 @@ export default {
         to = to ? to.name : null
         from = from ? from.name : null
 
-        if( to == "user-post_userid-post-postid" && from == "user-userid" ) {
+        if( to == "user-userid-post-postid" && from == "user-userid" ) {
             // user detailから来たとき
             return "user-post"
         }
@@ -78,7 +70,7 @@ export default {
         GetStart: function() {
 
             let postData = {
-                "search_user_id": this.$route.params.post_userid,
+                "search_user_id": this.$route.params.dir_userid,
                 "user_id": this.$store.state.user.myData ? this.$store.state.user.myData.user_id : null,
                 "language_flg": "ja"
             };

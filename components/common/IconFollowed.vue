@@ -1,6 +1,6 @@
 <template>
 
-    <div v-if="$store.state.detail" class="header_user">
+    <div v-if="$store.state.detail" class="header_btns">
         <button
             :class="['a-btn_header', $store.state.detail.followed ? 'is_pink' :  'is_gray']"
             @click="follow">

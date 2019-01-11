@@ -13,6 +13,12 @@
 
             <icon-followed v-else-if="icon == 'followed'" />
 
+            <div v-else-if="icon == 'edit'" class="header_btns">
+                <router-link class="a-btn_header is_black" :to="$route.path+'/edit'">
+                    <i class="a-icon a-icon-edit a-icon-1_75x"></i>
+                </router-link>
+            </div>
+
         </div>
     </header>
 </template>

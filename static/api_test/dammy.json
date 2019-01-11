@@ -1,5 +1,7 @@
 {
     "status": "200",
     "message": "",
-    "data": {}
+    "data": {
+        "user_id": "test"
+    }
 }

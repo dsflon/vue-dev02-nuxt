@@ -41,6 +41,7 @@ export const actions = {
         return new Promise((resolve, reject) => {
 
             context.commit('registerMyData', data);
+            resolve(data);
 
         })
     },
