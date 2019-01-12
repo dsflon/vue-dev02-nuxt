@@ -12,7 +12,7 @@
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
-    "icon": "npx gulp iconfont && npm run dev"
+    "icon": "npx gulp iconfont && npx gulp sass && npm run dev"
   },
   "dependencies": {
     "mgn-ua": "0.0.0",
@@ -26,11 +26,16 @@
     "eslint-loader": "^2.0.0",
     "eslint-plugin-vue": "^4.0.0",
     "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^6.0.0",
     "gulp-consolidate": "^0.2.0",
     "gulp-iconfont": "^10.0.2",
     "gulp-iconfont-css": "^3.0.0",
+    "gulp-if": "^2.0.2",
     "gulp-load-plugins": "^1.5.0",
+    "gulp-plumber": "^1.2.1",
     "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.4",
     "lodash": "^4.17.11",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0"

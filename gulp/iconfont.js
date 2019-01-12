@@ -6,7 +6,6 @@ module.exports = (setting) => {
 
     setting.iconFont.forEach( (e,i,entryPoint) => {
 
-
         const FONT_NAME = setting.iconFont[i].font[0].name;
         const FONT_CLASS = setting.iconFont[i].font[0].class;
         const FONT_FORMAT = setting.iconFont[i].font[0].format;

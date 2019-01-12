@@ -12,6 +12,20 @@ const SETTING = {
 
     'rootPath': ROOT_PATH,
 
+    'sass': [
+        {
+            'browser': ['last 2 versions'], // autoprefix version
+            'outputStyle': 'compressed',// compile style
+            'path': [
+                {
+                    'src': './assets/scss/fonts_guideline.scss', // sass path
+                    'dist': ROOT_PATH + 'fonts_guideline/' // css path
+                }
+                // 対象ディレクトリを増やす場合は、オブジェクトを追加する
+            ]
+        }
+    ],
+
     'iconFont': [
         {
             'font': [
@@ -33,7 +47,7 @@ const SETTING = {
                 {
                     'template': './assets/fonts/tmp/fontawesome-style.html', // guidelineテンプレート
                     'dist': ROOT_PATH + 'fonts_guideline/', // guidelineテンプレート出力先
-                    'path': '/fonts_guideline/fonts_guideline.js', // guidelineテンプレート内で読み込むCSSファイル
+                    'path': '/fonts_guideline/fonts_guideline.css', // guidelineテンプレート内で読み込むCSSファイル
                 }
             ]
         }
@@ -51,13 +65,16 @@ const SETTING = {
 
 const gulp = require("gulp");
 const Iconfont = require("./gulp/iconfont");
+const Sass = require("./gulp/sass");
 
 /**
 **
 ** Task
 **
 **/
-
+gulp.task('sass', () => {
+    Sass(SETTING);
+});
 gulp.task('iconfont', () => {
     Iconfont(SETTING);
 });
@@ -72,7 +89,8 @@ gulp.task('iconfont', () => {
 
 const taskList = [
 
-    'iconfont',
+    // 'sass',
+    // 'iconfont',
     // 'sass', // gulp-sass
     // 'serve' // browser-sync
 
