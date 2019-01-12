@@ -58,6 +58,7 @@
                     padding:  20px;
                     text-align: left;
                     color: $color_text;
+                    font-weight: bold;
                     &.is_arw {
                         @include arrowAbs($color: $color_text, $size:8, $width:1, $layout:right, $position:20, $direction:right);
                     }

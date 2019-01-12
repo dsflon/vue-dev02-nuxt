@@ -4,7 +4,7 @@
         <app-header
             :title="userData ? userData.user_name : ''"
             :userId=" $route.params.userid ? $route.params.userid : ''"
-            :icon="checkId ? 'edit' : 'followed'" />
+            :icon="checkId ? 'mypage' : 'followed'" />
 
         <main id="detail">
 

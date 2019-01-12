@@ -14,10 +14,10 @@
 
             <icon-followed v-else-if="icon == 'followed'" />
 
-            <div v-else-if="icon == 'edit'" class="header_btns">
-                <router-link class="a-btn_header is_black" :to="$route.path+'/edit'">
-                    <i class="a-icon a-icon-edit a-icon-1_75x"></i>
-                </router-link>
+            <div v-else-if="icon == 'mypage'" class="header_btns">
+                <button class="a-btn_header is_black" @click="ToggleMenu()">
+                    <i class="a-icon a-icon-menu"></i>
+                </button>
             </div>
 
         </div>
@@ -28,8 +28,11 @@
                     <ul>
                         <li>
                             <router-link
-                                class="header_menu_btn is_arw"
-                                :to="'/user/'+$store.state.user.myData.user_id">プロフィール</router-link>
+                                class="header_menu_btn"
+                                :to="$route.path+'/edit'">
+                                <i class="a-icon a-icon-edit a-icon-lg"></i>
+                                <span class="a-icon_txt">プロフィール編集</span>
+                            </router-link>
                         </li>
                         <li>
                             <button class="header_menu_btn" @click="SignOut()">サインアウト</button>
@@ -58,6 +61,9 @@ export default {
         "icon"
     ],
     methods: {
+        ToggleMenu: function() {
+            this.$store.dispatch('common/ToggleMenu')
+        },
         SignOut: function() {
             let res = confirm("サインアウトしますか？");
             if( res == true ) {
@@ -65,6 +71,7 @@ export default {
                 this.$store.dispatch('user/SetMyData',null).then( (data)=> {
                     localStorage.removeItem(window.LSUser);
                     window.BodyMessage.AutoPlay( "サインアウトしました。" );
+                    this.$router.replace("/");
                 })
 
                 if(this.$store.state.common.menu) this.$store.dispatch('common/ToggleMenu')
