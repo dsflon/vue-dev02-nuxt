@@ -50,7 +50,7 @@ const Sign = {
 
     In: (data,callback) => {
 
-        localStorage.setItem(window.LSUser, JSON.stringify(data));
+        // localStorage.setItem(window.LSUser, JSON.stringify(data));
 
         // let signinData = {};
 
@@ -77,7 +77,7 @@ const Sign = {
     },
 
     Out: (callback) => {
-        // 
+        //
         // let res = confirm("サインアウトしますか？");
         // if( res == true ) {
         //

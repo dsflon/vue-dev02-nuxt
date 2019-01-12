@@ -56,6 +56,19 @@ export const actions = {
     },
 
     /**
+     * ユーザーデータを格納する
+     * @param {object} postData - postするデータ
+     */
+    SetDetailResult(context, postData) {
+
+        return new Promise((resolve, reject) => {
+
+            context.commit('registerDetailResult', postData)
+
+        })
+    },
+
+    /**
      * Followを登録する
      * @param {object} followData -
      */

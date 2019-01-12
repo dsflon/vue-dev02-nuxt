@@ -40,6 +40,7 @@ export const actions = {
 
         return new Promise((resolve, reject) => {
 
+            localStorage.setItem(window.LSUser, JSON.stringify(data));
             context.commit('registerMyData', data);
             resolve(data);
 
@@ -55,6 +56,62 @@ export const actions = {
         return new Promise((resolve, reject) => {
 
             context.commit('registerSignupData', data);
+
+        })
+    },
+
+    /**
+     * サインインを行う
+     * @param {object} postData - My Data
+     */
+    Signin(context, postData) {
+
+        window.Loading.Show();
+
+        return new Promise((resolve, reject) => {
+
+            Fetch(Api.signin, postData, (json) => {
+
+                window.BodyMessage.AutoPlay( "サインインしました。" );
+                window.Loading.Hide();
+
+                localStorage.setItem(window.LSUser, JSON.stringify(json.data));
+                context.commit('registerMyData', json.data)
+
+                resolve(json.data)
+
+            },() => {
+                reject("Error!! : user/Signin","サインインできませんでした。");
+                window.Loading.Hide();
+            });
+
+        })
+    },
+
+    /**
+     * サインインを行う
+     * @param {object} postData - My Data
+     */
+    Signup(context, postData) {
+
+        window.Loading.Show();
+
+        return new Promise((resolve, reject) => {
+
+            Fetch(Api.signup, postData, (json) => {
+
+                window.BodyMessage.AutoPlay( "サインアップしました。" );
+                window.Loading.Hide();
+
+                localStorage.setItem(window.LSUser, JSON.stringify(json.data));
+                context.commit('registerMyData', json.data)
+
+                resolve(json.data)
+
+            },() => {
+                reject("Error!! : user/Signup","サインアップできませんでした。");
+                window.Loading.Hide();
+            });
 
         })
     }

@@ -127,27 +127,21 @@ export default {
             window.Loading.Show();
 
             let postData = this.$store.state.user.signupData;
-            postData["password__"] = this.pass;
+                postData["password__"] = this.pass;
             delete postData.confirmed_code;
 
-            Fetch(Api.sendPass, postData, (json) => {
-
-                window.Loading.Hide();
+            this.$store.dispatch('user/Signup',postData)
+            .then((data)=>{
 alert(`ワンタイムパスワードを確認いたしました。
 
 プロフィール編集画面に移動します。
 引き続き Step Lack をお楽しみください。`)
-
-                this.$store.dispatch('user/SetMyData',{
-                    "user_id": json.data.user_id
-                }).then( (data)=> {
-                    localStorage.setItem(window.LSUser, JSON.stringify(data));
-                    this.$router.replace("/user/"+data.user_id+"/edit");
-                })
-            },() => {
-                window.Loading.Hide();
+                this.$router.replace("/user/"+data.user_id+"/edit");
+            })
+            .catch((error,txt)=>{
+                console.error(txt);
                 alert("Error!! : パスワードを送信できませんでした。")
-            });
+            })
 
         },
         KeyPress: function(e) {

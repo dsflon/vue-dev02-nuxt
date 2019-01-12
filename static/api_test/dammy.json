@@ -2,6 +2,209 @@
     "status": "200",
     "message": "",
     "data": {
-        "user_id": "test"
+        "user_id": "2",
+        "user_name": "@daiki",
+        "user_icon": "/assets/images/dammy/user_01.jpg",
+        "job_id": "1",
+        "job_name": "美容師",
+        "access_info": "東京都渋谷駅 アベニュー口 徒歩7分",
+        "count_follows": 1999,
+        "count_likes": 1999,
+        "count_posts": 1999,
+        "start_time": "0900",
+        "end_time": "2600",
+        "max_price": 15000,
+        "min_price": 8000,
+        "followed": 0,
+        "updated": "2018-04-08 10:50:27",
+        "description": "外国人風スタイル。エッジの効いたカラーやカットやパーマ。ハイライトなどのデザインカラーが得意。\r\n\r\n外国人風スタイル。エッジの効いたカラーやカットやパーマ。\r\nハイライトなどのデザインカラーが得意。",
+
+        "photo": [
+            {
+                "post_image": "/assets/images/dammy/user_01.jpg",
+                "post_id": "mnadfvakfvaf",
+                "fixed_flg": "1"
+            },
+            {
+                "post_image": "/assets/images/dammy/user_02.jpg",
+                "post_id": "asdf35asfasd",
+                "fixed_flg": "1"
+            },
+            {
+                "post_image": "/assets/images/dammy/user_03.jpg",
+                "post_id": "asghndasfasa",
+                "fixed_flg": "1"
+            },
+            {
+                "post_image": "/assets/images/dammy/user_04.jpg",
+                "post_id": "aretbadfadfb",
+                "fixed_flg": "1"
+            },
+            {
+                "post_image": "/assets/images/dammy/user_01.jpg",
+                "post_id": "badfg",
+                "fixed_flg": "1"
+            },
+            {
+                "post_image": "/assets/images/dammy/user_02.jpg",
+                "post_id": "ersfghs",
+                "fixed_flg": "1"
+            },
+            {
+                "post_image": "/assets/images/dammy/user_03.jpg",
+                "post_id": "nmfgsdgag",
+                "fixed_flg": "1"
+            },
+            {
+                "post_image": "/assets/images/dammy/user_04.jpg",
+                "post_id": "adfathadfh",
+                "fixed_flg": "1"
+            },
+            {
+                "post_image": "/assets/images/dammy/user_04.jpg",
+                "post_id": "sfmyfas",
+                "fixed_flg": "1"
+            },
+            {
+                "post_image": "/assets/images/dammy/user_01.jpg",
+                "post_id": "adfghsjhmndf",
+                "fixed_flg": "1"
+            },
+            {
+                "post_image": "/assets/images/dammy/user_02.jpg",
+                "post_id": "fhjkru",
+                "fixed_flg": "1"
+            },
+            {
+                "post_image": "/assets/images/dammy/user_03.jpg",
+                "post_id": "nddyuht",
+                "fixed_flg": "1"
+            },
+            {
+                "post_image": "/assets/images/dammy/user_01.jpg",
+                "post_id": "1df4g512sfb",
+                "fixed_flg": "1"
+            },
+            {
+                "post_image": "/assets/images/dammy/user_02.jpg",
+                "post_id": "2154sgb",
+                "fixed_flg": "1"
+            },
+            {
+                "post_image": "/assets/images/dammy/user_04.jpg",
+                "post_id": "48s2bsfg",
+                "fixed_flg": "1"
+            }
+        ],
+
+        "info": [
+            {
+                "title": "お店",
+                "contents": [
+                    {
+                        "title": "店舗名",
+                        "text": "オーブ ヘアーグラン\r\n渋谷2号店(AUBE hair gran)"
+                    },
+                    {
+                        "title": "店舗住所",
+                        "text": "東京都渋谷区道玄坂1-9-1 道玄坂ビル4F\r\n東京都渋谷駅 アベニュー口 徒歩7"
+                    },
+                    {
+                        "title": "営業時間",
+                        "text": "1100〜2100　定休日/月曜日"
+                    },
+                    {
+                        "title": "URL",
+                        "text": "https://abc.com"
+                    }
+                ]
+            },
+            {
+                "title": "職歴",
+                "contents": [
+                    {
+                        "title": "2013.06 〜 2015.07",
+                        "text": "ユーフォリア(Euphoria SHIBUYA GRANDE)\r\n東京都渋谷区 / アシスタント"
+                    },
+                    {
+                        "title": "2015.07 〜 2015.12",
+                        "text": "サロン ダコタ(salon dakota)　東京都渋谷区 / スタイリスト"
+                    },
+                    {
+                        "title": "2015.12 〜 ",
+                        "text": "オーブ ヘアー グラン 渋谷2号店\r\n(AUBE hair gran) 東京都渋谷 / ディレクター"
+                    }
+                ]
+            },
+            {
+                "title": "学歴",
+                "contents": [
+                    {
+                        "title": "2009.04 〜 2012.03",
+                        "text": "逗子開成高等学校 卒業"
+                    },
+                    {
+                        "title": "2012.04 〜 2014.09",
+                        "text": "早稲田大学 中退"
+                    }
+                ]
+            },
+            {
+                "title": "基本データ",
+                "contents": [
+                    {
+                        "title": "誕生日",
+                        "text": "1991.01.10"
+                    },
+                    {
+                        "title": "Facebook",
+                        "text": "https://www.facebook.com/abc/"
+                    },
+                    {
+                        "title": "Instagram",
+                        "text": "https://www.instagram.com/abc/"
+                    }
+                ]
+            },
+            {
+                "title": "興味のあること",
+                "contents": [
+                    {
+                        "title": "映画",
+                        "text": "ショーシャンクの空に"
+                    },
+                    {
+                        "title": "読書",
+                        "text": "ショーシャンクの空に"
+                    },
+                    {
+                        "title": "音楽",
+                        "text": "秦基博"
+                    }
+                ]
+            }
+        ],
+
+        "menus": [
+            {
+                "id": "1",
+                "name": "カット + アロマシャンプー",
+                "price": 8000,
+                "description": "所要時間: 90分"
+            },
+            {
+                "id": "2",
+                "name": "カット + パーマ",
+                "price": 15000,
+                "description": "フリーテキストフリーテキストフリーテキストフリーテキストフリーテキストフリーテキスト"
+            },
+            {
+                "id": "3",
+                "name": "カット + パーマ",
+                "price": 5000,
+                "description": null
+            }
+        ]
     }
+
 }

@@ -93,7 +93,7 @@ export default {
 
             this.$store.dispatch('detail/GetDetailResult',postData)
             .then((json) => {
-                if(!json) {
+                if(!json || !json.data.user_id) {
                     this.error = "データが存在しません。";
                 } else {
                     this.error = null;
@@ -133,9 +133,10 @@ export default {
     },
     mounted: function() {
     },
-    beforeDestroy: function() {
+    beforeCreate: function() {
+        if( window.prev !== "post" ) this.$store.dispatch('detail/SetDetailResult',null)
     },
-    destroyed: function() {
+    destroyed: function(s) {
         window.prev = "user";
         localStorage.removeItem('steplack_lastpage');
     }

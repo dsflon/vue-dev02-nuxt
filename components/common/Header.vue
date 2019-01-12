@@ -64,11 +64,11 @@ export default {
 
                 this.$store.dispatch('user/SetMyData',null).then( (data)=> {
                     localStorage.removeItem(window.LSUser);
+                    window.BodyMessage.AutoPlay( "サインアウトしました。" );
                 })
+
                 if(this.$store.state.common.menu) this.$store.dispatch('common/ToggleMenu')
 
-            } else {
-                // window.Loading.Hide();
             }
         }
     },

@@ -1,8 +1,18 @@
 <template>
 
     <div class="header_btns">
-        <router-link v-if="!$store.state.user.myData" class="a-btn_user" to="/sign/signin"></router-link>
-        <button v-else class="a-btn_user" @click="ToggleMenu()"></button>
+
+        <router-link
+         v-if="!$store.state.user.myData"
+         class="a-btn_user"
+         to="/sign/signin"></router-link>
+
+        <button
+            v-else
+            class="a-btn_user is_signin"
+            :style="$store.state.user.myData.user_icon ? {'background-image': 'url(' + $store.state.user.myData.user_icon + ')'} : null"
+            @click="ToggleMenu()"></button>
+
     </div>
 
 </template>

@@ -15,19 +15,24 @@
                             type="email"
                             placeholder="ユーザー名 or メールアドレス"
                             required
-                            @input="UserId"
+                            v-model="email"
+                            @input="Email"
                             @keypress="KeyPress"/>
                     </label>
                     <p class="a-form_error">{{error}}</p>
                 </div>
-                <div class="signin-input m-form_line">
+                <div class="signin-input">
+                    <label class="m-form_line">
                     <input
                         class="a-form_input"
                         type="password"
                         @input="Password"
                         required
+                        v-model="pass"
                         placeholder="パスワード"
                         @keypress="KeyPress"/>
+                    </label>
+                    <p class="a-form_error">{{errorPass}}</p>
                 </div>
                 <div class="signin-btn">
                     <button
@@ -35,7 +40,6 @@
                         :disabled="disabled"
                         class="a-btn_txt is_bg_blue"
                         @click="Signin">サインイン</button>
-                        <p class="a-form_error">{{errorPass}}</p>
                 </div>
 
             </form>
@@ -66,6 +70,7 @@
 
 <script>
 import Validate from '~/middleware/_validate';
+import Fetch from '~/middleware/_fetch';
 
 export default {
     transition (to, from) {
@@ -95,15 +100,15 @@ export default {
     },
     data () {
         return {
-            userid: false,
-            pass: false,
+            email: null,
+            pass: null,
             error: null,
             errorPass: null,
             disabled: true
         }
     },
     methods: {
-        UserId: function(e) {
+        Email: function(e) {
             let val = e.currentTarget.value,
                 validate = Validate.userid(val),
                 errorTxt = validate !== true ? validate.message : null;
@@ -113,12 +118,12 @@ export default {
                 return false;
             }
             this.error = errorTxt ? errorTxt : null;
-            this.userid = errorTxt ? false : true;
+            // this.email = errorTxt ? false : true;
             this.BtnDisabled();
         },
         Password: function(e) {
             let val = e.currentTarget.value;
-            this.pass = val ? true : false;
+            this.errorPass = this.pass.length < 6 ? "6文字以上必要です" : null;
             this.BtnDisabled();
         },
         KeyPress: function(e) {
@@ -127,7 +132,7 @@ export default {
             }
         },
         BtnDisabled: function() {
-            this.disabled = this.userid && this.pass ? false : true;
+            this.disabled = !this.error && !this.errorPass && this.email && this.pass ? false : true;
         },
         Cancel: function(e) {
             e.preventDefault();
@@ -136,7 +141,17 @@ export default {
         },
         Signin: function(e) {
             e.preventDefault();
-            alert("signin !!")
+
+            this.$store.dispatch('user/Signin',{
+                "id": this.email,
+                "password": this.pass
+            })
+            .then((data)=>{
+                this.$router.replace("/");
+            })
+            .catch((error,txt)=>{
+                console.error(txt);
+            })
         },
         FBsignin: function(e) {
             e.preventDefault();

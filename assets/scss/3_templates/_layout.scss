@@ -76,7 +76,7 @@
 				pointer-events: inherit;
 			}
 		}
-		[data-message] {
+		&[data-message] {
 			&:before {
 				content: attr(data-message);
 				background: $color_text;
