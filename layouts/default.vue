@@ -9,7 +9,6 @@
 
 <script>
 import BodyMessage from '~/middleware/_bodyMessage';
-import Sign from '~/middleware/_sign';
 
 export default {
     components: {},
@@ -19,9 +18,14 @@ export default {
         }
     },
     created: function() {
-        Sign.Check( (data) => {
-            if(data) this.$store.dispatch('user/SetMyData',data)
-        });
+
+        // check account
+        let user = localStorage.getItem(window.LSUser);
+
+        if(user) {
+            this.$store.dispatch('user/SetMyData',JSON.parse(user))
+        }
+
     },
     mounted: function() {
         window.BodyMessage = new BodyMessage(this.$refs.app);
@@ -45,5 +49,6 @@ export default {
         // }
 
     }
+
 }
 </script>

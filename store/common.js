@@ -9,7 +9,8 @@ import Api from '~/plugins/_api';
  *
  */
 export const state = () => ({
-    menu: false
+    menu: false,
+    pageData: null
 })
 
 /**
@@ -19,6 +20,9 @@ export const state = () => ({
 export const mutations = {
     registerMenu(state, data) {
         state.menu = data
+    },
+    registerPageData(state, data) {
+        state.pageData = data
     }
 }
 
@@ -34,6 +38,16 @@ export const actions = {
     ToggleMenu(context) {
         return new Promise((resolve, reject) => {
             context.commit('registerMenu', !context.state.menu);
+        })
+    },
+
+    /**
+     * ページのタイトルなどを一時保蔵
+     * @param {object} data - ページのデータ
+     */
+    SetPageData(context,data) {
+        return new Promise((resolve, reject) => {
+            context.commit('registerPageData', data);
         })
     }
 

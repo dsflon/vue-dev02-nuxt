@@ -67,7 +67,6 @@
 import Validate from '~/middleware/_validate';
 import Fetch from '~/middleware/_fetch';
 import Api from '~/plugins/_api';
-import Sign from '~/middleware/_sign';
 
 export default {
     transition (to, from) {

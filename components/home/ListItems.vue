@@ -6,7 +6,13 @@
         <li class="list"
             v-for="item in $store.state.home.searchResult"
             :key="item.user_name">
-            <router-link  class="list_btn" :to="'/user/' + item.user_id">
+            <button
+                class="list_btn"
+                @click="ToDetail(item)">
+
+                <div v-if="Boolean(item.followed)" class="list_followed">
+                    <i class="a-icon a-icon-friends_check is_pink"></i>
+                </div>
 
                 <div
                     ref="list_user"
@@ -44,7 +50,7 @@
                         </div>
                     </div>
                 </div>
-            </router-link>
+            </button>
         </li>
 
     </ul>
@@ -69,6 +75,15 @@ import ChangeTimeString from '~/components/common/ChangeTimeString.vue'
 export default {
     components: {
         ChangeTimeString
+    },
+    methods: {
+        ToDetail: function(data) {
+            this.$store.dispatch('common/SetPageData',{
+                title: data.user_name,
+                followed: data.followed
+            })
+            this.$router.push('/user/' + data.user_id)
+        }
     },
     mounted: function() {
         DelayLoader( this.$refs.list_user );

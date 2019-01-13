@@ -2,7 +2,7 @@
     <div>
 
         <app-header
-            :title="userData ? userData.user_name : ''"
+            :title="SetTitle"
             :userId=" $route.params.userid ? $route.params.userid : ''"
             :icon="checkId ? 'mypage' : 'followed'" />
 
@@ -78,6 +78,14 @@ export default {
         FooterBtns
     },
     computed : {
+        SetTitle () { // ページタイトル部分のチラツキ対処
+            let pageData = this.$store.state.common.pageData;
+            if( !this.userData ) {
+                return pageData ? pageData.title : ""
+            } else {
+                return this.userData.user_name
+            }
+        },
         checkId () {
             return this.$store.state.user.myData && this.$store.state.user.myData.user_id === this.$route.params.userid
         }

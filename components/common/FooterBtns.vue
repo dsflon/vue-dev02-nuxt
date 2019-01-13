@@ -4,6 +4,12 @@
         <button class="a-btn" @click="backHome">
             <i class="a-icon a-icon-arrow_left"></i>
         </button>
+        <button
+            v-if="CheckFollowed"
+            class="a-btn is_l is_pink"
+            @click="follow">
+            <i class="a-icon a-icon-friends_plus"></i>
+        </button>
         <router-link to="/message" class="a-btn is_l is_blue">
             <i class="a-icon a-icon-mail"></i>
         </router-link>
@@ -40,11 +46,23 @@
 
 
 <script>
+import Follow from '~/middleware/_follow';
+
 export default {
 
     props: [
         "type"
     ],
+    computed : {
+        CheckFollowed () { // ページタイトル部分のチラツキ対処
+            let pageData = this.$store.state.common.pageData;
+            if( !this.$store.state.detail ) {
+                return pageData ? !pageData.followed : false
+            } else {
+                return !this.$store.state.detail.followed
+            }
+        }
+    },
     methods: {
         backHome() {
             if( history.length < 2 ) {
@@ -100,6 +118,9 @@ export default {
         saveData() {
             alert("Save data !")
             this.backMyPage();
+        },
+        follow() {
+            Follow(this)
         }
     },
     mounted: function() {
