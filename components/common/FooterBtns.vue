@@ -5,7 +5,7 @@
             <i class="a-icon a-icon-arrow_left"></i>
         </button>
         <button
-            v-if="CheckFollowed"
+            v-if="!CheckFollowed"
             class="a-btn is_l is_pink"
             @click="follow">
             <i class="a-icon a-icon-friends_plus"></i>
@@ -56,10 +56,10 @@ export default {
     computed : {
         CheckFollowed () { // ページタイトル部分のチラツキ対処
             let pageData = this.$store.state.common.pageData;
-            if( !this.$store.state.detail ) {
-                return pageData ? !pageData.followed : false
+            if( !this.$store.state.detail.followed ) {
+                return pageData ? pageData.followed : false
             } else {
-                return !this.$store.state.detail.followed
+                return this.$store.state.detail.followed
             }
         }
     },

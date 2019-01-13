@@ -25,7 +25,7 @@ export default {
     computed : {
         CheckFollowed () { // ページタイトル部分のチラツキ対処
             let pageData = this.$store.state.common.pageData;
-            if( !this.$store.state.detail ) {
+            if( !this.$store.state.detail.followed ) {
                 return pageData ? pageData.followed : false
             } else {
                 return this.$store.state.detail.followed
