@@ -22,6 +22,16 @@
             font-size: 14px;
         }
     }
+    .a-form_textarea {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+
+        @include placeholder {
+            color: $black40;
+            font-size: 14px;
+        }
+    }
 
     .a-form_error {
         color: $red;

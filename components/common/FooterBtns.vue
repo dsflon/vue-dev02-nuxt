@@ -101,19 +101,20 @@ export default {
             }
         },
         backMyPage() {
-            if( history.length < 2 ) {
-                this.$router.replace( location.pathname.split("/edit")[0] )
-                return false;
-            }
-            switch (window.prev) {
-                case "detail":
-                    this.$router.back();
-                break;
-
-                default:
-                    this.$router.replace( location.pathname.split("/edit")[0] )
-
-            }
+            // if( history.length < 2 ) {
+            //     this.$router.replace( location.pathname.split("/edit")[0] )
+            //     return false;
+            // }
+            // switch (window.prev) {
+            //     case "detail":
+            //         this.$router.back();
+            //     break;
+            //
+            //     default:
+            //         this.$router.replace( location.pathname.split("/edit")[0] )
+            //
+            // }
+            this.$router.replace( location.pathname.split("/edit")[0] )
         },
         saveData() {
             alert("Save data !")

@@ -6,20 +6,15 @@
             :userId=" $route.params.userid ? $route.params.userid : ''"
             icon="" />
 
-        <main id="detail">
+        <main id="detail" class="is_edit">
 
             <div class="detail_inner">
 
                 <div class="contents">
-                    EDIT
 
-                    <!-- <detail-item
-                        v-if="!error && this.userData"
-                        :userData="this.userData" />
-
-                    <div v-else class="no_result">
-                        <p>{{error}}</p>
-                    </div> -->
+                    <edit-detail-item
+                        v-if="$store.state.detail.detailResult"
+                        :userData="$store.state.detail.detailResult" />
 
                 </div>
 
@@ -36,7 +31,7 @@
 import AppHeader from '~/components/common/Header.vue'
 import AppFooter from '~/components/common/Footer.vue'
 import FooterBtns from '~/components/common/FooterBtns.vue'
-import DetailItem from '~/components/detail/DetailItem.vue'
+import EditDetailItem from '~/components/detail/EditDetailItem.vue'
 
 export default {
     transition (to, from) {
@@ -63,22 +58,21 @@ export default {
     },
     data () {
         return {
-            error: null,
-            userData: null
         }
     },
     components: {
         AppHeader,
         AppFooter,
-        DetailItem,
+        EditDetailItem,
         FooterBtns
     },
     methods: {
-        GetStart: function() {
-        }
+    },
+    beforeCreate: function() {
+        if(!this.$store.state.detail.detailResult)
+            this.$router.replace( location.pathname.split("/edit")[0] )
     },
     created: function() {
-
     },
     mounted: function() {
     },

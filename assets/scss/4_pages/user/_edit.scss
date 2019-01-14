@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+.fw #detail.is_edit {
+
+    .user_inner {
+        .user_header {
+            .user_info .user_info_store {
+
+                margin: 15px 0;
+                color: $black50;
+                font-size: 12px;
+                dd { font-family: $font_base; }
+
+            }
+            .user_txt {
+                width: 100%;
+                line-height: 18px;
+
+                .a-form_textarea {
+                    // height: 100%;
+                }
+            }
+        }
+    }
+
+}//.fw

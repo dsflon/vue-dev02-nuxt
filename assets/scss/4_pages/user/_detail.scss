@@ -86,13 +86,13 @@
                 .VueCarousel-dot-container {
                     background: #FFF;
                     display: flex !important;
-                    flex-flow: row wrap;
                     padding: 0 15px;
+                    justify-content: space-around;
                 }
                 li {
+                    width: 100%;
                     margin: 0 !important;
                     padding: 0 !important;
-                    width: 33.33%;
                     button {
                         display: block;
                         text-align: center;
