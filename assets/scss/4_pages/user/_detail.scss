@@ -34,6 +34,7 @@
                     line-height: 1;
                     margin-bottom: 8px;
                     &:last-child { margin-bottom: 0; }
+                    .is_ios & { letter-spacing: -0.09em; }
                     dt { width: 56px; }
                     dd {
                         width: calc( 100% - 60px );
@@ -99,7 +100,7 @@
                         width: 100% !important;
                         height: 46px !important;
                         color: $black50;
-                        font-weight: bold;
+                        @include bold;
                         background: none !important;
                         border-radius: 0;
                         outline: none;

@@ -23,5 +23,6 @@
 @import "../fw/mixin/triangle";
 
 @mixin bold{
-    font-family: $font_bold;
+    // font-family: $font_bold;
+    font-weight: bold;
 }

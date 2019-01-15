@@ -27,15 +27,15 @@
                     <ul class="m-info_counts is_flex is_s">
                         <li>
                             <i class="a-icon a-icon-friends is_gray"></i>
-                            <span class="a-icon_txt">{{item.count_follows.toLocaleString()}}</span>
+                            <span class="a-icon_txt">{{Number(item.count_follows).toLocaleString()}}</span>
                         </li>
                         <li>
                             <i class="a-icon a-icon-heart is_gray"></i>
-                            <span class="a-icon_txt">{{item.count_likes.toLocaleString()}}</span>
+                            <span class="a-icon_txt">{{Number(item.count_likes).toLocaleString()}}</span>
                         </li>
                         <li>
                             <i class="a-icon a-icon-picture is_gray"></i>
-                            <span class="a-icon_txt">{{item.count_posts.toLocaleString()}}</span>
+                            <span class="a-icon_txt">{{Number(item.count_posts).toLocaleString()}}</span>
                         </li>
                     </ul>
                     <div class="list_info_wrap">
@@ -46,7 +46,7 @@
                             </div>
                         </div>
                         <div class="list_info_price">
-                            ¥ {{item.min_price.toLocaleString()}} ~ {{item.max_price.toLocaleString()}}
+                            ¥ {{Number(item.min_price).toLocaleString()}} ~ {{Number(item.max_price).toLocaleString()}}
                         </div>
                     </div>
                 </div>

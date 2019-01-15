@@ -58,7 +58,7 @@
                 margin-bottom: 10px;
             }
             .signin-sns_btn {
-                font-family: $font_bold;
+                @include bold;
             }
         }
 
@@ -75,7 +75,7 @@
         .signin-new_btn {
             width: 100%; height: 50px;
             color: $color_main;
-            font-family: $font_bold;
+            @include bold;
             text-align: center;
             display: flex;
             align-items: center;

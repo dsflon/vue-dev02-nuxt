@@ -12,15 +12,15 @@
             <div class="user_info">
                 <ul class="m-info_counts is_m">
                     <li>
-                        <i class="a-icon a-icon-friends is_gray"></i>
+                        <i class="a-icon a-icon-friends is_gray a-icon-lg"></i>
                         <span class="a-icon_txt">{{userData.count_follows.toLocaleString()}}</span>
                     </li>
                     <li>
-                        <i class="a-icon a-icon-heart is_gray"></i>
+                        <i class="a-icon a-icon-heart is_gray a-icon-lg"></i>
                         <span class="a-icon_txt">{{userData.count_likes.toLocaleString()}}</span>
                     </li>
                     <li>
-                        <i class="a-icon a-icon-picture is_gray"></i>
+                        <i class="a-icon a-icon-picture is_gray a-icon-lg"></i>
                         <span class="a-icon_txt">{{userData.count_posts.toLocaleString()}}</span>
                     </li>
                 </ul>

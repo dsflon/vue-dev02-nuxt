@@ -17,4 +17,4 @@
 // Font Weight
 // ----------------------------------------------------------
 // .f-font_b { font-weight: bold !important; }
-.f-font_b { font-family: $font_bold; }
+.f-font_b { @include bold; }

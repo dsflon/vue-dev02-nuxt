@@ -3,32 +3,35 @@
 // Font Family
 //------------------------------------------------------------------------------
 
-	@font-face {
-		font-family: 'NotoSansCJKjp-DemiLight';
-		font-style: normal;
-		src: url('/assets/fonts/NotoSansCJKjp-DemiLight.woff2') format('woff2'),
-			 url('/assets/fonts/NotoSansCJKjp-DemiLight.woff') format('woff');
-	}
-	@font-face {
-		font-family: 'NotoSansCJKjp-Bold';
-		font-style: normal;
-		src: url('/assets/fonts/NotoSansCJKjp-Bold.woff2') format('woff2'),
-			 url('/assets/fonts/NotoSansCJKjp-Bold.woff') format('woff');
-	}
+	// @font-face {
+	// 	font-family: 'NotoSansCJKjp-DemiLight';
+	// 	font-style: normal;
+	// 	src: url('/assets/fonts/NotoSansCJKjp-DemiLight.woff2') format('woff2'),
+	// 		 url('/assets/fonts/NotoSansCJKjp-DemiLight.woff') format('woff');
+	// }
+	// @font-face {
+	// 	font-family: 'NotoSansCJKjp-Bold';
+	// 	font-style: normal;
+	// 	src: url('/assets/fonts/NotoSansCJKjp-Bold.woff2') format('woff2'),
+	// 		 url('/assets/fonts/NotoSansCJKjp-Bold.woff') format('woff');
+	// }
 
 	@font-face {
 		font-family: 'Roboto';
 		src: url('/assets/fonts/Roboto-Light.woff2') format('woff2'),
 			 url('/assets/fonts/Roboto-Light.woff') format('woff'); /* Legacy iOS */
 	}
-	@font-face {
-		font-family: 'Roboto bold';
-		src: url('/assets/fonts/Roboto-Medium.woff2') format('woff2'),
-			 url('/assets/fonts/Roboto-Medium.woff') format('woff'); /* Legacy iOS */
-	}
+	// @font-face {
+	// 	font-family: 'Roboto bold';
+	// 	src: url('/assets/fonts/Roboto-Medium.woff2') format('woff2'),
+	// 		 url('/assets/fonts/Roboto-Medium.woff') format('woff'); /* Legacy iOS */
+	// }
 
-	$font_base: 'Roboto', 'NotoSansCJKjp-DemiLight','ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
-	$font_bold: 'Roboto bold', 'NotoSansCJKjp-Bold', 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+	// $font_base: 'Roboto', 'NotoSansCJKjp-DemiLight','ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+	// $font_bold: 'Roboto bold', 'NotoSansCJKjp-Bold', 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+	// $font_base: "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体",'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+	$font_base: 'Roboto', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', '游ゴシック  Medium', meiryo, sans-serif;
+	$font_bold: 'Roboto bold', "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体",'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
 	$font_noto: 'NotoSansCJKjp-DemiLight', 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
 
 // Font Size
