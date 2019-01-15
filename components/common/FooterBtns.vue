@@ -114,7 +114,11 @@ export default {
             //         this.$router.replace( location.pathname.split("/edit")[0] )
             //
             // }
-            this.$router.replace( location.pathname.split("/edit")[0] )
+            let res = confirm("変更を取り消しますか？");
+            if( res == true ) {
+                this.$router.replace( location.pathname.split("/edit")[0] )
+            }
+
         },
         saveData() {
             alert("Save data !")

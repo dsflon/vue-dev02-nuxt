@@ -5,7 +5,6 @@
     .user_inner {
         .user_header {
             .user_info {
-                // .user_info_store { color: $black50; }
                 .user_info_notice {
                     font-size: 10px;
                     line-height: 1.2;
@@ -16,6 +15,7 @@
             }
             .user_txt {
                 width: 100%;
+                margin-top: 25px;
                 .a-form_textarea {
                     margin-bottom: 5px;
                     line-height: 1.3;

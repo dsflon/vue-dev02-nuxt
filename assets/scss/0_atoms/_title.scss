@@ -34,6 +34,20 @@
             padding: 15px;
         }
 
+        &.is_gray {
+            color: $black50;
+        }
+
+        &.is_required {
+            &:after {
+                content: "*";
+                display: inline-block;
+                vertical-align: 1.5px;
+                color: $red;
+                margin-left: 4px;
+            }
+        }
+
     }
 
 

@@ -157,14 +157,14 @@
                     color: $color_text;
                     .list_info_wrap {
                         margin-top: 10px;
-                        font-size: 2.6vw;
+                        font-size: 2.4vw;
                         display: flex;
                         justify-content: space-between;
                         text-align: left;
                         .is_ios & { letter-spacing: -0.09em; }
                         .list_info_time {
                             .a-icon_txt { margin-left: 0px; }
-                            .a-txt_s { vertical-align: 0.6px; }
+                            // .a-txt_s { vertical-align: 0.6px; }
                         }
 
                         @include max(320) {

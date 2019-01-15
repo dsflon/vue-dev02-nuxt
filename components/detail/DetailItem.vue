@@ -4,34 +4,37 @@
 
         <div class="user_header">
 
-            <figure
-                class="user_thumb"
-                :style="{'background-image': 'url(' + userData.user_icon + ')'}">
-            </figure>
+            <div class="user_header_inner">
 
-            <div class="user_info">
-                <ul class="m-info_counts is_m">
-                    <li>
-                        <i class="a-icon a-icon-friends is_gray a-icon-lg"></i>
-                        <span class="a-icon_txt">{{userData.count_follows.toLocaleString()}}</span>
-                    </li>
-                    <li>
-                        <i class="a-icon a-icon-heart is_gray a-icon-lg"></i>
-                        <span class="a-icon_txt">{{userData.count_likes.toLocaleString()}}</span>
-                    </li>
-                    <li>
-                        <i class="a-icon a-icon-picture is_gray a-icon-lg"></i>
-                        <span class="a-icon_txt">{{userData.count_posts.toLocaleString()}}</span>
-                    </li>
-                </ul>
-                <dl class="user_info_store">
-                    <dt>営業時間</dt>
-                    <dd><change-time-string :num="userData.start_time" /> ~ <change-time-string :num="userData.end_time" /></dd>
-                </dl>
-                <dl class="user_info_store">
-                    <dt>予算</dt>
-                    <dd>¥ {{Number(userData.min_price).toLocaleString()}} ~ {{Number(userData.max_price).toLocaleString()}}</dd>
-                </dl>
+                <figure
+                    class="user_thumb"
+                    :style="{'background-image': 'url(' + userData.user_icon + ')'}">
+                </figure>
+
+                <div class="user_info">
+                    <ul class="m-info_counts is_m">
+                        <li>
+                            <i class="a-icon a-icon-friends is_gray"></i>
+                            <span class="a-icon_txt">{{Number(userData.count_follows).toLocaleString()}}</span>
+                        </li>
+                        <li>
+                            <i class="a-icon a-icon-heart is_gray"></i>
+                            <span class="a-icon_txt">{{Number(userData.count_likes).toLocaleString()}}</span>
+                        </li>
+                        <li>
+                            <i class="a-icon a-icon-picture is_gray"></i>
+                            <span class="a-icon_txt">{{Number(userData.count_posts).toLocaleString()}}</span>
+                        </li>
+                    </ul>
+                    <dl class="user_info_store">
+                        <dt>営業時間</dt>
+                        <dd><change-time-string :num="userData.start_time" /> ~ <change-time-string :num="userData.end_time" /></dd>
+                    </dl>
+                    <dl class="user_info_store">
+                        <dt>予算</dt>
+                        <dd>¥ {{Number(userData.min_price).toLocaleString()}} ~ {{Number(userData.max_price).toLocaleString()}}</dd>
+                    </dl>
+                </div>
             </div>
 
             <div class="user_txt">

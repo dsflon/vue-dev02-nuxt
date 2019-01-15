@@ -18,14 +18,12 @@
         width: 100%; height: 44px;
 
         @include placeholder {
-            color: $black40;
+            color: $black30;
             font-size: 14px;
         }
     }
     .a-form_textarea {
         width: 100%;
-        padding: 0;
-        margin: 0;
 
         @include placeholder {
             color: $black40;

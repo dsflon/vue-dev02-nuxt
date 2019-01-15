@@ -9,11 +9,13 @@
     .user_inner {
 
         .user_header {
-
-            display: flex;
-            flex-flow: row wrap;
-            align-items: center;
             padding: 20px 15px;
+
+            .user_header_inner {
+                display: flex;
+                flex-flow: row wrap;
+                align-items: center;
+            }
 
             .user_thumb {
                 width: 106px; height: 106px;
@@ -82,7 +84,7 @@
                 width: 100%;
                 height: 46px;
                 margin-bottom: 20px;
-                position: sticky;
+                // position: sticky;
                 top: 0; left: 0;
                 .VueCarousel-dot-container {
                     background: #FFF;

@@ -12,6 +12,10 @@
         top: 0; left: 0;
         z-index: 2;
 
+        &.is_static {
+            position: static;
+        }
+
         #header_inner {
             display: flex;
             align-items: center;
@@ -58,7 +62,7 @@
                     padding:  20px;
                     text-align: left;
                     color: $color_text;
-                    @include bold;
+                    // @include bold;
                     &.is_arw {
                         @include arrowAbs($color: $color_text, $size:8, $width:1, $layout:right, $position:20, $direction:right);
                     }
