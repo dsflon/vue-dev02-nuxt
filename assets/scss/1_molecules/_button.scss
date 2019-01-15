@@ -44,7 +44,7 @@
     &.is_s {
         li {
             font-size: 4vw;
-            .is_ios & { letter-spacing: -0.09em; }
+            .is_ios & { letter-spacing: -0.05em; }
             .a-icon_txt { font-size: 3vw; margin-left: 0; }
             // @include max(xs) {
             //     .a-icon { font-size: 12px; }
@@ -56,7 +56,7 @@
         li {
             // .a-icon { font-size: 16px }
             .a-icon_txt { @include bold }
-            .is_ios & { letter-spacing: -0.09em; }
+            .is_ios & { letter-spacing: -0.05em; }
             // @include max(xs) {
             //     margin-right: 10px;
             //     .a-icon_txt { font-size: 12px;  }
