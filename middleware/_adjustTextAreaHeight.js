@@ -1,7 +1,5 @@
 const AdjustTextAreaHeight = (ta) => {
 
-    console.log(ta);
-
 	const initial_height = parseFloat(getComputedStyle(ta).height)
 
 	// height と clientHeight の差分 px
@@ -29,7 +27,7 @@ const AdjustTextAreaHeight = (ta) => {
 	setHeightPx(noscroll_height)
 
 	// 再計算
-	ta.scrollHeight
+	// ta.scrollHeight
 	setHeightPx(final_height)
 
     function setHeightPx(height) {

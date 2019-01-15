@@ -10,22 +10,24 @@
             </figure>
 
             <div class="user_info">
-                <!-- <dl class="user_info_store">
+                <dl class="user_info_store">
                     <dt>営業時間</dt>
-                    <dd>（基本情報で設定します）</dd>
+                    <dd><change-time-string :num="userData.start_time" /> ~ <change-time-string :num="userData.end_time" /></dd>
                 </dl>
                 <dl class="user_info_store">
                     <dt>予算</dt>
-                    <dd>（基本情報で設定します）</dd>
-                </dl> -->
+                    <dd>¥ {{Number(userData.min_price).toLocaleString()}} ~ {{Number(userData.max_price).toLocaleString()}}</dd>
+                </dl>
+                <p class="user_info_notice">※ 営業時間、予算は「基本情報」および「メニュー」の内容が反映されます。</p>
             </div>
 
-            <div class="user_txt m-form_line" ref="user_txt2">
+            <div class="user_txt m-form_line">
                 <textarea
-                    ref="user_txt"
+                    ref="textarea"
                     class="a-form_textarea"
                     name="description"
-                    @input="userTxt()"
+                    placeholder="自己紹介を記入してください"
+                    @input="_AdjustTextAreaHeight"
                     :value="userData.description"></textarea>
             </div>
 
@@ -66,8 +68,8 @@ export default {
         Slide
     },
     methods: {
-        userTxt: function() {
-            AdjustTextAreaHeight(this.$refs.user_txt)
+        _AdjustTextAreaHeight(e) {
+            AdjustTextAreaHeight(e.currentTarget)
         },
         AjustTabName() {
             let tab = document.getElementsByClassName('VueCarousel-dot-button'),
@@ -79,7 +81,10 @@ export default {
         }
     },
     mounted: function() {
-        this.userTxt()
+        // for (var i = 0; i < this.$refs.textarea.length; i++) {
+        //     AdjustTextAreaHeight(this.$refs.textarea[i])
+        // }
+        AdjustTextAreaHeight(this.$refs.textarea)
         setTimeout( this.AjustTabName, 1 )
     }
 

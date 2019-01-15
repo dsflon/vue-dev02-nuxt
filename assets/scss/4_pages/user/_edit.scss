@@ -4,20 +4,21 @@
 
     .user_inner {
         .user_header {
-            .user_info .user_info_store {
-
-                margin: 15px 0;
-                color: $black50;
-                font-size: 12px;
-                dd { font-family: $font_base; }
-
+            .user_info {
+                // .user_info_store { color: $black50; }
+                .user_info_notice {
+                    font-size: 10px;
+                    line-height: 1.2;
+                    margin-top: 15px;
+                    text-indent: -1.3em;
+                    padding-left: 1.3em;
+                }
             }
             .user_txt {
                 width: 100%;
-                line-height: 18px;
-
                 .a-form_textarea {
-                    // height: 100%;
+                    margin-bottom: 5px;
+                    line-height: 1.3;
                 }
             }
         }
