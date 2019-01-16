@@ -7,6 +7,16 @@
 .m-form_label {
     position: relative;
     display: block;
+
+    &.is_postal {
+        &:before {
+            content: "〒";
+            position: absolute;
+            top: 50%; left: 0;
+            transform: translateY(-50%);
+        }
+        .a-form_input { padding-left: 20px; }
+    }
 }
 .m-form_sec {
     margin-top: 25px;
@@ -14,6 +24,11 @@
 
 .m-form_line {
     border-bottom: 2px solid $black30;
+}
+.m-form_bg {
+    background: $black10;
+    border-radius: 4px;
+    padding: 0 10px;
 }
 label.m-form_line {
     display: block;

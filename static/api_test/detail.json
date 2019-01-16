@@ -100,24 +100,51 @@
         "info": [
             {
                 "title": "お店",
+                "type": "store",
                 "contents": [
                     {
                         "title": "店舗名",
+                        "type": "store_name",
                         "text": "オーブ ヘアーグラン\r\n渋谷2号店(AUBE hair gran)"
                     },
                     {
                         "title": "店舗住所",
+                        "type": "store_address",
                         "text": "東京都渋谷区道玄坂1-9-1 道玄坂ビル4F\r\n東京都渋谷駅 アベニュー口 徒歩7"
                     },
                     {
                         "title": "営業時間",
-                        "text": "1100〜2100　定休日/月曜日"
+                        "text": "09:00〜22:00 定休日/毎週水曜日",
+                        "holiday": "定休日/月曜日"
                     },
                     {
                         "title": "URL",
                         "text": "https://abc.com"
                     }
-                ]
+                ],
+                "contents_": {
+                    "store_name": {
+                        "text": "オーブ ヘアーグラン\r\n渋谷2号店(AUBE hair gran)"
+                    },
+                    "store_address": {
+                        "postal": "164-0001",
+                        "station": "東京都渋谷駅",
+                        "gate": "アベニュー口",
+                        "way": "徒歩",
+                        "time": "7分",
+                        "text": "東京都渋谷区道玄坂1-9-1 道玄坂ビル4F"
+                    },
+                    "store_time": {
+                        "start_time": "900",
+                        "end_time": "2600"
+                    },
+                    "store_holiday": {
+                        "text": "月曜日"
+                    },
+                    "store_url": {
+                        "text": "https://abc.com"
+                    }
+                }
             },
             {
                 "title": "職歴",

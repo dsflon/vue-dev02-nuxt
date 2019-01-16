@@ -45,7 +45,7 @@
                         type="text"
                         name="user_fullname"
                         placeholder="お名前を入力してください"
-                        value="">
+                        :value="userData.user_fullname">
                 </label>
             </section>
             <section class="m-form_sec">
@@ -57,7 +57,7 @@
                         type="text"
                         name="user_name"
                         placeholder="ニックネームを入力してください"
-                        value="">
+                        :value="userData.user_name">
                 </label>
             </section>
 
@@ -68,7 +68,8 @@
                         class="a-form_select"
                         tabIndex="-1"
                         name="user_job"
-                        ref="select">
+                        ref="select"
+                        :value="userData.job_id+','+userData.job_name">
                         <option>----</option>
                         <!-- <option
                             v-for="item in $store.state.search.jobList"
@@ -88,7 +89,7 @@
                             type="email"
                             name="user_email"
                             placeholder="メールアドレスを入力してください"
-                            value="">
+                            :value="userData.user_mail">
                     </label>
                 </section>
                 <section class=" m-form_sec">
@@ -100,7 +101,7 @@
                             type="tel"
                             name="user_email"
                             placeholder="電話番号を入力してください"
-                            value="">
+                            :value="userData.tel">
                     </label>
                 </section>
 
@@ -108,7 +109,11 @@
                 <section class="f-flex6">
                     <label class="m-form_line">
                         <h2 class="a-ttl is_s is_gray">性別</h2>
-                        <select tabindex="-1" class="a-form_select" name="user_sex">
+                        <select
+                            tabindex="-1"
+                            class="a-form_select"
+                            :value="userData.user_sex"
+                            name="user_sex">
                             <option>----</option>
                             <option value="femail">女性</option>
                             <option value="male">男性</option>
@@ -123,7 +128,7 @@
                             required
                             type="date"
                             name="user_birthday"
-                            value="">
+                            :value="userData.user_birthday">
                     </label>
                 </section>
             </div>

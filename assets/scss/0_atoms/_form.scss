@@ -24,7 +24,7 @@
     }
     .a-form_textarea {
         width: 100%;
-
+        // line-height: 1.2;
         @include placeholder {
             color: $black40;
             font-size: 14px;
