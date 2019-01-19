@@ -11,7 +11,7 @@
         "count_follows": 1999,
         "count_likes": 1999,
         "count_posts": 1999,
-        "start_time": "0900",
+        "start_time": "900",
         "end_time": "2600",
         "max_price": 15000,
         "min_price": 8000,
@@ -137,6 +137,35 @@
                     "store_time": {
                         "start_time": "900",
                         "end_time": "2600"
+                    },
+                    "store_holiday": {
+                        "text": "月曜日"
+                    },
+                    "store_url": {
+                        "text": "https://abc.com"
+                    }
+                }
+            },
+            {
+                "title": "お店 2",
+                "type": "store",
+                "contents": [
+                ],
+                "contents_": {
+                    "store_name": {
+                        "text": "text text text text\r\n渋谷2号店(AUBE hair gran)"
+                    },
+                    "store_address": {
+                        "postal": "164-0001",
+                        "station": "東京都渋谷駅",
+                        "gate": "アベニュー口",
+                        "way": "徒歩",
+                        "time": "7分",
+                        "text": "text text text text text text text texttext text text text"
+                    },
+                    "store_time": {
+                        "start_time": "1100",
+                        "end_time": "3100"
                     },
                     "store_holiday": {
                         "text": "月曜日"

@@ -8,11 +8,11 @@
 
             <div v-if="item.type==='store'">
 
-                <h2 class="info_box_ttl">お店</h2>
+                <h2 class="info_box_ttl">{{item.title}}</h2>
 
                 <div v-if="item.contents_" class="info_box_wrap">
+                    <h3 class="a-ttl is_s is_gray">住所</h3>
                     <section>
-                        <h3 class="a-ttl is_s is_gray">住所</h3>
                         <label class="m-form_line m-form_label is_postal">
                             <input
                                 class="a-form_input"
@@ -32,8 +32,8 @@
                     </section>
                     <div class="f-flex">
                         <section class="f-flex6 m-form_sec">
+                            <h3 class="a-ttl is_s is_gray">駅名</h3>
                             <label class="m-form_line">
-                                <h3 class="a-ttl is_s is_gray">駅名</h3>
                                 <input
                                     class="a-form_input"
                                     type="text"
@@ -43,8 +43,8 @@
                             </label>
                         </section>
                         <section class="f-flex6 m-form_sec">
+                            <h3 class="a-ttl is_s is_gray">改札・出口</h3>
                             <label class="m-form_line">
-                                <h3 class="a-ttl is_s is_gray">改札・出口</h3>
                                 <input
                                     class="a-form_input"
                                     type="text"
@@ -54,8 +54,8 @@
                             </label>
                         </section>
                         <section class="f-flex6 m-form_sec">
+                            <h3 class="a-ttl is_s is_gray">移動手段</h3>
                             <label class="m-form_line">
-                                <h3 class="a-ttl is_s is_gray">移動手段</h3>
                                 <select
                                     class="a-form_select"
                                     :value="item.contents_.store_address.way"
@@ -67,8 +67,8 @@
                             </label>
                         </section>
                         <section class="f-flex6 m-form_sec">
+                            <h3 class="a-ttl is_s is_gray">時間</h3>
                             <label class="m-form_line">
-                                <h3 class="a-ttl is_s is_gray">時間</h3>
                                 <input
                                     class="a-form_input"
                                     type="text"
@@ -78,34 +78,37 @@
                             </label>
                         </section>
                         <section class="f-flex6 m-form_sec">
+                            <h3 class="a-ttl is_s is_gray">開店時間</h3>
                             <label class="m-form_line">
-                                <h3 class="a-ttl is_s is_gray">開店時間</h3>
-                                <!-- :value="item.contents_.store_time.start_time" -->
-                                <!-- v-model="start_time[i].n" -->
                                 <select
                                     ref="start_time"
                                     class="a-form_select"
-                                    :value="item.contents_.store_time.start_time"
+                                    :data-value="start_time[i] ? start_time[i] : item.contents_.store_time.start_time"
+                                    v-model="start_time[i]"
+                                    @input="SetStartTime(i, $event)"
                                     name="store_time_start_time">
+                                    <option value="">選択してください</option>
                                     <option
-                                        v-for="item in SetTimeOption()"
-                                        :key="item.n"
-                                        :value="item.n">{{item.t}}</option>
+                                        v-for="opn in SetTimeOption()"
+                                        :key="opn.n"
+                                        :value="opn.n">{{opn.t}}</option>
                                 </select>
                             </label>
                         </section>
                         <section class="f-flex6 m-form_sec">
+                            <h3 class="a-ttl is_s is_gray">閉店時間</h3>
                             <label class="m-form_line">
-                                <h3 class="a-ttl is_s is_gray">閉店時間</h3>
                                 <select
                                     ref="end_time"
                                     class="a-form_select"
-                                    :value="item.contents_.store_time.end_time"
+                                    :data-value="end_time[i] ? end_time[i] : item.contents_.store_time.end_time"
+                                    v-model="end_time[i]"
                                     name="store_time_end_time">
-                                    <option v-for="item in SetTimeOption()"
-                                        :key="item.n"
-                                        :value="SetTimeValue(item,i)">
-                                        <!-- {{ SetTimeString(item) }} --></option>
+                                    <option value="">選択してください</option>
+                                    <option
+                                        v-for="opn in SetTimeOption()"
+                                        :key="opn.n"
+                                        :value="SetEndTimeValue(opn,i)">{{ SetTimeString(opn,i) }}</option>
                                 </select>
                             </label>
                         </section>
@@ -135,27 +138,7 @@ export default {
             end_time: [],
         }
     },
-    methods: {
-        _AdjustTextAreaHeight(e) {
-            AdjustTextAreaHeight(e.currentTarget)
-        },
-        AjustEndTime(e) {
-            console.log(e.currentTarget.value);
-        },
-        SetStartTime: function() {
-            this.start_time.push({ n: "", t: "" })
-        },
-        SetEndTime: function() {
-            this.start_time.push({ n: "", t: "" })
-        }
-    },
     computed : {
-        checkLink: function () { // ここでやらないとエラー出る
-            return function (value) {
-                if(!value) return null;
-                return value.indexOf("http") !== -1;
-            };
-        },
         SetTimeOption() {
             return () => {
                 let data = [];
@@ -170,14 +153,33 @@ export default {
             }
         },
         SetTimeString() {
-            return item => item.n <= this.start_time.n ? "翌 " + item.t : item.t;
+            return (opn,i) => opn.n <= this.start_time[i] ? "翌 " + opn.t : opn.t;
         },
-        SetTimeValue() {
-            return (item,i) => {
-                console.log(this.$refs.start_time);
-                return "";
+        SetEndTimeValue() {
+            return (opn,i) => opn.n <= this.start_time[i] ? (24*100) + opn.n : opn.n;
+        }
+    },
+    methods: {
+        _AdjustTextAreaHeight(e) {
+            AdjustTextAreaHeight(e.currentTarget)
+        },
+        SetStartTime: function(i,e) {
+            let target = e.currentTarget ? e.currentTarget : e;
+            this.start_time.splice(i, 1, target.dataset.value);
+            setTimeout(()=> {
+                this.SetEndTime(i,this.$refs.end_time[i])
+            },1)
+        },
+        SetEndTime: function(i,e) {
+            let target = e.currentTarget ? e.currentTarget : e,
+                option = target.children,
+                value = "";
+            for (var j = 0; j < option.length; j++) { // valueに一致しなければ空にする
+                if( target.dataset.value === option[j].value ) {
+                    value = target.dataset.value;
+                }
             }
-            // return (item.n <= start_time.n) ? (24*100) + item.n : item.n;
+            this.end_time.splice(i, 1, value);
         }
     },
     mounted: function() {
@@ -186,9 +188,13 @@ export default {
                 AdjustTextAreaHeight(this.$refs.textarea[i])
             }
         }
-        for (var i = 0; i < this.$refs.end_time.length; i++) {
-            console.log(this.$refs.end_time[i]);
+        if(this.$refs.start_time) {
+            for (var i = 0; i < this.$refs.start_time.length; i++) {
+                this.SetStartTime(i, this.$refs.start_time[i])
+            }
         }
+    },
+    updated: function() {
     }
 
 }

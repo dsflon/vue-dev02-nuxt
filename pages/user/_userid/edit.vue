@@ -13,13 +13,15 @@
                 <div class="contents">
 
                     <edit-detail-item
+                        :OnFocus="OnFocus"
+                        :OnBlur="OnBlur"
                         v-if="$store.state.detail.detailResult"
                         :userData="$store.state.detail.detailResult" />
 
                 </div>
-
-                <footer-btns
-                    type="edit" />
+                <transition name="fade">
+                    <footer-btns v-if="!onfocus" type="edit" />
+                </transition>
             </div>
 
         </main>
@@ -56,8 +58,9 @@ export default {
             ]
         }
     },
-    data () {
+    data() {
         return {
+            onfocus: false
         }
     },
     components: {
@@ -67,6 +70,8 @@ export default {
         FooterBtns
     },
     methods: {
+        OnFocus() { this.onfocus = true; },
+        OnBlur() { this.onfocus = false; }
     },
     beforeCreate: function() {
         if(!this.$store.state.detail.detailResult)

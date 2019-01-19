@@ -24,53 +24,59 @@
             </div>
 
             <div class="user_txt">
+                <h2 class="a-ttl is_s is_gray">自己紹介</h2>
                 <label class="m-form_line">
-                    <h2 class="a-ttl is_s is_gray">自己紹介</h2>
                     <textarea
                         ref="textarea"
                         class="a-form_textarea"
                         name="description"
                         placeholder="自己紹介を記入してください"
+                        @focus="OnFocus"
+                        @blur="OnBlur"
                         @input="_AdjustTextAreaHeight"
                         :value="userData.description"></textarea>
                 </label>
             </div>
 
             <section class="m-form_sec">
+                <h2 class="a-ttl is_s is_gray is_required">お名前</h2>
                 <label class="m-form_line">
-                    <h2 class="a-ttl is_s is_gray is_required">お名前</h2>
                     <input
                         class="a-form_input"
                         required
                         type="text"
                         name="user_fullname"
                         placeholder="お名前を入力してください"
+                        @focus="OnFocus"
+                        @blur="OnBlur"
                         :value="userData.user_fullname">
                 </label>
             </section>
             <section class="m-form_sec">
+                <h2 class="a-ttl is_s is_gray is_required">ニックネーム</h2>
                 <label class="m-form_line">
-                    <h2 class="a-ttl is_s is_gray is_required">ニックネーム</h2>
                     <input
                         class="a-form_input"
                         required
                         type="text"
                         name="user_name"
                         placeholder="ニックネームを入力してください"
+                        @focus="OnFocus"
+                        @blur="OnBlur"
                         :value="userData.user_name">
                 </label>
             </section>
 
             <section class="m-form_sec">
+                <h2 class="a-ttl is_s is_gray is_required">職業</h2>
                 <label class="m-form_line">
-                    <h2 class="a-ttl is_s is_gray is_required">職業</h2>
                     <select
                         class="a-form_select"
                         tabIndex="-1"
                         name="user_job"
                         ref="select"
                         :value="userData.job_id+','+userData.job_name">
-                        <option>----</option>
+                        <option>選択してください</option>
                         <!-- <option
                             v-for="item in $store.state.search.jobList"
                             :key="item.job_id"
@@ -81,48 +87,52 @@
                 </label>
             </section>
                 <section class=" m-form_sec">
+                    <h2 class="a-ttl is_s is_gray is_required">メールアドレス</h2>
                     <label class="m-form_line">
-                        <h2 class="a-ttl is_s is_gray is_required">メールアドレス</h2>
                         <input
                             class="a-form_input"
                             required
                             type="email"
                             name="user_email"
                             placeholder="メールアドレスを入力してください"
+                            @focus="OnFocus"
+                            @blur="OnBlur"
                             :value="userData.user_mail">
                     </label>
                 </section>
                 <section class=" m-form_sec">
+                    <h2 class="a-ttl is_s is_gray is_required">電話番号<span class="a-txt_s">（ハイフン不要）</span></h2>
                     <label class="m-form_line">
-                        <h2 class="a-ttl is_s is_gray is_required">電話番号<span class="a-txt_s">（ハイフン不要）</span></h2>
                         <input
                             class="a-form_input"
                             required
                             type="tel"
                             name="user_email"
                             placeholder="電話番号を入力してください"
+                            @focus="OnFocus"
+                            @blur="OnBlur"
                             :value="userData.tel">
                     </label>
                 </section>
 
             <div class="f-flex m-form_sec">
                 <section class="f-flex6">
+                    <h2 class="a-ttl is_s is_gray">性別</h2>
                     <label class="m-form_line">
-                        <h2 class="a-ttl is_s is_gray">性別</h2>
                         <select
                             tabindex="-1"
                             class="a-form_select"
                             :value="userData.user_sex"
                             name="user_sex">
-                            <option>----</option>
+                            <option>選択してください</option>
                             <option value="femail">女性</option>
                             <option value="male">男性</option>
                         </select>
                     </label>
                 </section>
                 <section class="f-flex6">
+                    <h2 class="a-ttl is_s is_gray">生年月日</h2>
                     <label class="m-form_line">
-                        <h2 class="a-ttl is_s is_gray">生年月日</h2>
                         <input
                             class="a-form_input"
                             required
@@ -134,8 +144,8 @@
             </div>
 
             <!-- <section class="m-form_sec">
+                <h2 class="a-ttl is_s is_gray">住所</h2>
                 <label class="m-form_line">
-                    <h2 class="a-ttl is_s is_gray">住所</h2>
                     <input
                         class="a-form_input"
                         required
@@ -173,7 +183,9 @@ import DetailItemSliderMenu from '~/components/detail/DetailItemSliderMenu.vue'
 
 export default {
     props: [
-        "userData"
+        "userData",
+        "OnFocus",
+        "OnBlur"
     ],
     components: {
         ChangeTimeString,
