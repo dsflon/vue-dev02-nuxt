@@ -89,7 +89,7 @@
                                     name="store_time_start_time">
                                     <option value="">選択してください</option>
                                     <option
-                                        v-for="opn in SetTimeOption()"
+                                        v-for="opn in SetTimeOption"
                                         :key="opn.n"
                                         :value="opn.n">{{opn.t}}</option>
                                 </select>
@@ -106,7 +106,7 @@
                                     name="store_time_end_time">
                                     <option value="">選択してください</option>
                                     <option
-                                        v-for="opn in SetTimeOption()"
+                                        v-for="opn in SetTimeOption"
                                         :key="opn.n"
                                         :value="SetEndTimeValue(opn,i)">{{ SetTimeString(opn,i) }}</option>
                                 </select>
@@ -127,7 +127,7 @@
 
 <script>
 import AdjustTextAreaHeight from '~/middleware/_adjustTextAreaHeight';
-
+import SetTimeOptions from '~/middleware/_setTimeOptions';
 export default {
     props: [
         "infoData"
@@ -140,23 +140,13 @@ export default {
     },
     computed : {
         SetTimeOption() {
-            return () => {
-                let data = [];
-                for (var i = 1; i <= 24; i++) {
-                    let n = i*100,
-                        _n = String(i*100),
-                        t = _n.split("");
-                        t = n < 1000 ? (t[0]+":"+t[1]+t[2]) : (t[0]+t[1]+":"+t[2]+t[3]);
-                    data.push({ "n": n, "t": t })
-                }
-                return data;
-            }
+            return SetTimeOptions.for()
         },
         SetTimeString() {
-            return (opn,i) => opn.n <= this.start_time[i] ? "翌 " + opn.t : opn.t;
+            return (opn,i) => SetTimeOptions.text(opn,this.start_time[i]);
         },
         SetEndTimeValue() {
-            return (opn,i) => opn.n <= this.start_time[i] ? (24*100) + opn.n : opn.n;
+            return (opn,i) => SetTimeOptions.endTimeVal(opn,this.start_time[i]);
         }
     },
     methods: {

@@ -60,11 +60,12 @@
                                         class="a-form_select"
                                         tabIndex="-1"
                                         data-type="start_time"
+                                        ref="start_time"
                                         v-model="start_time.n"
                                         @input="SetSelectValue">
                                         <option value="">指定なし</option>
                                         <option
-                                            v-for="item in SetTimeOption()"
+                                            v-for="item in SetTimeOption"
                                             :key="item.n"
                                             :value="item.n">{{item.t}}</option>
                                     </select>
@@ -75,13 +76,14 @@
                                     <select class="a-form_select"
                                         tabIndex="-1"
                                         data-type="end_time"
+                                        ref="end_time"
                                         v-model="end_time.n"
                                         @input="SetSelectValue">
                                         <option value="">指定なし</option>
-                                        <option v-for="item in SetTimeOption()"
-                                            :key="item.n"
-                                            :value=" (item.n <= start_time.n) ? (24*100) + item.n : item.n">
-                                            {{ SetTimeString(item) }}
+                                        <option v-for="opn in SetTimeOption"
+                                            :key="opn.n"
+                                            :value=" (opn.n <= start_time.n) ? (24*100) + opn.n : opn.n">
+                                            {{ SetTimeString(opn) }}
                                         </option>
                                     </select>
                                 </div>
@@ -153,6 +155,7 @@
 
 <script>
 import ListFilter from '~/middleware/_listFilter';
+import SetTimeOptions from '~/middleware/_setTimeOptions';
 
 export default {
     props: [
@@ -169,7 +172,6 @@ export default {
     },
     methods: {
         Search: function(e) {
-            // console.log("Search");
 
             ListFilter(
                 this.$store.state.home.searchResultOrigin,
@@ -217,26 +219,29 @@ export default {
                 t: target.options[target.selectedIndex].text
             }
 
+            if(type==="start_time") setTimeout(()=> { this.SetEndTime() },1);
+
+        },
+        SetEndTime: function() {
+            let option = this.$refs.end_time.children,
+                value = { n: "", t: "指定なし" };
+
+            for (var j = 0; j < option.length; j++) { // valueに一致しなければ空にする
+                if( this.end_time.n === Number(option[j].value) ) {
+                    value = this.end_time;
+                }
+            }
+            this.end_time = value
         }
 
     },
 
     computed: {
         SetTimeOption() {
-            return () => {
-                let data = [];
-                for (var i = 1; i <= 24; i++) {
-                    let n = i*100,
-                        _n = String(i*100),
-                        t = _n.split("");
-                        t = n < 1000 ? (t[0]+":"+t[1]+t[2]) : (t[0]+t[1]+":"+t[2]+t[3]);
-                    data.push({ "n": n, "t": t })
-                }
-                return data;
-            }
+            return SetTimeOptions.for()
         },
         SetTimeString() {
-            return item => item.n <= this.start_time.n ? "翌 " + item.t : item.t;
+            return opn => SetTimeOptions.text(opn,this.start_time.n);
         }
     },
 
