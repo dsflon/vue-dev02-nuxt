@@ -20,7 +20,6 @@ const AdjustTextAreaHeight = (target) => {
 						e.style.height = height - lineHeight + "px";
 					if(e.scrollHeight > e.offsetHeight){
 						e.style.height = e.scrollHeight + "px";
-						console.log(e.scrollHeight, e.offsetHeight);
 						break;
 					}
 				}

@@ -160,10 +160,16 @@
         <div class="user_tab">
             <carousel :adjustableHeight="true" :perPage="1" :minSwipeDistance="50">
                 <slide>
-                    <edit-detail-item-slider-info :infoData="userData.info? userData.info : null" />
+                    <edit-detail-item-slider-info
+                        :OnFocus="OnFocus"
+                        :OnBlur="OnBlur"
+                        :infoData="userData.info? userData.info : null" />
                 </slide>
                 <slide>
-                    <detail-item-slider-menu :menuData="userData.menus? userData.menus : null" />
+                    <detail-item-slider-menu
+                        :OnFocus="OnFocus"
+                        :OnBlur="OnBlur"
+                        :menuData="userData.menus? userData.menus : null" />
                 </slide>
             </carousel>
         </div>

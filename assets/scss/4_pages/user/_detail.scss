@@ -57,9 +57,11 @@
         .user_txt {
             margin-top: 20px;
             line-height: 1.4;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            p { overflow: hidden; }
+            p {
+                overflow: hidden;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
             button { font-size: 12px; display: none; }
         }
 

@@ -24,7 +24,13 @@
     }
     .a-form_textarea {
         width: 100%;
-        // line-height: 1.2;
+        display: block;
+        $height: 20px;
+        // min-height: $height * 2;
+        max-height: $height * 10;
+        line-height: $height;
+        padding: 12px 0;
+        margin: 0;
         @include placeholder {
             color: $black30;
             font-size: 14px;

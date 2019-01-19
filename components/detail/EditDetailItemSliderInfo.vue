@@ -19,15 +19,19 @@
                                 type="tel"
                                 name="store_address_postal"
                                 placeholder="000-0000"
+                                @focus="OnFocus"
+                                @blur="OnBlur"
                                 :value="item.contents_.store_address.postal">
                         </label>
                         <label class="m-form_line m-form_label">
-                            <input
-                                class="a-form_input"
-                                type="text"
+                            <textarea
+                                ref="textarea"
+                                class="a-form_textarea"
                                 name="store_address_postal"
                                 placeholder="住所を入力してください"
-                                :value="item.contents_.store_address.text">
+                                @focus="OnFocus"
+                                @blur="OnBlur"
+                                :value="item.contents_.store_address.text"></textarea>
                         </label>
                     </section>
                     <div class="f-flex">
@@ -39,6 +43,8 @@
                                     type="text"
                                     name="store_address_postal"
                                     placeholder="最寄りの駅名を入力してください"
+                                    @focus="OnFocus"
+                                    @blur="OnBlur"
                                     :value="item.contents_.store_address.station">
                             </label>
                         </section>
@@ -50,6 +56,8 @@
                                     type="text"
                                     name="store_address_postal"
                                     placeholder="改札・出口を入力してください"
+                                    @focus="OnFocus"
+                                    @blur="OnBlur"
                                     :value="item.contents_.store_address.gate">
                             </label>
                         </section>
@@ -74,6 +82,8 @@
                                     type="text"
                                     name="store_address_postal"
                                     placeholder="駅からの時間を入力してください"
+                                    @focus="OnFocus"
+                                    @blur="OnBlur"
                                     :value="item.contents_.store_address.time">
                             </label>
                         </section>
@@ -130,7 +140,9 @@ import AdjustTextAreaHeight from '~/middleware/_adjustTextAreaHeight';
 import SetTimeOptions from '~/middleware/_setTimeOptions';
 export default {
     props: [
-        "infoData"
+        "infoData",
+        "OnFocus",
+        "OnBlur"
     ],
     data () {
         return {
