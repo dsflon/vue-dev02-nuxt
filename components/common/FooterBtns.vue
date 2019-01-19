@@ -101,19 +101,7 @@ export default {
             }
         },
         backMyPage() {
-            // if( history.length < 2 ) {
-            //     this.$router.replace( location.pathname.split("/edit")[0] )
-            //     return false;
-            // }
-            // switch (window.prev) {
-            //     case "detail":
-            //         this.$router.back();
-            //     break;
-            //
-            //     default:
-            //         this.$router.replace( location.pathname.split("/edit")[0] )
-            //
-            // }
+
             let res = confirm("変更を取り消しますか？");
             if( res == true ) {
                 this.$router.replace( location.pathname.split("/edit")[0] )
@@ -122,7 +110,7 @@ export default {
         },
         saveData() {
             alert("Save data !")
-            this.backMyPage();
+            this.$router.replace( location.pathname.split("/edit")[0] )
         },
         follow() {
             Follow(this)

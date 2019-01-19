@@ -15,8 +15,8 @@
                     <edit-detail-item
                         :OnFocus="OnFocus"
                         :OnBlur="OnBlur"
-                        v-if="$store.state.detail.detailResult"
-                        :userData="$store.state.detail.detailResult" />
+                        v-if="userData"
+                        :userData="userData" />
 
                 </div>
                 <transition name="fade">
@@ -60,7 +60,8 @@ export default {
     },
     data() {
         return {
-            onfocus: false
+            onfocus: false,
+            userData: this.$store.state.detail.detailResult
         }
     },
     components: {
