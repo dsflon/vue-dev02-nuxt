@@ -1,38 +1,34 @@
-const AdjustTextAreaHeight = (ta) => {
+const AdjustTextAreaHeight = (target) => {
 
-	const initial_height = parseFloat(getComputedStyle(ta).height)
+	SetHeight(target)
+	target.addEventListener('input', SetHeight);
 
-	// height と clientHeight の差分 px
-	// padding 量だけど box-sizing で変わるので実際の差分から取得
-	const diff = ta.clientHeight - initial_height
+	function SetHeight(e) {
+		e = e.currentTarget ? e.currentTarget : e;
 
-	// height を 0 にした状態の scrollHeight が必要な高さ
-	setHeightPx(0)
-	const noscroll_height = ta.scrollHeight - diff
-	setHeightPx(noscroll_height)
+		let maxHeight = parseFloat(getComputedStyle(e)["max-height"]);
+			// minHeight = parseFloat(getComputedStyle(e)["min-height"]);
 
-	// Firefox は高さ 0 のときにスクロールバーなしの高さなのでここで終わり
-	// 続けるとちゃんと動かない
-	if (navigator.userAgent.includes("Firefox")) return
+		if( e.scrollHeight < maxHeight ) {
 
-	// Chrome はスクロールバーあり状態の必要高さなので右端折返しがあるとその分隙間がある
-	// scrollHeight と clientHeight が異なるところまで縮める
-	let height = noscroll_height
-	while (ta.scrollHeight === ta.clientHeight) {
-		setHeightPx(--height)
+			if(e.scrollHeight > e.offsetHeight){
+				e.style.height = e.scrollHeight + "px";
+			} else {
+				while (true){
+					let height = parseFloat(getComputedStyle(e)["height"]),
+						lineHeight = parseFloat(getComputedStyle(e)["line-height"]);
+						e.style.height = height - lineHeight + "px";
+					if(e.scrollHeight > e.offsetHeight){
+						e.style.height = e.scrollHeight + "px";
+						console.log(e.scrollHeight, e.offsetHeight);
+						break;
+					}
+				}
+			}
+
+		}
+
 	}
-	const final_height = height + 1
-
-	// いったんスクロールバーない状態にしないと折り返しあり状態になっている
-	setHeightPx(noscroll_height)
-
-	// 再計算
-	// ta.scrollHeight
-	setHeightPx(final_height)
-
-    function setHeightPx(height) {
-        ta.style.height = height + "px"
-    }
 
 }
 

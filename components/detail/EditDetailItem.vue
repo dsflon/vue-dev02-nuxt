@@ -33,7 +33,6 @@
                         placeholder="自己紹介を記入してください"
                         @focus="OnFocus"
                         @blur="OnBlur"
-                        @input="_AdjustTextAreaHeight"
                         :value="userData.description"></textarea>
                 </label>
             </div>
@@ -195,9 +194,9 @@ export default {
         Slide
     },
     methods: {
-        _AdjustTextAreaHeight(e) {
-            AdjustTextAreaHeight(e.currentTarget)
-        },
+        // _AdjustTextAreaHeight(e) {
+        //     AdjustTextAreaHeight(e.currentTarget)
+        // },
         AjustTabName() {
             let tab = document.getElementsByClassName('VueCarousel-dot-button'),
                 tabTxt = [ "基本情報", "メニュー"];
