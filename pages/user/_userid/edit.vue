@@ -75,8 +75,6 @@ export default {
         OnBlur() { this.onfocus = false; }
     },
     beforeCreate: function() {
-        if(!this.$store.state.detail.detailResult)
-            this.$router.replace( location.pathname.split("/edit")[0] )
     },
     created: function() {
     },

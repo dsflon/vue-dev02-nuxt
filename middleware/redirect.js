@@ -1,43 +1,39 @@
-const Sign = (route, redirect, stuser) => {
+// const OnetimePassword = (route, redirect, store) => {
+//
+//     if( window.prev !== "signup" || !store.state.user.signupData ) redirect("/sign/signup");
+//
+// }
 
-    if( stuser && Object.values(stuser)[0] ) {
-        redirect('/');
-    }
+const Edit = (route, redirect, store) => {
+
+    // 編集画面への直接リンクは禁止する
+    if(!store.state.detail.detailResult) redirect( location.pathname.split("/edit")[0] )
 
 }
-const Home = (route, redirect, stuser) => {
+const Home = (route, redirect, store) => {
 
-    let query = route.query.rental;
-
-    if( !stuser ) {
-        // アカウント無し時
-        // 貸し借り画面を直接開こうとした場合はパラメータにデバイスIDを付与して
-        // リダイレクトする
-        redirect( '/signup' + (query ? '?rental=' + query : "") );
-    } else if( stuser && !Object.values(stuser)[0] ) {
-        // サインアウト時
-        redirect( '/signin' + (query ? '?rental=' + query : "") );
-    }
+    // 検索条件が未設定の場合は検索ページへリダイレクト
+    if( !localStorage.getItem(window.LSPost) ) redirect("/search");
 
 }
 
 export default ({ route, redirect, store }) => {
 
-    // ログイン情報を取得
-    let stuser = localStorage.getItem(window.LSUser);
-        stuser = stuser ? JSON.parse(stuser) : null;
-
     // 現在のパスを取得
-    const currentPath = route.path
+    const currentName = route.name
 
-    switch (currentPath) {
+    console.log(currentName);
 
-        case "/":
-        return Home(route, redirect, stuser)
+    switch (currentName) {
 
-        case "/signin":
-        case "/signup":
-        return Sign(route, redirect, stuser)
+        case "index":
+        return Home(route, redirect, store)
+
+        case "user-userid-edit":
+        return Edit(route, redirect, store)
+
+        // case "sign-one-time-password":
+        // return OnetimePassword(route, redirect, store)
 
     }
 

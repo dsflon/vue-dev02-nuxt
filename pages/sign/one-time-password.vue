@@ -124,7 +124,6 @@ alert(`ワンタイムパスワードを確認いたしました。
         }
     },
     beforeCreate: function() {
-        if( window.prev !== "signup" || !this.$store.state.user.signupData ) this.$router.replace("/sign/signup");
     },
     destroyed: function() {
         window.prev = "onetimepassword";

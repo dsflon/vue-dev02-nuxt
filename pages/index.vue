@@ -142,9 +142,6 @@ export default {
             this.SearchStart();
         }
 
-        if( !localStorage.getItem(window.LSPost) ) {
-            this.$router.replace("/search");
-        }
     },
     destroyed: function() {
         window.prev = "home";
