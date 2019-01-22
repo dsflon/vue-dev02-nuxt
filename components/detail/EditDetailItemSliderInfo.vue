@@ -136,8 +136,8 @@
 </template>
 
 <script>
-import AdjustTextAreaHeight from '~/middleware/_adjustTextAreaHeight';
-import SetTimeOptions from '~/middleware/_setTimeOptions';
+import AdjustTextAreaHeight from '~/scripts/_adjustTextAreaHeight';
+import SetTimeOptions from '~/scripts/_setTimeOptions';
 export default {
     props: [
         "infoData",

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import BodyMessage from '~/middleware/_bodyMessage';
+import BodyMessage from '~/scripts/_bodyMessage';
 
 export default {
     components: {},

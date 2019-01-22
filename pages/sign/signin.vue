@@ -69,8 +69,8 @@
 </template>
 
 <script>
-import Validate from '~/middleware/_validate';
-import Fetch from '~/middleware/_fetch';
+import Validate from '~/scripts/_validate';
+import Fetch from '~/scripts/_fetch';
 
 export default {
     transition (to, from) {

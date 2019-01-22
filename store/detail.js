@@ -1,5 +1,5 @@
 import Vuex from 'vuex'
-import Fetch from '~/middleware/_fetch';
+import Fetch from '~/scripts/_fetch';
 import Api from '~/plugins/_api';
 
 // export const strict = false;

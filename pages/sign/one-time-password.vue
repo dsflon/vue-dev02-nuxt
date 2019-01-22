@@ -48,8 +48,8 @@
 </template>
 
 <script>
-import Validate from '~/middleware/_validate';
-import Fetch from '~/middleware/_fetch';
+import Validate from '~/scripts/_validate';
+import Fetch from '~/scripts/_fetch';
 import Api from '~/plugins/_api';
 
 

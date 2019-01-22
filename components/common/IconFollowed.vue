@@ -19,7 +19,7 @@
 
 
 <script>
-import Follow from '~/middleware/_follow';
+import Follow from '~/scripts/_follow';
 
 export default {
     computed : {

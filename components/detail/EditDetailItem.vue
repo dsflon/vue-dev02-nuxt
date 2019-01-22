@@ -179,7 +179,7 @@
 
 <script>
 import { Carousel, Slide } from 'vue-carousel';
-import AdjustTextAreaHeight from '~/middleware/_adjustTextAreaHeight';
+import AdjustTextAreaHeight from '~/scripts/_adjustTextAreaHeight';
 
 import ChangeTimeString from '~/components/common/ChangeTimeString.vue'
 

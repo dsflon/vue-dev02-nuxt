@@ -20,6 +20,7 @@ module.exports = {
     },
     router: {
         // base: '~/public/'
+        // middleware: ['redirect']
     },
     css: [
         // プロジェクト内の SCSS ファイル

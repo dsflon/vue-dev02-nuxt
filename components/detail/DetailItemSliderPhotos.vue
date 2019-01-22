@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import DelayLoader from '~/middleware/_delayLoader';
+import DelayLoader from '~/scripts/_delayLoader';
 
 export default {
     props: [

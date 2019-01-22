@@ -154,8 +154,8 @@
 
 
 <script>
-import ListFilter from '~/middleware/_listFilter';
-import SetTimeOptions from '~/middleware/_setTimeOptions';
+import ListFilter from '~/scripts/_listFilter';
+import SetTimeOptions from '~/scripts/_setTimeOptions';
 
 export default {
     props: [
