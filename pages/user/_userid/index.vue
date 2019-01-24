@@ -106,6 +106,7 @@ export default {
                 } else {
                     this.error = null;
                     this.userData = json.data;
+                    console.log(this.userData.followed);
                 }
             }).catch((error,txt)=>{
                 console.error(txt);
@@ -140,6 +141,7 @@ export default {
 
     },
     mounted: function() {
+        this.$store.dispatch('common/SetPageData',null)
     },
     beforeCreate: function() {
         if( window.prev !== "post" ) this.$store.dispatch('detail/SetDetailResult',null)

@@ -42,7 +42,7 @@ export const actions = {
     },
 
     /**
-     * ページのタイトルなどを一時保蔵
+     * ページのタイトルなどを一時保存
      * @param {object} data - ページのデータ
      */
     SetPageData(context,data) {

@@ -4,12 +4,14 @@
         <button class="a-btn" @click="backHome">
             <i class="a-icon a-icon-arrow_left"></i>
         </button>
-        <button
-            v-if="!CheckFollowed"
-            class="a-btn is_l is_pink"
-            @click="follow">
-            <i class="a-icon a-icon-friends_plus"></i>
-        </button>
+        <transition name="fade">
+            <button
+                v-if="!CheckFollowed"
+                class="a-btn is_l is_pink"
+                @click="follow">
+                <i class="a-icon a-icon-friends_plus"></i>
+            </button>
+        </transition>
         <router-link to="/message" class="a-btn is_l is_blue">
             <i class="a-icon a-icon-mail"></i>
         </router-link>
@@ -55,12 +57,10 @@ export default {
     ],
     computed : {
         CheckFollowed () { // ページタイトル部分のチラツキ対処
+            // topから遷移してきた時、
+            // state.common.pageData.followedにデータがあったらまずそれを表示
             let pageData = this.$store.state.common.pageData;
-            if( !this.$store.state.detail.followed ) {
-                return pageData ? pageData.followed : false
-            } else {
-                return this.$store.state.detail.followed
-            }
+            return pageData ? pageData.followed : this.$store.state.detail.followed
         }
     },
     methods: {
