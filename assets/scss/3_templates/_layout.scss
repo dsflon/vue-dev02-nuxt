@@ -64,6 +64,8 @@
     }
 
 	#app {
+		max-width: 768px;
+		margin: 0 auto;
 		.overlay {
 			position: fixed;
 			bottom: 0; left: 0;

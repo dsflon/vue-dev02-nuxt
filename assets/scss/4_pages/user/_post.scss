@@ -4,17 +4,11 @@
 
     will-change: auto;
     background: #FFF;
-
-    position: fixed;
-    width: 100%; height: 100%; top: 0; left: 0;
-    z-index: 9998;
+	max-width: 480px;
+	margin: 0 auto;
 
     #post_inner {
         background: #FFF;
-        overflow-x: hidden;
-        overflow-y: auto;
-        height: 100%;
-        -webkit-overflow-scrolling: touch;
 
         .contents {
             .m-info_counts {

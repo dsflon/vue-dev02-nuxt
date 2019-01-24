@@ -5,18 +5,6 @@
 
     will-change: auto;
 
-    // &:after {
-    //     content: '';
-    //     display: block;
-    //     position: absolute;
-    //     top: 0; left: 0;
-    //     width: 100%; height: 100%;
-    //     background: rgba(#000,0.5);
-    //     opacity: 0;
-    //     pointer-events: none;
-    //     will-change: opacity;
-    // }
-
     .lists {
 
         .lists_ttl {
@@ -83,7 +71,7 @@
             margin: 2px;
 
             @include min(s) {
-                width: calc(25% - 4px);
+                width: calc(33.33% - 4px);
             }
 
             .list_btn {
@@ -166,8 +154,10 @@
                             .a-icon_txt { margin-left: 0px; }
                             // .a-txt_s { vertical-align: 0.6px; }
                         }
-
-                        @include max(320) {
+                        @include min(s) {
+                            font-size: 10px;
+                        }
+                        @include max(xs) {
                             text-align: left;
                             display: block;
                             .list_info_price {
