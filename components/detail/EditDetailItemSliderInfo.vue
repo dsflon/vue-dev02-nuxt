@@ -11,9 +11,9 @@
                 <h2 class="info_box_ttl">{{item.title}}</h2>
 
                 <div v-if="item.contents_" class="info_box_wrap">
-                    <h3 class="a-ttl is_s is_gray">住所</h3>
+                    <h3 class="a-ttl is_s is_gray f-mb5">住所</h3>
                     <section>
-                        <label class="m-form_line m-form_label is_postal">
+                        <label class="m-form_bg m-form_label is_postal f-mb5">
                             <input
                                 class="a-form_input"
                                 type="tel"
@@ -23,7 +23,7 @@
                                 @blur="OnBlur"
                                 :value="item.contents_.store_address.postal">
                         </label>
-                        <label class="m-form_line m-form_label">
+                        <label class="m-form_bg m-form_label">
                             <textarea
                                 ref="textarea"
                                 class="a-form_textarea"
@@ -36,8 +36,8 @@
                     </section>
                     <div class="f-flex">
                         <section class="f-flex6 m-form_sec">
-                            <h3 class="a-ttl is_s is_gray">駅名</h3>
-                            <label class="m-form_line">
+                            <h3 class="a-ttl is_s is_gray f-mb5">駅名</h3>
+                            <label class="m-form_bg">
                                 <input
                                     class="a-form_input"
                                     type="text"
@@ -49,8 +49,8 @@
                             </label>
                         </section>
                         <section class="f-flex6 m-form_sec">
-                            <h3 class="a-ttl is_s is_gray">改札・出口</h3>
-                            <label class="m-form_line">
+                            <h3 class="a-ttl is_s is_gray f-mb5">改札・出口</h3>
+                            <label class="m-form_bg">
                                 <input
                                     class="a-form_input"
                                     type="text"
@@ -62,8 +62,8 @@
                             </label>
                         </section>
                         <section class="f-flex6 m-form_sec">
-                            <h3 class="a-ttl is_s is_gray">移動手段</h3>
-                            <label class="m-form_line">
+                            <h3 class="a-ttl is_s is_gray f-mb5">移動手段</h3>
+                            <label class="m-form_bg">
                                 <select
                                     class="a-form_select"
                                     :value="item.contents_.store_address.way"
@@ -75,8 +75,8 @@
                             </label>
                         </section>
                         <section class="f-flex6 m-form_sec">
-                            <h3 class="a-ttl is_s is_gray">時間</h3>
-                            <label class="m-form_line">
+                            <h3 class="a-ttl is_s is_gray f-mb5">時間</h3>
+                            <label class="m-form_bg">
                                 <input
                                     class="a-form_input"
                                     type="text"
@@ -88,8 +88,8 @@
                             </label>
                         </section>
                         <section class="f-flex6 m-form_sec">
-                            <h3 class="a-ttl is_s is_gray">開店時間</h3>
-                            <label class="m-form_line">
+                            <h3 class="a-ttl is_s is_gray f-mb5">開店時間</h3>
+                            <label class="m-form_bg">
                                 <select
                                     ref="start_time"
                                     class="a-form_select"
@@ -106,8 +106,8 @@
                             </label>
                         </section>
                         <section class="f-flex6 m-form_sec">
-                            <h3 class="a-ttl is_s is_gray">閉店時間</h3>
-                            <label class="m-form_line">
+                            <h3 class="a-ttl is_s is_gray f-mb5">閉店時間</h3>
+                            <label class="m-form_bg">
                                 <select
                                     ref="end_time"
                                     class="a-form_select"
@@ -126,6 +126,59 @@
 
                 </div>
 
+            </div>
+            <!-- / item.type==='store' -->
+
+            <div v-else>
+                <div class="info_box_ttl">
+                    <h3 class="a-ttl is_s is_gray f-mb5">カテゴリー名</h3>
+                    <label class="m-form_bg m-form_label">
+                        <input
+                            class="a-form_input"
+                            type="text"
+                            :name="'title_'+i"
+                            placeholder="カテゴリー名を入力してください"
+                            @focus="OnFocus"
+                            @blur="OnBlur"
+                            :value="item.title">
+                    </label>
+                </div>
+
+                <div v-if="item.contents && item.contents.length !== 0" class="info_box_wrap">
+                    <section
+                        v-for="(child,j) in item.contents"
+                        :key="j"
+                        class="info_box_inner">
+
+                        <div class="info_box_inner_ttl">
+                            <p class="a-ttl is_s is_gray f-mb5">タイトル</p>
+                            <label class="m-form_bg m-form_label">
+                                <input
+                                    class="a-form_input"
+                                    type="text"
+                                    :name="'title_'+i+'_'+j"
+                                    placeholder="タイトルを入力してください"
+                                    @focus="OnFocus"
+                                    @blur="OnBlur"
+                                    :value="child.title">
+                            </label>
+                        </div>
+                        <div>
+                            <p class="a-ttl is_s is_gray f-mb5">テキスト（改行可）</p>
+                            <label class="m-form_bg m-form_label ">
+                                <textarea
+                                ref="textarea"
+                                class="a-form_textarea"
+                                :name="'text_'+i+'_'+j"
+                                placeholder="テキストを入力してください"
+                                @focus="OnFocus"
+                                @blur="OnBlur"
+                                :value="child.text"></textarea>
+                            </label>
+                        </div>
+
+                    </section>
+                </div>
             </div>
 
         </section>

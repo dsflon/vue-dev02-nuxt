@@ -24,8 +24,8 @@
             </div>
 
             <div class="user_txt">
-                <h2 class="a-ttl is_s is_gray">自己紹介</h2>
-                <label class="m-form_line">
+                <h2 class="a-ttl is_s is_gray f-mb5">自己紹介（改行可）</h2>
+                <label class="m-form_bg">
                     <textarea
                         ref="textarea"
                         class="a-form_textarea"
@@ -38,8 +38,8 @@
             </div>
 
             <section class="m-form_sec">
-                <h2 class="a-ttl is_s is_gray is_required">お名前</h2>
-                <label class="m-form_line">
+                <h2 class="a-ttl is_s is_gray f-mb5 is_required">お名前</h2>
+                <label class="m-form_bg">
                     <input
                         class="a-form_input"
                         required
@@ -52,8 +52,8 @@
                 </label>
             </section>
             <section class="m-form_sec">
-                <h2 class="a-ttl is_s is_gray is_required">ニックネーム</h2>
-                <label class="m-form_line">
+                <h2 class="a-ttl is_s is_gray f-mb5 is_required">ニックネーム</h2>
+                <label class="m-form_bg">
                     <input
                         class="a-form_input"
                         required
@@ -67,8 +67,8 @@
             </section>
 
             <section class="m-form_sec">
-                <h2 class="a-ttl is_s is_gray is_required">職業</h2>
-                <label class="m-form_line">
+                <h2 class="a-ttl is_s is_gray f-mb5 is_required">職業</h2>
+                <label class="m-form_bg">
                     <select
                         class="a-form_select"
                         tabIndex="-1"
@@ -86,8 +86,8 @@
                 </label>
             </section>
                 <section class=" m-form_sec">
-                    <h2 class="a-ttl is_s is_gray is_required">メールアドレス</h2>
-                    <label class="m-form_line">
+                    <h2 class="a-ttl is_s is_gray f-mb5 is_required">メールアドレス</h2>
+                    <label class="m-form_bg">
                         <input
                             class="a-form_input"
                             required
@@ -100,8 +100,8 @@
                     </label>
                 </section>
                 <section class=" m-form_sec">
-                    <h2 class="a-ttl is_s is_gray is_required">電話番号<span class="a-txt_s">（ハイフン不要）</span></h2>
-                    <label class="m-form_line">
+                    <h2 class="a-ttl is_s is_gray f-mb5 is_required">電話番号<span class="a-txt_s">（ハイフン不要）</span></h2>
+                    <label class="m-form_bg">
                         <input
                             class="a-form_input"
                             required
@@ -116,8 +116,8 @@
 
             <div class="f-flex m-form_sec">
                 <section class="f-flex6">
-                    <h2 class="a-ttl is_s is_gray">性別</h2>
-                    <label class="m-form_line">
+                    <h2 class="a-ttl is_s is_gray f-mb5">性別</h2>
+                    <label class="m-form_bg">
                         <select
                             tabindex="-1"
                             class="a-form_select"
@@ -130,8 +130,8 @@
                     </label>
                 </section>
                 <section class="f-flex6">
-                    <h2 class="a-ttl is_s is_gray">生年月日</h2>
-                    <label class="m-form_line">
+                    <h2 class="a-ttl is_s is_gray f-mb5">生年月日</h2>
+                    <label class="m-form_bg">
                         <input
                             class="a-form_input"
                             required
@@ -143,8 +143,8 @@
             </div>
 
             <!-- <section class="m-form_sec">
-                <h2 class="a-ttl is_s is_gray">住所</h2>
-                <label class="m-form_line">
+                <h2 class="a-ttl is_s is_gray f-mb5">住所</h2>
+                <label class="m-form_bg">
                     <input
                         class="a-form_input"
                         required

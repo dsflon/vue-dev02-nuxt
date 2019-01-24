@@ -22,8 +22,6 @@ export default ({ route, redirect, store }) => {
     // 現在のパスを取得
     const currentName = route.name
 
-    console.log(currentName);
-
     switch (currentName) {
 
         case "index":

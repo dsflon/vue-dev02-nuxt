@@ -30,8 +30,17 @@
         .user_tab_info {
             .info_box {
                 .info_box_wrap {
-                    .info_box_inner .info_box_inner_ttl {
-                        margin-bottom: 5px;
+
+                    .info_box_inner {
+                        padding-bottom: 20px;
+                        border-bottom: 2px solid $black20;
+                        &:last-child { border-bottom: none; padding-bottom: 0; }
+                        .info_box_ttl, .info_box_inner_ttl {
+                            margin-bottom: 10px;
+                        }
+                        .info_box_ttl {
+                            .a-form_input { font-weight: bold; }
+                        }
                     }
                 }
             }
