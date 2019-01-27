@@ -157,7 +157,7 @@
 
         </div>
 
-        <div class="user_tab">
+        <!-- <div class="user_tab">
             <carousel :adjustableHeight="true" :perPage="1" :minSwipeDistance="50">
                 <slide>
                     <edit-detail-item-slider-info
@@ -172,7 +172,7 @@
                         :menuData="userData.menus? userData.menus : null" />
                 </slide>
             </carousel>
-        </div>
+        </div> -->
 
     </form>
 </template>

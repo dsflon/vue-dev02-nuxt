@@ -106,7 +106,6 @@ export default {
                 } else {
                     this.error = null;
                     this.userData = json.data;
-                    console.log(this.userData.followed);
                 }
             }).catch((error,txt)=>{
                 console.error(txt);
