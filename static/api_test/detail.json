@@ -177,6 +177,7 @@
             },
             {
                 "title": "職歴",
+                "category": "career",
                 "contents": [
                     {
                         "title": "2013.06 〜 2015.07",
@@ -194,6 +195,7 @@
             },
             {
                 "title": "学歴",
+                "category": "career",
                 "contents": [
                     {
                         "title": "2009.04 〜 2012.03",

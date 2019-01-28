@@ -40,6 +40,8 @@
         background-position: center right 10px;
         padding-right: 25px;
     }
+    input[type="date"],
+    input[type="month"] { background-position: center right 10px; }
     &[data-before] {
         &:before { left: 10px; }
         .a-form_input { padding-left: 30px; }

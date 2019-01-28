@@ -136,7 +136,9 @@
                             class="a-form_input"
                             required
                             type="date"
+                            ref="input_date"
                             name="user_birthday"
+                            @input="_AdjustInputDate"
                             :value="userData.user_birthday">
                     </label>
                 </section>
@@ -180,6 +182,7 @@
 <script>
 import { Carousel, Slide } from 'vue-carousel';
 import AdjustTextAreaHeight from '~/scripts/_adjustTextAreaHeight';
+import AdjustInputDate from '~/scripts/_adjustInputDate';
 
 import ChangeTimeString from '~/components/common/changeTimeString.vue'
 
@@ -207,10 +210,14 @@ export default {
             for (var i = 0; i < tab.length; i++) {
                 tab[i].innerText = tabTxt[i];
             }
+        },
+        _AdjustInputDate(e) {
+            AdjustInputDate(e)
         }
     },
     mounted: function() {
         AdjustTextAreaHeight(this.$refs.textarea)
+        AdjustInputDate(this.$refs.input_date)
         setTimeout( this.AjustTabName, 1 )
     }
 

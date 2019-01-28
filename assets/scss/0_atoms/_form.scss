@@ -12,6 +12,31 @@
         padding-right: 15px;
     }
 
+    input[type="date"],
+    input[type="month"] {
+        background-image: url(../images/common/select.svg);
+        background-position: right center;
+        background-repeat: no-repeat;
+        background-size: auto 16px;
+        padding-right: 15px;
+    }
+
+    [data-date] {
+        position: relative;
+        input { color: transparent; }
+        &:before {
+            content: attr(data-date);
+            color: $color_text;
+            position: absolute;
+            left: 10px; top: 50%;
+            z-index: 1;
+            font-size: 16px;
+            transform: translateY(-50%);
+            line-height: 1;
+            font-weight: normal;
+        }
+    }
+
     // ----------------------------------------------------------
     // Input
     // ----------------------------------------------------------

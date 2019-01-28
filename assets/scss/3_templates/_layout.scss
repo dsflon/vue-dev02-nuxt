@@ -44,6 +44,30 @@
 		font-size: 16px;
 	}
 
+	input[type="date"],
+	input[type="month"] {
+		padding-right: 0;
+		&::-webkit-inner-spin-button{ -webkit-appearance: none; }
+		&::-webkit-clear-button{ -webkit-appearance: none; }
+		&::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+		&::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+		&::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+			color: transparent;
+		}
+		&::-webkit-calendar-picker-indicator {
+			color: transparent;
+			position: relative;
+		}
+		// &::-webkit-datetime-edit-text {
+		// 	display: inline-block;
+		// 	width: .8em;
+		// 	// height: .9em;
+		// 	vertical-align: middle;
+		// 	background: linear-gradient(to right bottom, rgba(#FFF,0), rgba(#FFF,0) 48%, #000 48%, #000 52%, rgba(#FFF,0) 52%);
+		// 	color: transparent;
+		// }
+	}
+
 	.f-inner {
 		width: 100%;
 		max-width: $width_main + px;
