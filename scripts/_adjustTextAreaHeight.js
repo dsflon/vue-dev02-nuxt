@@ -7,15 +7,17 @@ const AdjustTextAreaHeight = (target) => {
 
 	target.style.minHeight = "inherit";
 
+
 	SetHeight(target)
 	target.addEventListener('input', SetHeight);
 
 	function SetHeight(e) {
 		e = e.currentTarget ? e.currentTarget : e;
 
-		if( minHeight <= e.scrollHeight && e.scrollHeight < maxHeight ) { // AdjustTextAreaHeightの可動域
+		// if( minHeight <= e.scrollHeight && e.scrollHeight < maxHeight ) { // AdjustTextAreaHeightの可動域
+		if( minHeight <= e.scrollHeight ) { // AdjustTextAreaHeightの可動域
 
-			if(e.scrollHeight > e.offsetHeight){
+			if( e.scrollHeight > e.offsetHeight ){
 				e.style.height = e.scrollHeight + "px";
 			} else {
 				while (true){
@@ -30,6 +32,10 @@ const AdjustTextAreaHeight = (target) => {
 			}
 
 		}
+		// else if( maxHeight <= e.scrollHeight ) {
+		// 	console.log(e.scrollHeight);
+		// 	// e.style.height = maxHeight + "px";
+		// }
 
 		if(!e.value) {
 			e.style.height = minHeight - pt - pb + "px";

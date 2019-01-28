@@ -138,7 +138,7 @@
                                 placeholder="定休日を入力してください"
                                 @focus="OnFocus"
                                 @blur="OnBlur"
-                                :value="item.contents_.store_holiday.time">
+                                :value="item.contents_.store_holiday.text">
                         </label>
                     </section>
                     <section class="m-form_sec">

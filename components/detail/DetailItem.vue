@@ -38,7 +38,7 @@
             </div>
 
             <div class="user_txt">
-                <p ref="user_txt">{{userData.description}}</p>
+                <div class="user_txt_inner" ref="user_txt" v-html="AutoLink(userData.description)"></div>
                 <button
                     @click="showAllTxt()"
                     class="a-link f-font_s"
@@ -84,6 +84,17 @@ export default {
         DetailItemSliderMenu,
         Carousel,
         Slide
+    },
+    computed : {
+        AutoLink: function () {
+            return function (str) {
+                let regexp_url = /((h?)(ttps?:\/\/[a-zA-Z0-9.\-_@:/~?%&;=+#',()*!]+))/g; // ']))/;
+                let regexp_makeLink = function(all, url, h, href) {
+                    return `<a href="h${href}" target="_blank">${url}</a>`;
+                }
+                return str.replace(regexp_url, regexp_makeLink);
+            }
+        }
     },
     methods: {
         userTxt: function() {

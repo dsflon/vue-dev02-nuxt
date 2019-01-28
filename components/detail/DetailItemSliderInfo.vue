@@ -54,7 +54,6 @@ export default {
                 return str.replace(regexp_url, regexp_makeLink);
             }
         }
-
     },
     mounted: function() {
     }
