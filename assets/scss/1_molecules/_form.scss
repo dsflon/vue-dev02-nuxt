@@ -8,9 +8,9 @@
     position: relative;
     display: block;
 
-    &.is_postal {
+    &[data-before] {
         &:before {
-            content: "〒";
+            content: attr(data-before);
             position: absolute;
             top: 50%; left: 0;
             transform: translateY(-50%);
@@ -30,17 +30,17 @@
     .a-form_input,
     .a-form_textarea,
     .a-form_select {
-        background-color: rgba(#000,0.08);
+        background-color: rgba(#000,0.05);
         border-radius: 4px !important;
         padding-left: 10px;
         padding-right: 10px;
-        box-shadow: 0.5px 0.5px 1px 0 rgba(#000,0.08) inset;
+        box-shadow: 1px 1px 2px 0 rgba(#000,0.05) inset;
     }
     .a-form_select {
         background-position: center right 10px;
         padding-right: 25px;
     }
-    &.is_postal {
+    &[data-before] {
         &:before { left: 10px; }
         .a-form_input { padding-left: 30px; }
     }

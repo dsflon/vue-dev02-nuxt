@@ -16,12 +16,6 @@
             .user_txt {
                 width: 100%;
                 margin-top: 25px;
-                // .a-form_textarea {
-                //     $height: 24px;
-                //     // min-height: $height * 2;
-                //     max-height: $height * 10;
-                //     line-height: $height;
-                // }
             }
         }
     }
@@ -29,11 +23,25 @@
     .user_tab {
         .user_tab_info {
             .info_box {
+
+                .info_box_ttl { position: relative; }
+                .info_box_menu {
+                    position: absolute;
+                    // top: -5px; right: -5px;
+                    // background: #FFF;
+                    // box-shadow: 0 0 10px 0 rgba(#000,0.1);
+                    // border-radius: 100%;
+                    // width: 30px; height: 30px;
+                    top: 50%; right: 0;
+                    transform: translateY(-50%);
+                    width: 32px; height: 46px;
+                }
+
                 .info_box_wrap {
 
                     .info_box_inner {
-                        padding-bottom: 20px;
-                        border-bottom: 2px solid $black20;
+                        padding-bottom: 15px;
+                        border-bottom: 2px dotted $black20;
                         &:last-child { border-bottom: none; padding-bottom: 0; }
                         .info_box_ttl, .info_box_inner_ttl {
                             margin-bottom: 10px;
@@ -43,6 +51,10 @@
                         }
                     }
                 }
+            }
+            .info_box_btn {
+                text-align: center;
+                padding-bottom: 20px;
             }
         }
     }

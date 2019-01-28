@@ -1,19 +1,24 @@
 <template>
 
-    <div v-if="infoData && infoData.length !== 0" class="user_tab_inner user_tab_info">
+    <div v-if="newInfoData && newInfoData.length !== 0" class="user_tab_inner user_tab_info">
 
         <section
-            v-for="(item,i) in infoData"
+            v-for="(item,i) in newInfoData"
             :key="i" class="info_box">
 
             <div v-if="item.type==='store'">
 
-                <h2 class="info_box_ttl">{{item.title}}</h2>
+                <div class="info_box_ttl">
+                    <h2>{{item.title}}</h2>
+                    <button type="button" class="info_box_menu is_black">
+                        <i class="a-icon a-icon-menu a-icon-lg"></i>
+                    </button>
+                </div>
 
                 <div v-if="item.contents_" class="info_box_wrap">
                     <h3 class="a-ttl is_s is_gray f-mb5">住所</h3>
                     <section>
-                        <label class="m-form_bg m-form_label is_postal f-mb5">
+                        <label class="m-form_bg m-form_label f-mb5" data-before="〒">
                             <input
                                 class="a-form_input"
                                 type="tel"
@@ -62,7 +67,7 @@
                             </label>
                         </section>
                         <section class="f-flex6 m-form_sec">
-                            <h3 class="a-ttl is_s is_gray f-mb5">移動手段</h3>
+                            <h3 class="a-ttl is_s is_gray f-mb5">駅からの移動手段</h3>
                             <label class="m-form_bg">
                                 <select
                                     class="a-form_select"
@@ -75,7 +80,7 @@
                             </label>
                         </section>
                         <section class="f-flex6 m-form_sec">
-                            <h3 class="a-ttl is_s is_gray f-mb5">時間</h3>
+                            <h3 class="a-ttl is_s is_gray f-mb5">駅からお店までの時間</h3>
                             <label class="m-form_bg">
                                 <input
                                     class="a-form_input"
@@ -123,6 +128,32 @@
                             </label>
                         </section>
                     </div>
+                    <section class="m-form_sec">
+                        <h3 class="a-ttl is_s is_gray f-mb5">定休日</h3>
+                        <label class="m-form_bg">
+                            <input
+                                class="a-form_input"
+                                type="text"
+                                name="store_address_postal"
+                                placeholder="定休日を入力してください"
+                                @focus="OnFocus"
+                                @blur="OnBlur"
+                                :value="item.contents_.store_holiday.time">
+                        </label>
+                    </section>
+                    <section class="m-form_sec">
+                        <h3 class="a-ttl is_s is_gray f-mb5">URL</h3>
+                        <label class="m-form_bg">
+                            <input
+                                class="a-form_input"
+                                type="text"
+                                name="store_url"
+                                placeholder="お店のURLを入力してください"
+                                @focus="OnFocus"
+                                @blur="OnBlur"
+                                :value="item.contents_.store_url.text">
+                        </label>
+                    </section>
 
                 </div>
 
@@ -131,17 +162,21 @@
 
             <div v-else>
                 <div class="info_box_ttl">
-                    <h3 class="a-ttl is_s is_gray f-mb5">カテゴリー名</h3>
-                    <label class="m-form_bg m-form_label">
+                    <!-- <h3 class="a-ttl is_s is_gray f-mb5">カテゴリー名</h3> -->
+                    <h2>{{item.title}}</h2>
+                    <!-- <label class="m-form_bg m-form_label">
                         <input
-                            class="a-form_input"
+                            class="a-form_input is_bold"
                             type="text"
-                            :name="'title_'+i"
+                            :name="'group_'+i"
                             placeholder="カテゴリー名を入力してください"
                             @focus="OnFocus"
                             @blur="OnBlur"
                             :value="item.title">
-                    </label>
+                    </label> -->
+                    <button type="button" class="info_box_menu is_black">
+                        <i class="a-icon a-icon-menu a-icon-lg"></i>
+                    </button>
                 </div>
 
                 <div v-if="item.contents && item.contents.length !== 0" class="info_box_wrap">
@@ -151,10 +186,10 @@
                         class="info_box_inner">
 
                         <div class="info_box_inner_ttl">
-                            <p class="a-ttl is_s is_gray f-mb5">タイトル</p>
+                            <!-- <p class="a-ttl is_s is_gray f-mb5">タイトル</p> -->
                             <label class="m-form_bg m-form_label">
                                 <input
-                                    class="a-form_input"
+                                    class="a-form_input is_bold"
                                     type="text"
                                     :name="'title_'+i+'_'+j"
                                     placeholder="タイトルを入力してください"
@@ -164,24 +199,49 @@
                             </label>
                         </div>
                         <div>
-                            <p class="a-ttl is_s is_gray f-mb5">テキスト（改行可）</p>
-                            <label class="m-form_bg m-form_label ">
+                            <!-- <p v-if="checkLink(child.text)" class="a-ttl is_s is_gray f-mb5">URL</p>
+                            <p v-else class="a-ttl is_s is_gray f-mb5">テキスト</p> -->
+                            <label class="m-form_bg m-form_label">
+                                <input
+                                    v-if="checkLink(child.text)"
+                                    class="a-form_input"
+                                    type="text"
+                                    :name="'url_'+i+'_'+j"
+                                    placeholder="URLを入力してください"
+                                    @focus="OnFocus"
+                                    @blur="OnBlur"
+                                    :value="child.text">
                                 <textarea
-                                ref="textarea"
-                                class="a-form_textarea"
-                                :name="'text_'+i+'_'+j"
-                                placeholder="テキストを入力してください"
-                                @focus="OnFocus"
-                                @blur="OnBlur"
-                                :value="child.text"></textarea>
+                                    v-else
+                                    ref="textarea"
+                                    class="a-form_textarea"
+                                    :name="'text_'+i+'_'+j"
+                                    placeholder="テキストを入力してください"
+                                    @focus="OnFocus"
+                                    @blur="OnBlur"
+                                    :value="child.text"></textarea>
                             </label>
                         </div>
 
                     </section>
                 </div>
+
+                <div class="info_box_btn">
+                    <button type="button">
+                        <i class="a-icon a-icon-plus is_gray20 a-icon-1_75x"></i>
+                    </button>
+                </div>
+
             </div>
 
         </section>
+
+        <div class="info_box_btn">
+            <button type="button">
+                <i class="a-icon a-icon-plus is_blue a-icon-1_75x"></i>
+            </button>
+        </div>
+
     </div>
 
     <p v-else class="no_result">基本情報がありません</p>
@@ -199,11 +259,18 @@ export default {
     ],
     data () {
         return {
+            newInfoData: this.infoData,
             start_time: [],
             end_time: [],
         }
     },
     computed : {
+        checkLink() {
+            return (value) => {
+                if(!value) return null;
+                return value.indexOf("http") !== -1;
+            };
+        },
         SetTimeOption() {
             return SetTimeOptions.for()
         },

@@ -24,7 +24,7 @@
             </div>
 
             <div class="user_txt">
-                <h2 class="a-ttl is_s is_gray f-mb5">自己紹介（改行可）</h2>
+                <h2 class="a-ttl is_s is_gray f-mb5">自己紹介</h2>
                 <label class="m-form_bg">
                     <textarea
                         ref="textarea"
@@ -157,7 +157,7 @@
 
         </div>
 
-        <!-- <div class="user_tab">
+        <div class="user_tab">
             <carousel :adjustableHeight="true" :perPage="1" :minSwipeDistance="50">
                 <slide>
                     <edit-detail-item-slider-info
@@ -172,7 +172,7 @@
                         :menuData="userData.menus? userData.menus : null" />
                 </slide>
             </carousel>
-        </div> -->
+        </div>
 
     </form>
 </template>
