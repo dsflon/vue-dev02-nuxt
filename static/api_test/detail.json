@@ -181,14 +181,17 @@
                 "contents": [
                     {
                         "title": "2013.06 〜 2015.07",
+                        "type": "input",
                         "text": "ユーフォリア(Euphoria SHIBUYA GRANDE)\r\n東京都渋谷区 / アシスタント"
                     },
                     {
                         "title": "2015.07 〜 2015.12",
+                        "type": "input",
                         "text": "サロン ダコタ(salon dakota)　東京都渋谷区 / スタイリスト"
                     },
                     {
                         "title": "2015.12 〜 ",
+                        "type": "input",
                         "text": "オーブ ヘアー グラン 渋谷2号店\r\n(AUBE hair gran) 東京都渋谷 / ディレクター"
                     }
                 ]
@@ -199,28 +202,33 @@
                 "contents": [
                     {
                         "title": "2009.04 〜 2012.03",
+                        "type": "input",
                         "text": "逗子開成高等学校 卒業"
                     },
                     {
                         "title": "2012.04 〜 2014.09",
+                        "type": "input",
                         "text": "早稲田大学 中退"
                     }
                 ]
             },
             {
-                "title": "基本データ",
+                "title": "SNS",
                 "contents": [
                     {
-                        "title": "誕生日",
-                        "text": "1991.01.10"
+                        "title": "Instagram",
+                        "type": "input",
+                        "text": "https://www.instagram.com/abc/"
                     },
                     {
                         "title": "Facebook",
+                        "type": "input",
                         "text": "https://www.facebook.com/abc/"
                     },
                     {
-                        "title": "Instagram",
-                        "text": "https://www.instagram.com/abc/"
+                        "title": "twitter",
+                        "type": "input",
+                        "text": ""
                     }
                 ]
             },
@@ -229,14 +237,17 @@
                 "contents": [
                     {
                         "title": "映画",
+                        "type": "textarea",
                         "text": "ショーシャンクの空に"
                     },
                     {
                         "title": "読書",
+                        "type": "textarea",
                         "text": "ショーシャンクの空に"
                     },
                     {
                         "title": "音楽",
+                        "type": "textarea",
                         "text": "秦基博"
                     }
                 ]

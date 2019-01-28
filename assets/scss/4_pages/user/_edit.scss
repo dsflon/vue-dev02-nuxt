@@ -27,11 +27,6 @@
                 .info_box_ttl { position: relative; }
                 .info_box_menu {
                     position: absolute;
-                    // top: -5px; right: -5px;
-                    // background: #FFF;
-                    // box-shadow: 0 0 10px 0 rgba(#000,0.1);
-                    // border-radius: 100%;
-                    // width: 30px; height: 30px;
                     top: 50%; right: 0;
                     transform: translateY(-50%);
                     width: 32px; height: 46px;
@@ -40,21 +35,30 @@
                 .info_box_wrap {
 
                     .info_box_inner {
+                        padding-right: 20px;
                         padding-bottom: 15px;
                         border-bottom: 2px dotted $black20;
-                        &:last-child { border-bottom: none; padding-bottom: 0; }
+                        position: relative;
+                        &:first-of-type { padding-right: 0; }
+                        &:last-of-type { border-bottom: none; padding-bottom: 0; }
                         .info_box_ttl, .info_box_inner_ttl {
                             margin-bottom: 10px;
                         }
                         .info_box_ttl {
                             .a-form_input { font-weight: bold; }
                         }
+                        .info_box_inner_menu {
+                            position: absolute;
+                            top: 45%; right: -15px;
+                            transform: translateY(-50%);
+                            width: 36px; height: 40px;
+                            .a-icon { transform: rotate(45deg); }
+                        }
                     }
                 }
             }
             .info_box_btn {
                 text-align: center;
-                padding-bottom: 20px;
             }
         }
     }

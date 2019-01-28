@@ -1,13 +1,14 @@
 <template>
 
     <div v-if="item.contents && item.contents.length !== 0" class="info_box_wrap">
+
         <section
             v-for="(child,j) in item.contents"
             :key="j"
             class="info_box_inner">
 
             <div class="info_box_inner_ttl">
-                <div class="f-flex f-flex_mg40">
+                <div class="f-flex f-flex_mg40 a-date_tilde">
                     <div class="f-flex6">
                         <label class="m-form_bg m-form_label">
                             <input
@@ -34,22 +35,31 @@
                     </div>
                 </div>
             </div>
+
             <div>
-                <!-- <p v-if="checkLink(child.text)" class="a-ttl is_s is_gray f-mb5">URL</p>
-                <p v-else class="a-ttl is_s is_gray f-mb5">テキスト</p> -->
                 <label class="m-form_bg m-form_label">
-                    <textarea
+                    <input
                         ref="textarea"
                         class="a-form_textarea"
                         :name="'text_'+i+'_'+j"
+                        type="text"
                         placeholder="テキストを入力してください"
                         @focus="OnFocus"
                         @blur="OnBlur"
-                        :value="child.text"></textarea>
+                        :value="child.text">
                 </label>
             </div>
 
+            <button v-if="j > 0" type="button" class="info_box_inner_menu"><i class="a-icon a-icon-plus is_gray20 a-icon-lg"></i></button>
+
         </section>
+
+        <div class="info_box_btn">
+            <button type="button">
+                <i class="a-icon a-icon-plus is_gray a-icon-1_75x"></i>
+            </button>
+        </div>
+
     </div>
 
 </template>
