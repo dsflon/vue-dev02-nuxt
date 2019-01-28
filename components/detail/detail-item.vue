@@ -50,13 +50,13 @@
         <div class="user_tab">
             <carousel :adjustableHeight="true" :perPage="1" :minSwipeDistance="50">
                 <slide>
-                    <detail-item-slider-photos :photosData="userData.photo ? userData.photo : null"  />
+                    <detail-item-photos :photosData="userData.photo ? userData.photo : null"  />
                 </slide>
                 <slide>
-                    <detail-item-slider-info :infoData="userData.info? userData.info : null" />
+                    <detail-item-info :infoData="userData.info? userData.info : null" />
                 </slide>
                 <slide>
-                    <detail-item-slider-menu :menuData="userData.menus? userData.menus : null" />
+                    <detail-item-menu :menuData="userData.menus? userData.menus : null" />
                 </slide>
             </carousel>
         </div>
@@ -67,11 +67,11 @@
 <script>
 import { Carousel, Slide } from 'vue-carousel';
 
-import ChangeTimeString from '~/components/common/ChangeTimeString.vue'
+import ChangeTimeString from '~/components/common/changeTimeString.vue'
 
-import DetailItemSliderPhotos from '~/components/detail/DetailItemSliderPhotos.vue'
-import DetailItemSliderInfo from '~/components/detail/DetailItemSliderInfo.vue'
-import DetailItemSliderMenu from '~/components/detail/DetailItemSliderMenu.vue'
+import DetailItemPhotos from '~/components/detail/detail-item-photos.vue'
+import DetailItemInfo from '~/components/detail/detail-item-info.vue'
+import DetailItemMenu from '~/components/detail/detail-item-menu.vue'
 
 export default {
     props: [
@@ -79,9 +79,9 @@ export default {
     ],
     components: {
         ChangeTimeString,
-        DetailItemSliderPhotos,
-        DetailItemSliderInfo,
-        DetailItemSliderMenu,
+        DetailItemPhotos,
+        DetailItemInfo,
+        DetailItemMenu,
         Carousel,
         Slide
     },

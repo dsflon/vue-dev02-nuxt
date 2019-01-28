@@ -47,8 +47,8 @@
 
 
 <script>
-import IconUser from '~/components/common/IconUser.vue'
-import IconFollowed from '~/components/common/IconFollowed.vue'
+import IconUser from '~/components/common/icon-user.vue'
+import IconFollowed from '~/components/common/icon-followed.vue'
 
 export default {
     components: {

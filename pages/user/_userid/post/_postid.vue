@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import AppFooter from '~/components/common/Footer.vue'
-import FooterBtns from '~/components/common/FooterBtns.vue'
+import AppFooter from '~/components/common/footer.vue'
+import FooterBtns from '~/components/common/footer-btns.vue'
 
 export default {
     transition (to, from) {

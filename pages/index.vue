@@ -18,7 +18,7 @@
                     </div>
                 </div>
 
-                <filtered-text v-if="$store.state.home.filterData" />
+                <list-filtered-text v-if="$store.state.home.filterData" />
 
                 <list-items v-if="!error" />
 
@@ -45,11 +45,11 @@
 </template>
 
 <script>
-import AppHeader from '~/components/common/Header.vue'
-import AppFooter from '~/components/common/Footer.vue'
-import ListItems from '~/components/home/ListItems.vue'
-import ListFilter from '~/components/home/ListFilter.vue'
-import FilteredText from '~/components/home/FilteredText.vue'
+import AppHeader from '~/components/common/header.vue'
+import AppFooter from '~/components/common/footer.vue'
+import ListItems from '~/components/home/list-items.vue'
+import ListFilter from '~/components/home/list-filter.vue'
+import ListFilteredText from '~/components/home/list-filtered-text.vue'
 
 export default {
     transition (to, from) {
@@ -90,7 +90,7 @@ export default {
         AppFooter,
         ListItems,
         ListFilter,
-        FilteredText
+        ListFilteredText
     },
     methods: {
         ToggleFilter: function() {

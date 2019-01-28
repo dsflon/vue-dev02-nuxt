@@ -32,10 +32,10 @@
 </template>
 
 <script>
-import AppHeader from '~/components/common/Header.vue'
-import AppFooter from '~/components/common/Footer.vue'
-import FooterBtns from '~/components/common/FooterBtns.vue'
-import DetailItem from '~/components/detail/DetailItem.vue'
+import AppHeader from '~/components/common/header.vue'
+import AppFooter from '~/components/common/footer.vue'
+import FooterBtns from '~/components/common/footer-btns.vue'
+import DetailItem from '~/components/detail/detail-item.vue'
 
 export default {
     transition (to, from) {

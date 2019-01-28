@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import AppHeader from '~/components/common/Header.vue'
-import AppFooter from '~/components/common/Footer.vue'
+import AppHeader from '~/components/common/header.vue'
+import AppFooter from '~/components/common/footer.vue'
 
 export default {
     transition (to, from) {

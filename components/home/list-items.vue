@@ -70,7 +70,7 @@
 <script>
 
 import DelayLoader from '~/scripts/_delayLoader';
-import ChangeTimeString from '~/components/common/ChangeTimeString.vue'
+import ChangeTimeString from '~/components/common/changeTimeString.vue'
 
 export default {
     components: {

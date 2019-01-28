@@ -6,7 +6,7 @@
             v-for="(item,i) in newInfoData"
             :key="i" class="info_box">
 
-            <div v-if="item.type==='store'">
+            <div v-if="item.category==='store'">
 
                 <div class="info_box_ttl">
                     <h2>{{item.title}}</h2>

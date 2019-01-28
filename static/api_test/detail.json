@@ -100,7 +100,7 @@
         "info": [
             {
                 "title": "お店",
-                "type": "store",
+                "category": "store",
                 "contents": [
                     {
                         "title": "店舗名",
@@ -148,7 +148,7 @@
             },
             {
                 "title": "お店 2",
-                "type": "store",
+                "category": "store",
                 "contents": [
                 ],
                 "contents_": {

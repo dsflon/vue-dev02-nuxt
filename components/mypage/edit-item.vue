@@ -157,22 +157,22 @@
 
         </div>
 
-        <!-- <div class="user_tab">
+        <div class="user_tab">
             <carousel :adjustableHeight="true" :perPage="1" :minSwipeDistance="50">
                 <slide>
-                    <edit-detail-item-slider-info
+                    <edit-item-info
                         :OnFocus="OnFocus"
                         :OnBlur="OnBlur"
                         :infoData="userData.info? userData.info : null" />
                 </slide>
                 <slide>
-                    <detail-item-slider-menu
+                    <detail-item-menu
                         :OnFocus="OnFocus"
                         :OnBlur="OnBlur"
                         :menuData="userData.menus? userData.menus : null" />
                 </slide>
             </carousel>
-        </div> -->
+        </div>
 
     </form>
 </template>
@@ -181,10 +181,10 @@
 import { Carousel, Slide } from 'vue-carousel';
 import AdjustTextAreaHeight from '~/scripts/_adjustTextAreaHeight';
 
-import ChangeTimeString from '~/components/common/ChangeTimeString.vue'
+import ChangeTimeString from '~/components/common/changeTimeString.vue'
 
-import EditDetailItemSliderInfo from '~/components/detail/EditDetailItemSliderInfo.vue'
-import DetailItemSliderMenu from '~/components/detail/DetailItemSliderMenu.vue'
+import EditItemInfo from '~/components/mypage/edit-item-info.vue'
+import DetailItemMenu from '~/components/detail/detail-item-menu.vue'
 
 export default {
     props: [
@@ -194,8 +194,8 @@ export default {
     ],
     components: {
         ChangeTimeString,
-        EditDetailItemSliderInfo,
-        DetailItemSliderMenu,
+        EditItemInfo,
+        DetailItemMenu,
         Carousel,
         Slide
     },

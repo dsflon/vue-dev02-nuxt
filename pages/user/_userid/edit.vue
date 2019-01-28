@@ -12,7 +12,7 @@
 
                 <div class="contents">
 
-                    <edit-detail-item
+                    <edit-item
                         :OnFocus="OnFocus"
                         :OnBlur="OnBlur"
                         v-if="userData"
@@ -30,10 +30,10 @@
 </template>
 
 <script>
-import AppHeader from '~/components/common/Header.vue'
-import AppFooter from '~/components/common/Footer.vue'
-import FooterBtns from '~/components/common/FooterBtns.vue'
-import EditDetailItem from '~/components/detail/EditDetailItem.vue'
+import AppHeader from '~/components/common/header.vue'
+import AppFooter from '~/components/common/footer.vue'
+import FooterBtns from '~/components/common/footer-btns.vue'
+import EditItem from '~/components/mypage/edit-item.vue'
 
 export default {
     transition (to, from) {
@@ -67,7 +67,7 @@ export default {
     components: {
         AppHeader,
         AppFooter,
-        EditDetailItem,
+        EditItem,
         FooterBtns
     },
     methods: {

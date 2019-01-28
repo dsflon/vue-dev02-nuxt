@@ -17,7 +17,7 @@
 
         </div>
 
-        <input-box
+        <search-modal
             ref="inputbox"
             :class="{is_show: showInputBox}"
             :ToggleInputBox="ToggleInputBox"
@@ -27,9 +27,9 @@
 </template>
 
 <script>
-import IconUser from '~/components/common/IconUser.vue'
-import SearchForm from '~/components/search/SearchForm.vue'
-import InputBox from '~/components/search/InputBox.vue'
+import IconUser from '~/components/common/icon-user.vue'
+import SearchForm from '~/components/search/search-form.vue'
+import SearchModal from '~/components/search/search-modal.vue'
 
 export default {
     transition (to, from) {
@@ -49,7 +49,7 @@ export default {
     components: {
         IconUser,
         SearchForm,
-        InputBox
+        SearchModal
     },
     head () {
         return {
