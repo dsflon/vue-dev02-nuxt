@@ -80,11 +80,7 @@ export default {
     computed : {
         SetTitle () { // ページタイトル部分のチラツキ対処
             let pageData = this.$store.state.common.pageData;
-            if( !this.userData ) {
-                return pageData ? pageData.title : ""
-            } else {
-                return this.userData.user_name
-            }
+            return pageData ? pageData.title : (this.userData ? this.userData.user_name : null)
         },
         checkId () {
             return this.$store.state.user.myData && this.$store.state.user.myData.user_id === this.$route.params.userid
