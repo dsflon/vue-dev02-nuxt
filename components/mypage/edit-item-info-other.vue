@@ -11,11 +11,10 @@
                     <input
                         class="a-form_input is_bold"
                         type="text"
-                        :name="'title_'+i+'_'+j"
                         placeholder="タイトルを入力してください"
                         @focus="OnFocus"
                         @blur="OnBlur"
-                        :value="child.title">
+                        v-model="child.title">
                 </label>
             </div>
             <div>
@@ -24,20 +23,21 @@
                         v-if="child.type === 'textarea'"
                         ref="textarea"
                         class="a-form_textarea"
-                        :name="'text_'+i+'_'+j"
                         placeholder="テキストやURLを入力してください"
                         @focus="OnFocus"
                         @blur="OnBlur"
-                        :value="child.text"></textarea>
+                        v-model="child.text"></textarea>
                     <input
                         v-if="child.type === 'input'"
                         class="a-form_input"
                         type="text"
-                        :name="'text_'+i+'_'+j"
                         placeholder="テキストやURLを入力してください"
                         @focus="OnFocus"
                         @blur="OnBlur"
-                        :value="child.text">
+                        v-model="child.text">
+                    <input
+                        type="hidden"
+                        v-model="child.type">
                 </label>
             </div>
 

@@ -10,17 +10,17 @@
 
             <div class="detail_inner">
 
-                <div class="contents">
+                <form ref="form" class="contents">
 
                     <edit-item
+                        v-if="userData"
                         :OnFocus="OnFocus"
                         :OnBlur="OnBlur"
-                        v-if="userData"
                         :userData="userData" />
 
-                </div>
+                </form>
                 <transition name="fade">
-                    <footer-btns v-if="!onfocus" type="edit" />
+                    <footer-btns v-if="!onfocus" type="edit" :SaveData="SaveData" />
                 </transition>
             </div>
 
@@ -61,7 +61,8 @@ export default {
     data() {
         return {
             onfocus: false,
-            userData: this.$store.state.detail.detailResult
+            userData: JSON.parse(JSON.stringify(this.$store.state.detail.detailResult)),
+            postData: { info: [], menu: [] }
         }
     },
     components: {
@@ -72,7 +73,34 @@ export default {
     },
     methods: {
         OnFocus() { this.onfocus = true; },
-        OnBlur() { this.onfocus = false; }
+        OnBlur() { this.onfocus = false; },
+        AdjustPostData(key,val) {
+            let keys = key.split(".")[0].split("_"),
+                cat = keys[0],
+                i = keys[1];
+
+            console.log(cat,i);
+        },
+        SaveData() {
+            // alert("Save data !")
+
+            // let formData = new FormData(this.$refs.form);
+            // for (let data of formData.entries()) {
+            //     let key = data[0],
+            //         val = data[1];
+            //
+            //     if(key.split("user_")[1]) {
+            //         this.postData[key] = val
+            //     } else {
+            //         this.AdjustPostData(key,val)
+            //     }
+            //
+            // }
+
+            console.log(this.userData.info);
+
+            // this.$router.replace( location.pathname.split("/edit")[0] )
+        }
     },
     beforeCreate: function() {
     },

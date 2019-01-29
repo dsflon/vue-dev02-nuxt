@@ -48,6 +48,9 @@
             line-height: 1;
             font-weight: normal;
         }
+        &.is_placeholder:before {
+            color: $black30;
+        }
     }
 
     // ----------------------------------------------------------

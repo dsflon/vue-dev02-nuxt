@@ -39,7 +39,7 @@
         <button class="a-btn" @click="backMyPage">
             <i class="a-icon a-icon-cross"></i>
         </button>
-        <button class="a-btn is_blue" @click="saveData">
+        <button class="a-btn is_blue" @click="SaveData">
             <i class="a-icon a-icon-check"></i>
         </button>
     </div>
@@ -53,7 +53,8 @@ import Follow from '~/scripts/_follow';
 export default {
 
     props: [
-        "type"
+        "type",
+        "SaveData"
     ],
     computed : {
         CheckFollowed () { // ページタイトル部分のチラツキ対処
@@ -107,10 +108,6 @@ export default {
                 this.$router.replace( location.pathname.split("/edit")[0] )
             }
 
-        },
-        saveData() {
-            alert("Save data !")
-            this.$router.replace( location.pathname.split("/edit")[0] )
         },
         follow() {
             Follow(this)

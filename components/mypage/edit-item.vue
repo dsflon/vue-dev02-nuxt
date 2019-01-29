@@ -1,6 +1,6 @@
 <template>
 
-    <form class="user_inner">
+    <div class="user_inner">
 
         <div class="user_header">
 
@@ -29,11 +29,10 @@
                     <textarea
                         ref="textarea"
                         class="a-form_textarea"
-                        name="description"
                         placeholder="自己紹介を記入してください"
                         @focus="OnFocus"
                         @blur="OnBlur"
-                        :value="userData.description"></textarea>
+                        v-model="userData.description"></textarea>
                 </label>
             </div>
 
@@ -44,11 +43,10 @@
                         class="a-form_input"
                         required
                         type="text"
-                        name="user_fullname"
                         placeholder="お名前を入力してください"
                         @focus="OnFocus"
                         @blur="OnBlur"
-                        :value="userData.user_fullname">
+                        v-model="userData.user_fullname">
                 </label>
             </section>
             <section class="m-form_sec">
@@ -58,11 +56,10 @@
                         class="a-form_input"
                         required
                         type="text"
-                        name="user_name"
                         placeholder="ニックネームを入力してください"
                         @focus="OnFocus"
                         @blur="OnBlur"
-                        :value="userData.user_name">
+                        v-model="userData.user_name">
                 </label>
             </section>
 
@@ -72,16 +69,15 @@
                     <select
                         class="a-form_select"
                         tabIndex="-1"
-                        name="user_job"
                         ref="select"
-                        :value="userData.job_id+','+userData.job_name">
-                        <option>選択してください</option>
-                        <!-- <option
+                        v-model="userData.job_id">
+                        <option value="">選択してください</option>
+                        <option
                             v-for="item in $store.state.search.jobList"
                             :key="item.job_id"
-                            :value="item.job_id+','+item.job_name">
+                            :value="item.job_id">
                             {{ item.job_name }}
-                        </option> -->
+                        </option>
                     </select>
                 </label>
             </section>
@@ -92,11 +88,10 @@
                             class="a-form_input"
                             required
                             type="email"
-                            name="user_email"
                             placeholder="メールアドレスを入力してください"
                             @focus="OnFocus"
                             @blur="OnBlur"
-                            :value="userData.user_mail">
+                            v-model="userData.user_mail">
                     </label>
                 </section>
                 <section class=" m-form_sec">
@@ -106,11 +101,10 @@
                             class="a-form_input"
                             required
                             type="tel"
-                            name="user_email"
                             placeholder="電話番号を入力してください"
                             @focus="OnFocus"
                             @blur="OnBlur"
-                            :value="userData.tel">
+                            v-model="userData.tel">
                     </label>
                 </section>
 
@@ -121,11 +115,10 @@
                         <select
                             tabindex="-1"
                             class="a-form_select"
-                            :value="userData.user_sex"
-                            name="user_sex">
+                            v-model="userData.user_sex">
                             <option>選択してください</option>
-                            <option value="femail">女性</option>
-                            <option value="male">男性</option>
+                            <option value="0">女性</option>
+                            <option value="1">男性</option>
                         </select>
                     </label>
                 </section>
@@ -137,9 +130,8 @@
                             required
                             type="date"
                             ref="input_date"
-                            name="user_birthday"
                             @input="_AdjustInputDate"
-                            :value="userData.user_birthday">
+                            v-model="userData.user_birthday">
                     </label>
                 </section>
             </div>
@@ -151,7 +143,6 @@
                         class="a-form_input"
                         required
                         type="text"
-                        name="user_name"
                         placeholder="住所を入力してください"
                         value="">
                 </label>
@@ -176,7 +167,8 @@
             </carousel>
         </div>
 
-    </form>
+    </div>
+
 </template>
 
 <script>
@@ -215,10 +207,17 @@ export default {
             AdjustInputDate(e)
         }
     },
+    created: function() {
+        this.$store.dispatch('search/GetJobList')
+        .catch((error,txt)=>{
+            console.error(error);
+        })
+    },
     mounted: function() {
         AdjustTextAreaHeight(this.$refs.textarea)
         AdjustInputDate(this.$refs.input_date)
         setTimeout( this.AjustTabName, 1 )
+        // console.log(this.$store.state.search.jobList);
     }
 
 }

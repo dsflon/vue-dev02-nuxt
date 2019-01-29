@@ -5,6 +5,11 @@
         "user_id": "1",
         "user_name": "@sdfgsdfgsdfg",
         "user_icon": "/assets/images/dammy/user_01.jpg",
+        "user_fullname": "",
+        "user_email": "",
+        "user_sex": 0,
+        "user_tel": "",
+        "user_birthday": "",
         "job_id": "1",
         "job_name": "美容師",
         "access_info": "東京都渋谷駅 アベニュー口 徒歩7分",
@@ -130,7 +135,7 @@
                         "postal": "164-0001",
                         "station": "東京都渋谷駅",
                         "gate": "アベニュー口",
-                        "way": "徒歩",
+                        "transportation": "徒歩",
                         "time": "7分",
                         "text": "東京都渋谷区道玄坂1-9-1 道玄坂ビル4F"
                     },
@@ -159,7 +164,7 @@
                         "postal": "164-0001",
                         "station": "東京都渋谷駅",
                         "gate": "アベニュー口",
-                        "way": "徒歩",
+                        "transportation": "徒歩",
                         "time": "7分",
                         "text": "text text text text text text text texttext text text text"
                     },
@@ -194,6 +199,23 @@
                         "type": "input",
                         "text": "オーブ ヘアー グラン 渋谷2号店\r\n(AUBE hair gran) 東京都渋谷 / ディレクター"
                     }
+                ],
+                "contents_": [
+                    {
+                        "date": { "start": "2013-06", "end": "2015-07" },
+                        "type": "input",
+                        "text": "ユーフォリア(Euphoria SHIBUYA GRANDE)\r\n東京都渋谷区 / アシスタント"
+                    },
+                    {
+                        "date": { "start": "2013-06", "end": "2015-07" },
+                        "type": "input",
+                        "text": "サロン ダコタ(salon dakota)　東京都渋谷区 / スタイリスト"
+                    },
+                    {
+                        "date": { "start": "2013-06", "end": "" },
+                        "type": "input",
+                        "text": "オーブ ヘアー グラン 渋谷2号店\r\n(AUBE hair gran) 東京都渋谷 / ディレクター"
+                    }
                 ]
             },
             {
@@ -207,6 +229,18 @@
                     },
                     {
                         "title": "2012.04 〜 2014.09",
+                        "type": "input",
+                        "text": "早稲田大学 中退"
+                    }
+                ],
+                "contents_": [
+                    {
+                        "date": { "start": "2009-04", "end": "2012-03" },
+                        "type": "input",
+                        "text": "逗子開成高等学校 卒業"
+                    },
+                    {
+                        "date": { "start": "2012-04", "end": "2014-03" },
                         "type": "input",
                         "text": "早稲田大学 中退"
                     }

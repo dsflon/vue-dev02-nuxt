@@ -1,9 +1,9 @@
 <template>
 
-    <div v-if="item.contents && item.contents.length !== 0" class="info_box_wrap">
+    <div v-if="item.contents_ && item.contents_.length !== 0" class="info_box_wrap">
 
         <section
-            v-for="(child,j) in item.contents"
+            v-for="(child,j) in item.contents_"
             :key="j"
             class="info_box_inner">
 
@@ -15,10 +15,9 @@
                                 class="a-form_input"
                                 type="month"
                                 ref="input_date"
-                                :name="'title_'+i+'_'+j"
                                 @input="_AdjustInputDate"
                                 placeholder="年月を入力してください"
-                                :value="SetDate(0,child.title)">
+                                v-model="child.date.start">
                         </label>
                     </div>
                     <div class="f-flex6">
@@ -27,10 +26,9 @@
                                 class="a-form_input"
                                 type="month"
                                 ref="input_date"
-                                :name="'title_'+i+'_'+j"
                                 @input="_AdjustInputDate"
                                 placeholder="年月を入力してください"
-                                :value="SetDate(1,child.title)">
+                                v-model="child.date.end">
                         </label>
                     </div>
                 </div>
@@ -41,12 +39,14 @@
                     <input
                         ref="textarea"
                         class="a-form_textarea"
-                        :name="'text_'+i+'_'+j"
                         type="text"
                         placeholder="テキストを入力してください"
                         @focus="OnFocus"
                         @blur="OnBlur"
-                        :value="child.text">
+                        v-model="child.text">
+                    <input
+                        type="hidden"
+                        v-model="child.type">
                 </label>
             </div>
 
@@ -79,11 +79,6 @@ export default {
         }
     },
     computed : {
-        SetDate() {
-            return (i,value) => {
-                return value.split(" 〜 ")[i].replace(/\./g,"-")
-            }
-        }
     },
     methods: {
         _AdjustInputDate(e) {

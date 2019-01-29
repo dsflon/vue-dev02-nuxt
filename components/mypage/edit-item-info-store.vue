@@ -8,21 +8,19 @@
                 <input
                     class="a-form_input"
                     type="tel"
-                    name="store_address_postal"
                     placeholder="000-0000"
                     @focus="OnFocus"
                     @blur="OnBlur"
-                    :value="item.contents_.store_address.postal">
+                    v-model="item.contents_.store_address.postal">
             </label>
             <label class="m-form_bg m-form_label">
                 <textarea
                     ref="textarea"
                     class="a-form_textarea"
-                    name="store_address_postal"
                     placeholder="住所を入力してください"
                     @focus="OnFocus"
                     @blur="OnBlur"
-                    :value="item.contents_.store_address.text"></textarea>
+                    v-model="item.contents_.store_address.text"></textarea>
             </label>
         </section>
         <div class="f-flex">
@@ -32,11 +30,10 @@
                     <input
                         class="a-form_input"
                         type="text"
-                        name="store_address_postal"
                         placeholder="最寄りの駅名を入力してください"
                         @focus="OnFocus"
                         @blur="OnBlur"
-                        :value="item.contents_.store_address.station">
+                        v-model="item.contents_.store_address.station">
                 </label>
             </section>
             <section class="f-flex6 m-form_sec">
@@ -45,11 +42,10 @@
                     <input
                         class="a-form_input"
                         type="text"
-                        name="store_address_postal"
                         placeholder="改札・出口を入力してください"
                         @focus="OnFocus"
                         @blur="OnBlur"
-                        :value="item.contents_.store_address.gate">
+                        v-model="item.contents_.store_address.gate">
                 </label>
             </section>
             <section class="f-flex6 m-form_sec">
@@ -57,8 +53,7 @@
                 <label class="m-form_bg">
                     <select
                         class="a-form_select"
-                        :value="item.contents_.store_address.way"
-                        name="store_address_postal">
+                        v-model="item.contents_.store_address.transportation">
                         <option value="徒歩">徒歩</option>
                         <option value="バス">バス</option>
                         <option value="タクシー">タクシー</option>
@@ -71,11 +66,10 @@
                     <input
                         class="a-form_input"
                         type="text"
-                        name="store_address_postal"
                         placeholder="駅からの時間を入力してください"
                         @focus="OnFocus"
                         @blur="OnBlur"
-                        :value="item.contents_.store_address.time">
+                        v-model="item.contents_.store_address.time">
                 </label>
             </section>
             <section class="f-flex6 m-form_sec">
@@ -84,15 +78,13 @@
                     <select
                         ref="start_time"
                         class="a-form_select"
-                        :data-value="start_time ? start_time : item.contents_.store_time.start_time"
-                        v-model="start_time"
                         @input="SetStartTime"
-                        name="store_time_start_time">
+                        v-model="item.contents_.store_time.start_time">
                         <option value="">選択してください</option>
                         <option
-                        v-for="opn in SetTimeOption"
-                        :key="opn.n"
-                        :value="opn.n">{{opn.t}}</option>
+                            v-for="opn in SetTimeOption"
+                            :key="opn.n"
+                            :value="opn.n">{{opn.t}}</option>
                     </select>
                 </label>
             </section>
@@ -102,14 +94,12 @@
                     <select
                         ref="end_time"
                         class="a-form_select"
-                        :data-value="end_time ? end_time : item.contents_.store_time.end_time"
-                        v-model="end_time"
-                        name="store_time_end_time">
+                        v-model="item.contents_.store_time.end_time">
                         <option value="">選択してください</option>
                         <option
-                        v-for="opn in SetTimeOption"
-                        :key="opn.n"
-                        :value="SetEndTimeValue(opn)">{{ SetTimeString(opn) }}</option>
+                            v-for="opn in SetTimeOption"
+                            :key="opn.n"
+                            :value="SetEndTimeValue(opn)">{{ SetTimeString(opn) }}</option>
                     </select>
                 </label>
             </section>
@@ -120,11 +110,10 @@
                 <input
                 class="a-form_input"
                 type="text"
-                name="store_address_postal"
                 placeholder="定休日を入力してください"
                 @focus="OnFocus"
                 @blur="OnBlur"
-                :value="item.contents_.store_holiday.text">
+                v-model="item.contents_.store_holiday.text">
             </label>
         </section>
         <section class="m-form_sec">
@@ -133,11 +122,10 @@
                 <input
                 class="a-form_input"
                 type="text"
-                name="store_url"
                 placeholder="お店のURLを入力してください"
                 @focus="OnFocus"
                 @blur="OnBlur"
-                :value="item.contents_.store_url.text">
+                v-model="item.contents_.store_url.text">
             </label>
         </section>
 
@@ -157,8 +145,6 @@ export default {
     ],
     data () {
         return {
-            start_time: null,
-            end_time: null,
         }
     },
     computed : {
@@ -166,16 +152,14 @@ export default {
             return SetTimeOptions.for()
         },
         SetTimeString() {
-            return (opn) => SetTimeOptions.text(opn,this.start_time);
+            return (opn) => SetTimeOptions.text(opn,this.item.contents_.store_time.start_time);
         },
         SetEndTimeValue() {
-            return (opn) => SetTimeOptions.endTimeVal(opn,this.start_time);
+            return (opn) => SetTimeOptions.endTimeVal(opn,this.item.contents_.store_time.end_time);
         }
     },
     methods: {
         SetStartTime: function(e) {
-            let target = e.currentTarget ? e.currentTarget : e;
-            this.start_time = target.dataset.value;
             setTimeout(()=> {
                 this.SetEndTime(this.$refs.end_time)
             },1)
@@ -185,11 +169,11 @@ export default {
                 option = target.children,
                 value = "";
             for (var j = 0; j < option.length; j++) { // valueに一致しなければ空にする
-                if( target.dataset.value === option[j].value ) {
-                    value = target.dataset.value;
+                if( this.item.contents_.store_time.end_time === option[j].value ) {
+                    value = this.item.contents_.store_time.end_time;
                 }
             }
-            this.end_time = value;
+            this.item.contents_.store_time.end_time = value;
         }
     },
     mounted: function() {
