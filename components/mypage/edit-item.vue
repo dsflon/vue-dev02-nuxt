@@ -70,6 +70,7 @@
                         class="a-form_select"
                         tabIndex="-1"
                         ref="select"
+                        @input="AdjustJobName"
                         v-model="userData.job_id">
                         <option value="">選択してください</option>
                         <option
@@ -195,7 +196,7 @@ export default {
         Slide
     },
     methods: {
-        AjustTabName() {
+        AdjustTabName() {
             let tab = document.getElementsByClassName('VueCarousel-dot-button'),
                 tabTxt = [ "基本情報", "メニュー"];
 
@@ -205,6 +206,15 @@ export default {
         },
         _AdjustInputDate(e) {
             AdjustInputDate(e)
+        },
+        AdjustJobName(e) {
+            let i = e.currentTarget.value,
+                jobList = this.$store.state.search.jobList;
+            for (var key in jobList) {
+                if (jobList[key].job_id == i) {
+                    this.userData.job_name = jobList[key].job_name;
+                }
+            }
         }
     },
     created: function() {
@@ -216,8 +226,7 @@ export default {
     mounted: function() {
         AdjustTextAreaHeight(this.$refs.textarea)
         AdjustInputDate(this.$refs.input_date)
-        setTimeout( this.AjustTabName, 1 )
-        // console.log(this.$store.state.search.jobList);
+        setTimeout( this.AdjustTabName, 1 )
     }
 
 }

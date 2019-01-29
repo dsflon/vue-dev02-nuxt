@@ -76,7 +76,7 @@ export default {
         OnBlur() { this.onfocus = false; },
         SaveData() {
             // alert("Save data !")
-            console.log(this.userData.info);
+            console.log(this.userData);
             // this.$router.replace( location.pathname.split("/edit")[0] )
         }
     },

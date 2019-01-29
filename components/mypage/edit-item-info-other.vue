@@ -23,7 +23,7 @@
                         v-if="child.type === 'textarea'"
                         ref="textarea"
                         class="a-form_textarea"
-                        placeholder="テキストやURLを入力してください"
+                        :placeholder="(item.category==='links'?'URL':'テキスト')+'を入力してください'"
                         @focus="OnFocus"
                         @blur="OnBlur"
                         v-model="child.text"></textarea>
@@ -31,7 +31,7 @@
                         v-if="child.type === 'input'"
                         class="a-form_input"
                         type="text"
-                        placeholder="テキストやURLを入力してください"
+                        :placeholder="(item.category==='links'?'URL':'テキスト')+'を入力してください'"
                         @focus="OnFocus"
                         @blur="OnBlur"
                         v-model="child.text">
@@ -41,12 +41,14 @@
                 </label>
             </div>
 
-            <button v-if="j > 0" type="button" class="info_box_inner_menu"><i class="a-icon a-icon-plus is_gray20 a-icon-lg"></i></button>
+            <button v-if="j > 0" type="button" class="info_box_inner_menu" @click="RemoveChild(j)">
+                <i class="a-icon a-icon-plus is_gray20 a-icon-lg"></i>
+            </button>
 
         </section>
 
         <div class="info_box_btn">
-            <button type="button">
+            <button type="button" @click="AddChild">
                 <i class="a-icon a-icon-plus is_gray a-icon-1_75x"></i>
             </button>
         </div>
@@ -74,16 +76,34 @@ export default {
     methods: {
         _AdjustInputDate(e) {
             AdjustInputDate(e)
-        }
-    },
-    mounted: function() {
-        if(this.$refs.textarea && this.$refs.textarea.length > 0) {
-            for (var i = 0; i < this.$refs.textarea.length; i++) {
-                AdjustTextAreaHeight(this.$refs.textarea[i])
+        },
+        AddChild() {
+            this.item.contents.push({
+                "title": "",
+                "type": this.item.category==='links'?'input':'textarea',
+                "text": ""
+            })
+        },
+        RemoveChild: function(j) {
+            let res = confirm("項目を削除しますか？");
+            if( res == true ) {
+                let removedList = this.item.contents.filter((a,i) => i !== j);
+                this.item.contents = removedList;
+            }
+        },
+        DoAdjust() {
+            if(this.$refs.textarea && this.$refs.textarea.length > 0) {
+                for (var i = 0; i < this.$refs.textarea.length; i++) {
+                    if(!this.$refs.textarea[i].style["0"]) AdjustTextAreaHeight(this.$refs.textarea[i])
+                }
             }
         }
     },
+    mounted: function() {
+        this.DoAdjust();
+    },
     updated: function() {
+        this.DoAdjust();
     }
 
 }

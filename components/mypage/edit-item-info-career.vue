@@ -37,8 +37,7 @@
             <div>
                 <label class="m-form_bg m-form_label">
                     <input
-                        ref="textarea"
-                        class="a-form_textarea"
+                        class="a-form_input"
                         type="text"
                         placeholder="テキストを入力してください"
                         @focus="OnFocus"
@@ -50,12 +49,14 @@
                 </label>
             </div>
 
-            <button v-if="j > 0" type="button" class="info_box_inner_menu"><i class="a-icon a-icon-plus is_gray20 a-icon-lg"></i></button>
+            <button v-if="j > 0" type="button" class="info_box_inner_menu" @click="RemoveChild(j)">
+                <i class="a-icon a-icon-plus is_gray20 a-icon-lg"></i>
+            </button>
 
         </section>
 
         <div class="info_box_btn">
-            <button type="button">
+            <button type="button" @click="AddChild">
                 <i class="a-icon a-icon-plus is_gray a-icon-1_75x"></i>
             </button>
         </div>
@@ -65,7 +66,6 @@
 </template>
 
 <script>
-import AdjustTextAreaHeight from '~/scripts/_adjustTextAreaHeight';
 import AdjustInputDate from '~/scripts/_adjustInputDate';
 export default {
     props: [
@@ -83,21 +83,34 @@ export default {
     methods: {
         _AdjustInputDate(e) {
             AdjustInputDate(e)
+        },
+        AddChild() {
+            this.item.contents_.push({
+                "date": { "start": "", "end": "" },
+                "type": "input",
+                "text": ""
+            })
+        },
+        RemoveChild: function(j) {
+            let res = confirm("項目を削除しますか？");
+            if( res == true ) {
+                let removedList = this.item.contents_.filter((a,i) => i !== j);
+                this.item.contents_ = removedList;
+            }
+        },
+        DoAdjust() {
+            if(this.$refs.input_date && this.$refs.input_date.length > 0) {
+                for (var i = 0; i < this.$refs.input_date.length; i++) {
+                    AdjustInputDate(this.$refs.input_date[i])
+                }
+            }
         }
     },
     mounted: function() {
-        if(this.$refs.textarea && this.$refs.textarea.length > 0) {
-            for (var i = 0; i < this.$refs.textarea.length; i++) {
-                AdjustTextAreaHeight(this.$refs.textarea[i])
-            }
-        }
-        if(this.$refs.input_date && this.$refs.input_date.length > 0) {
-            for (var i = 0; i < this.$refs.input_date.length; i++) {
-                AdjustInputDate(this.$refs.input_date[i])
-            }
-        }
+        this.DoAdjust()
     },
     updated: function() {
+        this.DoAdjust()
     }
 
 }

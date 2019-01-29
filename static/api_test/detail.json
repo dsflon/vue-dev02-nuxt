@@ -248,6 +248,7 @@
             },
             {
                 "title": "SNS",
+                "category": "links",
                 "contents": [
                     {
                         "title": "Instagram",
@@ -268,6 +269,7 @@
             },
             {
                 "title": "興味のあること",
+                "category": "ohter",
                 "contents": [
                     {
                         "title": "映画",
