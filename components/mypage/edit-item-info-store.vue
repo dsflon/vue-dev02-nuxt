@@ -94,6 +94,7 @@
                     <select
                         ref="end_time"
                         class="a-form_select"
+                        :data-value="item.contents_.store_time.end_time"
                         v-model="item.contents_.store_time.end_time">
                         <option value="">選択してください</option>
                         <option
@@ -155,7 +156,7 @@ export default {
             return (opn) => SetTimeOptions.text(opn,this.item.contents_.store_time.start_time);
         },
         SetEndTimeValue() {
-            return (opn) => SetTimeOptions.endTimeVal(opn,this.item.contents_.store_time.end_time);
+            return (opn) => SetTimeOptions.endTimeVal(opn,this.item.contents_.store_time.start_time);
         }
     },
     methods: {
@@ -169,7 +170,7 @@ export default {
                 option = target.children,
                 value = "";
             for (var j = 0; j < option.length; j++) { // valueに一致しなければ空にする
-                if( this.item.contents_.store_time.end_time === option[j].value ) {
+                if( target.dataset.value === option[j].value ) {
                     value = this.item.contents_.store_time.end_time;
                 }
             }

@@ -20,7 +20,8 @@ const setTimeOptions = {
     },
 
     endTimeVal: (opnData,val) => {
-        return opnData.n <= val ? (24*100) + opnData.n : opnData.n;
+        console.log(opnData.t,opnData.n,Number(val) );
+        return opnData.n <= Number(val) ? (24*100) + opnData.n : opnData.n;
     }
 
 }
