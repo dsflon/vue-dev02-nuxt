@@ -38,7 +38,7 @@ const AdjustTextAreaHeight = (target) => {
 		// }
 
 		if(!e.value) {
-			e.style.height = minHeight - pt - pb + "px";
+			e.style.height = minHeight + "px";
 		}
 
 	}
