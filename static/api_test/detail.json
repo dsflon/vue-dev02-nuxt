@@ -109,12 +109,10 @@
                 "contents": [
                     {
                         "title": "店舗名",
-                        "type": "store_name",
                         "text": "オーブ ヘアーグラン\r\n渋谷2号店(AUBE hair gran)"
                     },
                     {
                         "title": "店舗住所",
-                        "type": "store_address",
                         "text": "東京都渋谷区道玄坂1-9-1 道玄坂ビル4F\r\n東京都渋谷駅 アベニュー口 徒歩7"
                     },
                     {
@@ -186,34 +184,28 @@
                 "contents": [
                     {
                         "title": "2013.06 〜 2015.07",
-                        "type": "input",
                         "text": "ユーフォリア(Euphoria SHIBUYA GRANDE)\r\n東京都渋谷区 / アシスタント"
                     },
                     {
                         "title": "2015.07 〜 2015.12",
-                        "type": "input",
                         "text": "サロン ダコタ(salon dakota)　東京都渋谷区 / スタイリスト"
                     },
                     {
                         "title": "2015.12 〜 ",
-                        "type": "input",
                         "text": "オーブ ヘアー グラン 渋谷2号店\r\n(AUBE hair gran) 東京都渋谷 / ディレクター"
                     }
                 ],
                 "contents_": [
                     {
                         "date": { "start": "2013-06", "end": "2015-07" },
-                        "type": "input",
                         "text": "ユーフォリア(Euphoria SHIBUYA GRANDE)\r\n東京都渋谷区 / アシスタント"
                     },
                     {
                         "date": { "start": "2013-06", "end": "2015-07" },
-                        "type": "input",
                         "text": "サロン ダコタ(salon dakota)　東京都渋谷区 / スタイリスト"
                     },
                     {
                         "date": { "start": "2013-06", "end": "" },
-                        "type": "input",
                         "text": "オーブ ヘアー グラン 渋谷2号店\r\n(AUBE hair gran) 東京都渋谷 / ディレクター"
                     }
                 ]
@@ -224,24 +216,20 @@
                 "contents": [
                     {
                         "title": "2009.04 〜 2012.03",
-                        "type": "input",
                         "text": "逗子開成高等学校 卒業"
                     },
                     {
                         "title": "2012.04 〜 2014.09",
-                        "type": "input",
                         "text": "早稲田大学 中退"
                     }
                 ],
                 "contents_": [
                     {
                         "date": { "start": "2009-04", "end": "2012-03" },
-                        "type": "input",
                         "text": "逗子開成高等学校 卒業"
                     },
                     {
                         "date": { "start": "2012-04", "end": "2014-03" },
-                        "type": "input",
                         "text": "早稲田大学 中退"
                     }
                 ]
@@ -252,18 +240,15 @@
                 "contents": [
                     {
                         "title": "Instagram",
-                        "type": "input",
                         "text": "https://www.instagram.com/abc/"
                     },
                     {
                         "title": "Facebook",
-                        "type": "input",
                         "text": "https://www.facebook.com/abc/"
                     },
                     {
                         "title": "twitter",
-                        "type": "input",
-                        "text": ""
+                        "text": "https://www.facebook.com/abc/abc/abc/asfasdfasdfasdf/abc/\r\n\r\nhttps://www.facebook.com/abc/"
                     }
                 ]
             },
@@ -273,17 +258,14 @@
                 "contents": [
                     {
                         "title": "映画",
-                        "type": "textarea",
                         "text": "ショーシャンクの空に"
                     },
                     {
                         "title": "読書",
-                        "type": "textarea",
                         "text": "ショーシャンクの空に"
                     },
                     {
                         "title": "音楽",
-                        "type": "textarea",
                         "text": "秦基博"
                     }
                 ]

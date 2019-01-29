@@ -25,7 +25,7 @@
 
             <div class="user_txt">
                 <h2 class="a-ttl is_s is_gray f-mb5">自己紹介</h2>
-                <label class="m-form_bg">
+                <label class="m-form_bg is_textarea">
                     <textarea
                         ref="textarea"
                         class="a-form_textarea"

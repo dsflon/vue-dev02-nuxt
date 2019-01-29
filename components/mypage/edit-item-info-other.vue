@@ -18,26 +18,14 @@
                 </label>
             </div>
             <div>
-                <label class="m-form_bg m-form_label">
+                <label class="m-form_bg m-form_label is_textarea">
                     <textarea
-                        v-if="child.type === 'textarea'"
                         ref="textarea"
                         class="a-form_textarea"
                         :placeholder="(item.category==='links'?'URL':'テキスト')+'を入力してください'"
                         @focus="OnFocus"
                         @blur="OnBlur"
                         v-model="child.text"></textarea>
-                    <input
-                        v-if="child.type === 'input'"
-                        class="a-form_input"
-                        type="text"
-                        :placeholder="(item.category==='links'?'URL':'テキスト')+'を入力してください'"
-                        @focus="OnFocus"
-                        @blur="OnBlur"
-                        v-model="child.text">
-                    <input
-                        type="hidden"
-                        v-model="child.type">
                 </label>
             </div>
 
@@ -59,7 +47,6 @@
 
 <script>
 import AdjustTextAreaHeight from '~/scripts/_adjustTextAreaHeight';
-import AdjustInputDate from '~/scripts/_adjustInputDate';
 export default {
     props: [
         "item",
@@ -74,9 +61,6 @@ export default {
     computed : {
     },
     methods: {
-        _AdjustInputDate(e) {
-            AdjustInputDate(e)
-        },
         AddChild() {
             this.item.contents.push({
                 "title": "",

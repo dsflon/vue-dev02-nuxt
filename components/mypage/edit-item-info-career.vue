@@ -35,17 +35,14 @@
             </div>
 
             <div>
-                <label class="m-form_bg m-form_label">
-                    <input
-                        class="a-form_input"
-                        type="text"
+                <label class="m-form_bg m-form_label is_textarea">
+                    <textarea
+                        ref="textarea"
+                        class="a-form_textarea"
                         placeholder="テキストを入力してください"
                         @focus="OnFocus"
                         @blur="OnBlur"
-                        v-model="child.text">
-                    <input
-                        type="hidden"
-                        v-model="child.type">
+                        v-model="child.text"></textarea>
                 </label>
             </div>
 
@@ -66,6 +63,7 @@
 </template>
 
 <script>
+import AdjustTextAreaHeight from '~/scripts/_adjustTextAreaHeight';
 import AdjustInputDate from '~/scripts/_adjustInputDate';
 export default {
     props: [
@@ -87,7 +85,7 @@ export default {
         AddChild() {
             this.item.contents_.push({
                 "date": { "start": "", "end": "" },
-                "type": "input",
+                "type": "textarea",
                 "text": ""
             })
         },
@@ -102,6 +100,11 @@ export default {
             if(this.$refs.input_date && this.$refs.input_date.length > 0) {
                 for (var i = 0; i < this.$refs.input_date.length; i++) {
                     AdjustInputDate(this.$refs.input_date[i])
+                }
+            }
+            if(this.$refs.textarea && this.$refs.textarea.length > 0) {
+                for (var i = 0; i < this.$refs.textarea.length; i++) {
+                    if(!this.$refs.textarea[i].style["0"]) AdjustTextAreaHeight(this.$refs.textarea[i])
                 }
             }
         }

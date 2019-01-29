@@ -13,7 +13,7 @@
                     @blur="OnBlur"
                     v-model="item.contents_.store_address.postal">
             </label>
-            <label class="m-form_bg m-form_label">
+            <label class="m-form_bg m-form_label is_textarea">
                 <textarea
                     ref="textarea"
                     class="a-form_textarea"
@@ -108,24 +108,24 @@
             <h3 class="a-ttl is_s is_gray f-mb5">定休日</h3>
             <label class="m-form_bg">
                 <input
-                class="a-form_input"
-                type="text"
-                placeholder="定休日を入力してください"
-                @focus="OnFocus"
-                @blur="OnBlur"
-                v-model="item.contents_.store_holiday.text">
+                    class="a-form_input"
+                    type="text"
+                    placeholder="定休日を入力してください"
+                    @focus="OnFocus"
+                    @blur="OnBlur"
+                    v-model="item.contents_.store_holiday.text">
             </label>
         </section>
         <section class="m-form_sec">
             <h3 class="a-ttl is_s is_gray f-mb5">URL</h3>
-            <label class="m-form_bg">
-                <input
-                class="a-form_input"
-                type="text"
-                placeholder="お店のURLを入力してください"
-                @focus="OnFocus"
-                @blur="OnBlur"
-                v-model="item.contents_.store_url.text">
+            <label class="m-form_bg is_textarea">
+                <textarea
+                    ref="textarea2"
+                    class="a-form_textarea"
+                    placeholder="お店のURLを入力してください"
+                    @focus="OnFocus"
+                    @blur="OnBlur"
+                    v-model="item.contents_.store_url.text"></textarea>
             </label>
         </section>
 
@@ -177,8 +177,9 @@ export default {
         }
     },
     mounted: function() {
-        AdjustTextAreaHeight(this.$refs.textarea)
         this.SetStartTime(this.$refs.start_time)
+        AdjustTextAreaHeight(this.$refs.textarea)
+        AdjustTextAreaHeight(this.$refs.textarea2)
     },
     updated: function() {
     }

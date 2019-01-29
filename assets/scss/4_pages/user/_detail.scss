@@ -61,6 +61,7 @@
                 overflow: hidden;
                 white-space: pre-wrap;
                 word-wrap: break-word;
+                word-break: break-all;
             }
             button { font-size: 12px; display: none; }
         }
@@ -172,6 +173,7 @@
                             line-height: 1.4;
                             white-space: pre-wrap;
                             word-wrap: break-word;
+                            word-break: break-all;
                         }
                     }
                 }

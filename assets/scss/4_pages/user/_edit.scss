@@ -36,11 +36,13 @@
 
                     .info_box_inner {
                         padding-right: 20px;
+                        padding-top: 15px;
                         padding-bottom: 15px;
+                        margin-bottom: 0;
                         border-bottom: 2px dotted $black20;
                         position: relative;
                         &:first-of-type { padding-right: 0; }
-                        &:last-of-type { border-bottom: none; padding-bottom: 0; }
+                        &:last-of-type { border-bottom: none; }
                         .info_box_ttl, .info_box_inner_ttl {
                             margin-bottom: 10px;
                         }
@@ -49,7 +51,7 @@
                         }
                         .info_box_inner_menu {
                             position: absolute;
-                            top: 45%; right: -15px;
+                            top: 50%; right: -15px;
                             transform: translateY(-50%);
                             width: 36px; height: 40px;
                             .a-icon { transform: rotate(45deg); }
