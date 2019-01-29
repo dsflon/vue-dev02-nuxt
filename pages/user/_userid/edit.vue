@@ -74,31 +74,9 @@ export default {
     methods: {
         OnFocus() { this.onfocus = true; },
         OnBlur() { this.onfocus = false; },
-        AdjustPostData(key,val) {
-            let keys = key.split(".")[0].split("_"),
-                cat = keys[0],
-                i = keys[1];
-
-            console.log(cat,i);
-        },
         SaveData() {
             // alert("Save data !")
-
-            // let formData = new FormData(this.$refs.form);
-            // for (let data of formData.entries()) {
-            //     let key = data[0],
-            //         val = data[1];
-            //
-            //     if(key.split("user_")[1]) {
-            //         this.postData[key] = val
-            //     } else {
-            //         this.AdjustPostData(key,val)
-            //     }
-            //
-            // }
-
             console.log(this.userData.info);
-
             // this.$router.replace( location.pathname.split("/edit")[0] )
         }
     },
