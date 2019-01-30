@@ -48,6 +48,7 @@ export const actions = {
     SetPageData(context,data) {
         return new Promise((resolve, reject) => {
             context.commit('registerPageData', data);
+            resolve(data)
         })
     }
 

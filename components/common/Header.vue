@@ -79,6 +79,8 @@ export default {
             }
         }
     },
+    mounted: function() {
+    },
     destroyed: function() {
         if(this.$store.state.common.menu) this.$store.dispatch('common/ToggleMenu')
     }

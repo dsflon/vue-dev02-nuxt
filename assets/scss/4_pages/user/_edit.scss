@@ -24,10 +24,15 @@
         .user_tab_info {
             .info_box {
 
-                .info_box_ttl { position: relative; }
+                box-shadow: 0 0 10px 0 rgba($black60,0.1);
+
+                .info_box_ttl {
+                    position: relative;
+                    .m-form_bg { padding-right: 20px; }
+                }
                 .info_box_menu {
                     position: absolute;
-                    top: 50%; right: 0;
+                    top: 50%; right: 3px;
                     transform: translateY(-50%);
                     width: 32px; height: 46px;
                 }
@@ -41,7 +46,7 @@
                         margin-bottom: 0;
                         border-bottom: 2px dotted $black20;
                         position: relative;
-                        &:first-of-type { padding-right: 0; }
+                        &:first-of-type { padding-top: 0; }
                         &:last-of-type { border-bottom: none; }
                         .info_box_ttl, .info_box_inner_ttl {
                             margin-bottom: 10px;
@@ -54,13 +59,41 @@
                             top: 50%; right: -15px;
                             transform: translateY(-50%);
                             width: 36px; height: 40px;
-                            .a-icon { transform: rotate(45deg); }
                         }
                     }
                 }
             }
+            > .info_box_btn { padding-bottom: 15px; }
             .info_box_btn {
                 text-align: center;
+                position: relative;
+                .info_box_btn_menu {
+                    position: absolute;
+                    bottom: 50px;
+                    width: 100%;
+                    ul {
+                        display: table;
+                        margin: 0 auto;
+                        background: #000;
+                        // padding: 10px 0;
+                        background: $color_main;
+                        border-radius: 4px;
+                        min-width: 140px;
+                        box-shadow: 0 0 10px 0 rgba(#000,0.2);
+                        @include triangle($color:$color_main, $width:10, $height:6, $direction:bottom); 
+                        li {
+                            line-height: 1;
+                            border-bottom: 1px solid #FFF;
+                            text-align: left;
+                            &:last-child { border-bottom: none; }
+                            button {
+                                color: #FFF;
+                                line-height: 1;
+                                padding: 10px;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

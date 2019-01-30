@@ -19,6 +19,11 @@
         &.is_fb { color: #4267b2; }
     }
 
+    .a-icon-plus {
+        transition: transform 0.2s ease;
+        &.is_cross { transform: rotate(45deg) }
+    }
+
     .a-icon_txt {
         display: inline-block;
         vertical-align: middle;

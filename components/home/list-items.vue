@@ -81,8 +81,9 @@ export default {
             this.$store.dispatch('common/SetPageData',{
                 title: data.user_name,
                 followed: data.followed
+            }).then(()=> {
+                this.$router.push('/user/' + data.user_id)
             })
-            this.$router.push('/user/' + data.user_id)
         }
     },
     mounted: function() {

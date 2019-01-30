@@ -19,9 +19,7 @@
                         :userData="userData" />
 
                 </form>
-                <transition name="fade">
-                    <footer-btns v-if="!onfocus" type="edit" :SaveData="SaveData" />
-                </transition>
+                <footer-btns :class="{is_focus: onfocus}" type="edit" :SaveData="SaveData" />
             </div>
 
         </main>
@@ -76,7 +74,7 @@ export default {
         OnBlur() { this.onfocus = false; },
         SaveData() {
             // alert("Save data !")
-            console.log(this.userData.info[0].contents_.store_time);
+            console.log(this.userData.info);
             // this.$router.replace( location.pathname.split("/edit")[0] )
         }
     },

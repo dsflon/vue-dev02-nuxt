@@ -47,7 +47,7 @@
             </div>
 
             <button v-if="j > 0" type="button" class="info_box_inner_menu" @click="RemoveChild(j)">
-                <i class="a-icon a-icon-plus is_gray20 a-icon-lg"></i>
+                <i class="a-icon a-icon-minus is_gray20 a-icon-lg"></i>
             </button>
 
         </section>

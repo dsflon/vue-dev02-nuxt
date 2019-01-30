@@ -2,7 +2,7 @@
     <div>
 
         <app-header
-            :title="SetTitle"
+            :title="title"
             :userId=" $route.params.userid ? $route.params.userid : ''"
             :icon="checkId ? 'mypage' : 'followed'" />
 
@@ -59,7 +59,7 @@ export default {
     },
     head () {
         return {
-            title: this.userData ? this.userData.user_name + " | User | Step Lack" : "ユーザーが見つかりません。 | User | Step Lack",
+            title: this.title ? this.title + " | User | Step Lack" : "ユーザーが見つかりません。 | User | Step Lack",
             meta: [
                 { hid: 'description', name: 'description', content: this.userData ? this.userData.user_name + "さんのページです。" : "ユーザーが見つかりません。" }
             ]
@@ -67,6 +67,7 @@ export default {
     },
     data () {
         return {
+            title: null,
             error: null,
             userData: null
         }
@@ -78,10 +79,10 @@ export default {
         FooterBtns
     },
     computed : {
-        SetTitle () { // ページタイトル部分のチラツキ対処
-            let pageData = this.$store.state.common.pageData;
-            return pageData ? pageData.title : (this.userData ? this.userData.user_name : null)
-        },
+        // SetTitle () { // ページタイトル部分のチラツキ対処
+        //     let pageData = this.$store.state.common.pageData;
+        //     return pageData ? pageData.title : (this.userData ? this.userData.user_name : null)
+        // },
         checkId () {
             return this.$store.state.user.myData && this.$store.state.user.myData.user_id === this.$route.params.userid
         }
@@ -112,20 +113,24 @@ export default {
     },
     created: function() {
 
-        if(this.$store.state.detail.detailResult) this.userData = this.$store.state.detail.detailResult;
+        // ページタイトルチラツキ防止
+        if(this.$store.state.common.pageData) {
+            this.title = this.$store.state.common.pageData.title;
+        }
+
+        //userデータ設定
+        if(this.$store.state.detail.detailResult) {
+            this.userData = this.$store.state.detail.detailResult;
+        }
 
         if(!this.$route.params.userid) {
-
             this.error = "ユーザーが見つかりませんでした。"
-
         } else {
-
             if( window.prev !== "post" ) {
                 this.GetStart();
             } else if( window.prev === "post" && !this.$store.state.detail.detailResult ) {
                 this.GetStart();
             }
-
         }
 
         localStorage.setItem('steplack_lastpage', JSON.stringify({
@@ -137,6 +142,12 @@ export default {
     },
     mounted: function() {
         this.$store.dispatch('common/SetPageData',null)
+    },
+    updated: function() {
+        // detailResult取得後、ページタイトル再設定
+        if(this.$store.state.detail.detailResult) {
+            this.title = this.userData.user_name;
+        }
     },
     beforeCreate: function() {
         if( window.prev !== "post" ) this.$store.dispatch('detail/SetDetailResult',null)

@@ -52,6 +52,11 @@ import Follow from '~/scripts/_follow';
 
 export default {
 
+    data () {
+        return {
+            followed: false
+        }
+    },
     props: [
         "type",
         "SaveData"
@@ -113,7 +118,17 @@ export default {
             Follow(this)
         }
     },
-    mounted: function() {
+    created: function() {
+        // followアイコンチラツキ防止
+        // if(this.type === 'detail' && this.$store.state.common.pageData) {
+        //     this.followed = this.$store.state.common.pageData.followed;
+        // }
+    },
+    updated: function() {
+        // detailResult取得後、followアイコン再設定
+        // if(this.type === 'detail' && this.$store.state.detail.followed) {
+        //     this.followed = this.$store.state.detail.followed;
+        // }
     }
 
 }
