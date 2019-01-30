@@ -10,6 +10,7 @@ import Api from '~/plugins/_api';
  */
 export const state = () => ({
     myData: null,
+    editData: null,
     signupData: null
 })
 
@@ -20,6 +21,9 @@ export const state = () => ({
 export const mutations = {
     registerMyData(state, data) {
         state.myData = data
+    },
+    registerEditData(state, data) {
+        state.editData = data
     },
     registerSignupData(state, data) {
         state.signupData = data
@@ -42,6 +46,20 @@ export const actions = {
 
             localStorage.setItem(window.LSUser, JSON.stringify(data));
             context.commit('registerMyData', data);
+            resolve(data);
+
+        })
+    },
+
+    /**
+     * プロフィール編集画面のデータを登録する
+     * @param {object} data - My Data
+     */
+    SetEditData(context, data) {
+
+        return new Promise((resolve, reject) => {
+
+            context.commit('registerEditData', data);
             resolve(data);
 
         })

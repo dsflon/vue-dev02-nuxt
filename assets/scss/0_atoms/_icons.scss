@@ -10,6 +10,7 @@
         vertical-align: middle;
         line-height: 1;
 
+        &.is_white { color: #FFF; }
         &.is_gray { color: $black50; }
         &.is_gray20 { color: $black20; }
         &.is_blue { color: $blue; }

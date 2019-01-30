@@ -59,7 +59,7 @@ export default {
     data() {
         return {
             onfocus: false,
-            userData: JSON.parse(JSON.stringify(this.$store.state.detail.detailResult)),
+            userData: null,
             postData: { info: [], menu: [] }
         }
     },
@@ -78,13 +78,11 @@ export default {
             // this.$router.replace( location.pathname.split("/edit")[0] )
         }
     },
-    beforeCreate: function() {
-    },
     created: function() {
-    },
-    mounted: function() {
-    },
-    beforeDestroy: function() {
+        this.$store.dispatch('user/SetEditData',this.$store.state.detail.detailResult)
+        .then((data) => {
+            this.userData = JSON.parse(JSON.stringify(data));
+        });
     },
     destroyed: function() {
         window.prev = "edit";

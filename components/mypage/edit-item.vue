@@ -137,18 +137,6 @@
                 </section>
             </div>
 
-            <!-- <section class="m-form_sec">
-                <h2 class="a-ttl is_s is_gray f-mb5">住所</h2>
-                <label class="m-form_bg">
-                    <input
-                        class="a-form_input"
-                        required
-                        type="text"
-                        placeholder="住所を入力してください"
-                        value="">
-                </label>
-            </section> -->
-
         </div>
 
         <div class="user_tab">
@@ -157,13 +145,13 @@
                     <edit-item-info
                         :OnFocus="OnFocus"
                         :OnBlur="OnBlur"
-                        :infoData="userData.info? userData.info : null" />
+                        :userData="userData" />
                 </slide>
                 <slide>
                     <detail-item-menu
                         :OnFocus="OnFocus"
                         :OnBlur="OnBlur"
-                        :menuData="userData.menus? userData.menus : null" />
+                        :userData="userData" />
                 </slide>
             </carousel>
         </div>
