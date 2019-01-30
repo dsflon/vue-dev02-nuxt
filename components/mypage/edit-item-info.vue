@@ -4,79 +4,99 @@
 
         <div v-if="userData.info && userData.info.length !== 0" class="user_tab_inner user_tab_info">
 
-            <section
-                v-for="(item,i) in userData.info"
-                :key="i" class="info_box">
+            <draggable v-model="userData.info" :options="{'disabled':!itemDraggable}">
 
-                <transition name="fade">
-                    <div v-if="itemMenu === i" class="info_box_overlay" @click="ToggleItemMenu(null)"></div>
-                </transition>
-
-                <div class="info_box_ttl">
-                    <label class="m-form_bg m-form_label">
-                        <input
-                            class="a-form_input is_bold"
-                            type="text"
-                            placeholder="グループ名を入力してください"
-                            @focus="OnFocus"
-                            @blur="OnBlur"
-                            v-model="item.title">
-                    </label>
+                <section
+                    v-for="(item,i) in userData.info"
+                    :key="i" class="info_box">
 
                     <transition name="fade">
-                        <button v-if="itemMenu === i" type="button" class="info_box_menu_btn is_black" @click="ToggleItemMenu(null)">
-                            <i class="a-icon a-icon-plus a-icon-1_75x is_white is_cross"></i>
-                        </button>
-                        <button v-else type="button" class="info_box_menu_btn is_black" @click="ToggleItemMenu(i)">
-                            <i class="a-icon a-icon-menu a-icon-lg"></i>
-                        </button>
+                        <div v-if="itemMenu === i" class="info_box_overlay" @click="ToggleItemMenu(null)"></div>
                     </transition>
 
-                    <transition name="slide-left-toggle">
-                        <div v-if="itemMenu === i" class="info_box_menu">
-                            <ul>
-                                <li v-if="i !== 0">
-                                    <button type="button" @click="MoveItem('top',i)">
-                                        <i class="a-icon a-icon-arrow_top a-icon-lg is_gray"></i><span class="a-icon_txt">一つ上に移動する</span>
-                                    </button>
-                                </li>
-                                <li v-if="i !== userData.info.length - 1">
-                                    <button type="button" @click="MoveItem('bottom',i)">
-                                        <i class="a-icon a-icon-arrow_bottom a-icon-lg is_gray"></i><span class="a-icon_txt">一つ下に移動する</span>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button :disabled="userData.info.length <= 1 ? true : false" type="button" @click="RemoveItem(i)">
-                                        <i class="a-icon a-icon-minus a-icon-lg is_gray"></i><span class="a-icon_txt">このグループを削除する</span>
-                                    </button>
-                                </li>
-                            </ul>
+                    <div class="info_box_ttl">
+                        <div v-if="!itemDraggable">
+                            <label class="m-form_bg m-form_label">
+                                <input
+                                    class="a-form_input is_bold"
+                                    type="text"
+                                    placeholder="グループ名を入力してください"
+                                    @focus="OnFocus"
+                                    @blur="OnBlur"
+                                    v-model="item.title">
+                            </label>
+                            <transition name="fade">
+                                <button v-if="itemMenu === i" type="button" class="info_box_menu_btn is_black" @click="ToggleItemMenu(null)">
+                                    <i class="a-icon a-icon-plus a-icon-1_75x is_white is_cross"></i>
+                                </button>
+                                <button v-else type="button" class="info_box_menu_btn is_black" @click="ToggleItemMenu(i)">
+                                    <i class="a-icon a-icon-menu a-icon-lg"></i>
+                                </button>
+                            </transition>
                         </div>
-                    </transition>
+                        <div v-else>
+                            <h2>{{item.title}}</h2>
+                            <button type="button" class="info_box_menu_btn">
+                                <i class="a-icon a-icon-move a-icon-lg is_gray"></i>
+                            </button>
+                        </div>
 
-                </div>
+                        <transition name="slide-left-toggle">
+                            <div v-if="itemMenu === i" class="info_box_menu">
+                                <ul>
+                                    <!-- <li v-if="i !== 0">
+                                        <button type="button" @click="MoveItem('top',i)">
+                                            <i class="a-icon a-icon-arrow_top a-icon-lg is_gray"></i><span class="a-icon_txt">一つ上に移動する</span>
+                                        </button>
+                                    </li>
+                                    <li v-if="i !== userData.info.length - 1">
+                                        <button type="button" @click="MoveItem('bottom',i)">
+                                            <i class="a-icon a-icon-arrow_bottom a-icon-lg is_gray"></i><span class="a-icon_txt">一つ下に移動する</span>
+                                        </button>
+                                    </li> -->
+                                    <li>
+                                        <button :disabled="userData.info.length <= 1 ? true : false" type="button" @click="ItemDraggable()">
+                                            <i class="a-icon a-icon-move a-icon-lg is_gray"></i><span class="a-icon_txt">移動する</span>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button :disabled="userData.info.length <= 1 ? true : false" type="button" @click="RemoveItem(i)">
+                                            <i class="a-icon a-icon-minus a-icon-lg is_gray"></i><span class="a-icon_txt">削除する</span>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </transition>
 
-                <edit-item-info-store
-                    v-if="item.category==='store'"
-                    :i="i" :item="item" :OnFocus="OnFocus" :OnBlur="OnBlur" />
-                <!-- / item.type==='store' -->
+                    </div>
 
-                <edit-item-info-career
-                    v-else-if="item.category==='career'"
-                    :i="i" :item="item" :OnFocus="OnFocus" :OnBlur="OnBlur" />
-                <!-- / item.type==='career' -->
+                    <div v-if="!itemDraggable">
 
-                <edit-item-info-other
-                    v-else
-                    :i="i" :item="item" :OnFocus="OnFocus" :OnBlur="OnBlur" />
+                        <edit-item-info-store
+                            v-if="item.category==='store'"
+                            :i="i" :item="item" :OnFocus="OnFocus" :OnBlur="OnBlur" />
+                        <!-- / item.type==='store' -->
 
-            </section>
+                        <edit-item-info-career
+                            v-else-if="item.category==='career'"
+                            :i="i" :item="item" :OnFocus="OnFocus" :OnBlur="OnBlur" />
+                        <!-- / item.type==='career' -->
+
+                        <edit-item-info-other
+                            v-else
+                            :i="i" :item="item" :OnFocus="OnFocus" :OnBlur="OnBlur" />
+
+                    </div>
+
+                </section>
+
+            </draggable>
 
         </div>
 
         <p v-else class="no_result">基本情報がありません</p>
 
-        <div class="info_box_btn">
+        <div v-if="!itemDraggable" class="info_box_btn">
             <button type="button" @click="ToggleAddItemMenu">
                 <i class="a-icon a-icon-plus a-icon-1_75x is_blue" :class="{is_cross: addItemWindow}"></i>
             </button>
@@ -96,6 +116,8 @@
 </template>
 
 <script>
+import draggable from 'vuedraggable'
+
 import AdjustTextAreaHeight from '~/scripts/_adjustTextAreaHeight';
 import SetTimeOptions from '~/scripts/_setTimeOptions';
 
@@ -107,12 +129,15 @@ export default {
     props: [
         "userData",
         "OnFocus",
-        "OnBlur"
+        "OnBlur",
+        "itemDraggable",
+        "ToggleItemDraggable"
     ],
     components: {
         EditItemInfoStore,
         EditItemInfoCareer,
-        EditItemInfoOther
+        EditItemInfoOther,
+        draggable
     },
     data () {
         return {
@@ -158,22 +183,21 @@ export default {
             this.itemMenu = i;
             this.addItemWindow = false;
         },
-        MoveItem: function(type,index) {
-
-            if(type === 'bottom') {
-                this.userData.info.splice(index, 2, this.userData.info[index+1], this.userData.info[index]);
-            } else {
-                this.userData.info.splice(index-1, 2, this.userData.info[index], this.userData.info[index-1]);
-            }
-
+        // MoveItem: function(type,index) {
+        //     if(type === 'bottom') {
+        //         this.userData.info.splice(index, 2, this.userData.info[index+1], this.userData.info[index]);
+        //     } else {
+        //         this.userData.info.splice(index-1, 2, this.userData.info[index], this.userData.info[index-1]);
+        //     }
+        //     this.itemMenu = false;
+        // },
+        ItemDraggable: function() {
+            this.ToggleItemDraggable()
             this.itemMenu = false;
-
         },
         RemoveItem: function(index) {
             let res = confirm("このグループを削除しますか？");
             if( res == true ) {
-                // let removedList = this.userData.info.filter((a,i) => i !== index);
-                // this.userData.info = removedList;
                 this.userData.info.splice(index, 1);
                 this.itemMenu = false;
             }

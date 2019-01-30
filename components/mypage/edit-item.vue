@@ -140,15 +140,19 @@
         </div>
 
         <div class="user_tab">
-            <carousel :adjustableHeight="true" :perPage="1" :minSwipeDistance="50">
+            <carousel :adjustableHeight="true" :perPage="1" :minSwipeDistance="100">
                 <slide>
                     <edit-item-info
+                        :itemDraggable="itemDraggable"
+                        :ToggleItemDraggable="ToggleItemDraggable"
                         :OnFocus="OnFocus"
                         :OnBlur="OnBlur"
                         :userData="userData" />
                 </slide>
                 <slide>
                     <detail-item-menu
+                        :itemDraggable="itemDraggable"
+                        :ToggleItemDraggable="ToggleItemDraggable"
                         :OnFocus="OnFocus"
                         :OnBlur="OnBlur"
                         :userData="userData" />
@@ -174,7 +178,9 @@ export default {
     props: [
         "userData",
         "OnFocus",
-        "OnBlur"
+        "OnBlur",
+        "itemDraggable",
+        "ToggleItemDraggable"
     ],
     components: {
         ChangeTimeString,

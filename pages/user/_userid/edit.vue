@@ -3,6 +3,7 @@
 
         <app-header
             title="プロフィールを編集"
+            class="is_static"
             :userId=" $route.params.userid ? $route.params.userid : ''"
             icon="" />
 
@@ -11,15 +12,25 @@
             <div class="detail_inner">
 
                 <form ref="form" class="contents">
-
                     <edit-item
                         v-if="userData"
+                        :itemDraggable="itemDraggable"
+                        :ToggleItemDraggable="ToggleItemDraggable"
                         :OnFocus="OnFocus"
                         :OnBlur="OnBlur"
                         :userData="userData" />
-
                 </form>
-                <footer-btns :class="{is_focus: onfocus}" type="edit" :SaveData="SaveData" />
+                <footer-btns
+                    v-if="!itemDraggable"
+                    :itemDraggable="itemDraggable"
+                    :class="{is_focus: onfocus}"
+                    type="edit"
+                    :SaveData="SaveData" />
+                <div v-else class="m-btns is_sticky">
+                    <button class="a-btn is_gray" @click="ToggleItemDraggable">
+                        <i class="a-icon a-icon-check"></i>
+                    </button>
+                </div>
             </div>
 
         </main>
@@ -60,7 +71,7 @@ export default {
         return {
             onfocus: false,
             userData: null,
-            postData: { info: [], menu: [] }
+            itemDraggable: false,
         }
     },
     components: {
@@ -76,6 +87,9 @@ export default {
             // alert("Save data !")
             console.log(this.userData.info);
             // this.$router.replace( location.pathname.split("/edit")[0] )
+        },
+        ToggleItemDraggable: function() {
+            this.itemDraggable = !this.itemDraggable;
         }
     },
     created: function() {

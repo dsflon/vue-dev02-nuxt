@@ -2,6 +2,8 @@
 
 .fw #detail.is_edit {
 
+    #header { position: static; }
+
     .user_inner {
         .user_header {
             .user_info {
@@ -21,6 +23,9 @@
     }
 
     .user_tab {
+        .VueCarousel-pagination {
+            // position: sticky;
+        }
         .user_tab_info {
 
             .info_box {
