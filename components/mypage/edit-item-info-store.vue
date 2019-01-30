@@ -175,14 +175,18 @@ export default {
                 }
             }
             this.item.contents_.store_time.end_time = value;
+        },
+        DoAdjust() {
+            AdjustTextAreaHeight(this.$refs.textarea)
+            AdjustTextAreaHeight(this.$refs.textarea2)
         }
     },
     mounted: function() {
         this.SetStartTime(this.$refs.start_time)
-        AdjustTextAreaHeight(this.$refs.textarea)
-        AdjustTextAreaHeight(this.$refs.textarea2)
+        this.DoAdjust()
     },
     updated: function() {
+        this.DoAdjust()
     }
 
 }

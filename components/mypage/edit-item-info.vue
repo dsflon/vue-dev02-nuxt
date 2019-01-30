@@ -36,12 +36,12 @@
                         <div v-if="itemMenu === i" class="info_box_menu">
                             <ul>
                                 <li v-if="i !== 0">
-                                    <button type="button" @click="MoveItem('top')">
+                                    <button type="button" @click="MoveItem('top',i)">
                                         <i class="a-icon a-icon-arrow_top a-icon-lg is_gray"></i><span class="a-icon_txt">一つ上に移動する</span>
                                     </button>
                                 </li>
                                 <li v-if="i !== userData.info.length - 1">
-                                    <button type="button" @click="MoveItem('bottom')">
+                                    <button type="button" @click="MoveItem('bottom',i)">
                                         <i class="a-icon a-icon-arrow_bottom a-icon-lg is_gray"></i><span class="a-icon_txt">一つ下に移動する</span>
                                     </button>
                                 </li>
@@ -158,13 +158,23 @@ export default {
             this.itemMenu = i;
             this.addItemWindow = false;
         },
-        MoveItem: function(type) {
+        MoveItem: function(type,index) {
+
+            if(type === 'bottom') {
+                this.userData.info.splice(index, 2, this.userData.info[index+1], this.userData.info[index]);
+            } else {
+                this.userData.info.splice(index-1, 2, this.userData.info[index], this.userData.info[index-1]);
+            }
+
+            this.itemMenu = false;
+
         },
-        RemoveItem: function(j) {
+        RemoveItem: function(index) {
             let res = confirm("このグループを削除しますか？");
             if( res == true ) {
-                let removedList = this.userData.info.filter((a,i) => i !== j);
-                this.userData.info = removedList;
+                // let removedList = this.userData.info.filter((a,i) => i !== index);
+                // this.userData.info = removedList;
+                this.userData.info.splice(index, 1);
                 this.itemMenu = false;
             }
         }

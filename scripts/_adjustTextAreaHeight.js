@@ -1,5 +1,7 @@
 const AdjustTextAreaHeight = (target) => {
 
+	target.removeAttribute("style")
+
 	let maxHeight = parseFloat(getComputedStyle(target)["max-height"]),
 		minHeight = parseFloat(getComputedStyle(target)["min-height"]),
 		pt = parseFloat(getComputedStyle(target)["padding-top"]),
@@ -7,8 +9,8 @@ const AdjustTextAreaHeight = (target) => {
 
 	target.style.minHeight = "inherit";
 
-
 	SetHeight(target)
+	target.removeEventListener('input', SetHeight);
 	target.addEventListener('input', SetHeight);
 
 	function SetHeight(e) {
@@ -37,9 +39,9 @@ const AdjustTextAreaHeight = (target) => {
 		// 	// e.style.height = maxHeight + "px";
 		// }
 
-		if(!e.value) {
-			e.style.height = minHeight + "px";
-		}
+		// if(!e.value) {
+		// 	e.style.height = minHeight + "px";
+		// }
 
 	}
 

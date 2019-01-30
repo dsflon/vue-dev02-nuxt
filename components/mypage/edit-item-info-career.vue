@@ -89,11 +89,12 @@ export default {
                 "text": ""
             })
         },
-        RemoveChild: function(j) {
+        RemoveChild: function(index) {
             let res = confirm("項目を削除しますか？");
             if( res == true ) {
-                let removedList = this.item.contents_.filter((a,i) => i !== j);
-                this.item.contents_ = removedList;
+                // let removedList = this.item.contents_.filter((a,i) => i !== index);
+                // this.item.contents_ = removedList;
+                this.item.contents_.splice(index, 1);
             }
         },
         DoAdjust() {
@@ -104,7 +105,7 @@ export default {
             }
             if(this.$refs.textarea && this.$refs.textarea.length > 0) {
                 for (var i = 0; i < this.$refs.textarea.length; i++) {
-                    if(!this.$refs.textarea[i].style["0"]) AdjustTextAreaHeight(this.$refs.textarea[i])
+                    AdjustTextAreaHeight(this.$refs.textarea[i])
                 }
             }
         }
