@@ -29,6 +29,13 @@
         background: url(../images/common/select.svg) no-repeat right center;
         background-size: auto 16px;
         padding-right: 15px;
+            position: relative;
+        &:before {
+            content: "df";
+            position: absolute;
+            top: 50%; left: 15px;
+            z-index: 2;
+        }
     }
 
     input[type="date"],
@@ -56,6 +63,22 @@
         }
         &.is_placeholder:before {
             color: $black30;
+            font-size: 14px;
+        }
+    }
+    [data-select].is_placeholder {
+        position: relative;
+        select { color: transparent; }
+        &:before {
+            content: attr(data-select);
+            color: $black30;
+            position: absolute;
+            left: 10px; top: 50%;
+            z-index: 1;
+            font-size: 14px;
+            transform: translateY(-50%);
+            line-height: 1;
+            font-weight: normal;
         }
     }
 

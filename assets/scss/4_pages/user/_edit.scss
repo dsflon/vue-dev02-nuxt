@@ -29,7 +29,21 @@
         // .VueCarousel-pagination {
         //     // position: sticky;
         // }
-        .user_tab_detail { min-height: 80vh; }
+        .user_tab_detail {
+            min-height: calc(100vh - 46px - 90px - 20px);
+            &.is_itemDraggable {
+                position: relative;
+                &:before {
+                    content: "";
+                    display: block;
+                    width: 80%; height: 100%;
+                    position: absolute;
+                    top: 0; left: 0;
+                    // background: #000;
+                    z-index: 1;
+                }
+            }
+        }
         .user_tab_btns {
             position: sticky;
             top: 0;
@@ -149,6 +163,7 @@
                 position: absolute;
                 bottom: 50px;
                 width: 100%;
+                z-index: 2;
                 ul {
                     display: table;
                     margin: 0 auto;

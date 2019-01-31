@@ -67,7 +67,7 @@
                         class="a-form_select"
                         tabIndex="-1"
                         ref="select"
-                        @input="AdjustJobName($event); OnBlur()"
+                        @input="AdjustJobName($event); _AdjustSelect($event); OnBlur()"
                         @focus="OnFocus" @blur="OnBlur"
                         v-model="userData.job_id">
                         <option value="">選択してください</option>
@@ -112,9 +112,10 @@
                         <select
                             tabindex="-1"
                             class="a-form_select"
-                            @focus="OnFocus" @input="OnBlur" @blur="OnBlur"
+                            @input="_AdjustSelect($event); OnBlur()"
+                            @focus="OnFocus" @blur="OnBlur"
                             v-model="userData.user_sex">
-                            <option>選択してください</option>
+                            <option value="">選択してください</option>
                             <option value="0">女性</option>
                             <option value="1">男性</option>
                         </select>
@@ -124,7 +125,7 @@
                     <h2 class="a-ttl is_s is_gray f-mb5">生年月日</h2>
                     <label class="m-form_bg">
                         <input
-                            class="a-form_input"
+                            class="a-form_input a-form_date"
                             required
                             type="date"
                             ref="input_date"
@@ -142,7 +143,7 @@
                 <li :class="{is_active: tabIndex == 0}"><button type="button" @click="ToggleTab(0)">基本情報</button></li>
                 <li :class="{is_active: tabIndex == 1}"><button type="button" @click="ToggleTab(1)">メニュー</button></li>
             </ul>
-            <div class="user_tab_detail">
+            <div class="user_tab_detail" :class="{is_itemDraggable:itemDraggable}">
                 <transition name="tab">
                     <edit-item-info
                         v-if="tabIndex == 0"
@@ -168,6 +169,7 @@
 import { Carousel, Slide } from 'vue-carousel';
 import AdjustTextAreaHeight from '~/scripts/_adjustTextAreaHeight';
 import AdjustInputDate from '~/scripts/_adjustInputDate';
+import AdjustSelect from '~/scripts/_adjustSelect';
 
 import ChangeTimeString from '~/components/common/changeTimeString.vue'
 
@@ -206,9 +208,8 @@ export default {
         ToggleTab: function(i) {
             this.tabIndex = i
         },
-        _AdjustInputDate(e) {
-            AdjustInputDate(e)
-        },
+        _AdjustInputDate(e) { AdjustInputDate(e) },
+        _AdjustSelect(e) { AdjustSelect(e) },
         AdjustJobName(e) {
             let i = e.currentTarget.value,
                 jobList = this.$store.state.search.jobList;
@@ -226,9 +227,16 @@ export default {
         })
     },
     mounted: function() {
-        AdjustTextAreaHeight(this.$refs.textarea)
-        AdjustInputDate(this.$refs.input_date)
-        // setTimeout( this.AdjustTabName, 1 )
+        // setTimeout( ()=> {
+            let select = document.getElementsByClassName('a-form_select'),
+                date = document.getElementsByClassName('a-form_date'),
+                textarea = document.getElementsByClassName('a-form_textarea');
+            for (var i = 0; i < select.length; i++) AdjustSelect(select[i])
+            for (var i = 0; i < textarea.length; i++) AdjustTextAreaHeight(textarea[i])
+            for (var i = 0; i < date.length; i++) AdjustInputDate(date[i])
+        // }, 1 )
+    },
+    updated: function() {
     }
 
 }

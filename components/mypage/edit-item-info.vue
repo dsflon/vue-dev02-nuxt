@@ -177,7 +177,7 @@ export default {
             this.itemMenu = false;
         },
         AddItem: function(category) {
-            this.userData.info.push(this.newItem[category])
+            this.userData.info.push( JSON.parse(JSON.stringify(this.newItem[category])) )
             this.addItemWindow = false;
         },
         ToggleItemMenu: function(i) {

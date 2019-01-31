@@ -66,6 +66,7 @@
 <script>
 import AdjustTextAreaHeight from '~/scripts/_adjustTextAreaHeight';
 import AdjustInputDate from '~/scripts/_adjustInputDate';
+
 export default {
     props: [
         "item",
@@ -80,9 +81,7 @@ export default {
     computed : {
     },
     methods: {
-        _AdjustInputDate(e) {
-            AdjustInputDate(e)
-        },
+        _AdjustInputDate(e) { AdjustInputDate(e) },
         AddChild() {
             this.item.contents_.push({
                 "date": { "start": "", "end": "" },
@@ -92,23 +91,11 @@ export default {
         },
         RemoveChild: function(index) {
             let res = confirm("項目を削除しますか？");
-            if( res == true ) {
-                // let removedList = this.item.contents_.filter((a,i) => i !== index);
-                // this.item.contents_ = removedList;
-                this.item.contents_.splice(index, 1);
-            }
+            if( res == true ) this.item.contents_.splice(index, 1);
         },
         DoAdjust() {
-            if(this.$refs.input_date && this.$refs.input_date.length > 0) {
-                for (var i = 0; i < this.$refs.input_date.length; i++) {
-                    AdjustInputDate(this.$refs.input_date[i])
-                }
-            }
-            if(this.$refs.textarea && this.$refs.textarea.length > 0) {
-                for (var i = 0; i < this.$refs.textarea.length; i++) {
-                    AdjustTextAreaHeight(this.$refs.textarea[i])
-                }
-            }
+            for (var i = 0; i < this.$refs.input_date.length; i++) AdjustInputDate(this.$refs.input_date[i])
+            for (var i = 0; i < this.$refs.textarea.length; i++) AdjustTextAreaHeight(this.$refs.textarea[i])
         }
     },
     mounted: function() {

@@ -48,12 +48,15 @@
                 <h3 class="a-ttl is_s is_gray f-mb5">駅からの移動手段</h3>
                 <label class="m-form_bg">
                     <select
+                        ref="transportation"
                         class="a-form_select"
-                        @focus="OnFocus" @input="OnBlur" @blur="OnBlur"
+                        @input="_AdjustSelect($event); OnBlur()"
+                        @focus="OnFocus" @blur="OnBlur"
                         v-model="item.contents_.store_address.transportation">
-                        <option value="徒歩">徒歩</option>
-                        <option value="バス">バス</option>
-                        <option value="タクシー">タクシー</option>
+                        <option value="">選択してください</option>
+                        <option value="0">徒歩</option>
+                        <option value="1">バス</option>
+                        <option value="2">タクシー</option>
                     </select>
                 </label>
             </section>
@@ -74,7 +77,7 @@
                     <select
                         ref="start_time"
                         class="a-form_select"
-                        @input="SetStartTime($event); OnBlur()"
+                        @input="SetStartTime($event); _AdjustSelect($event); OnBlur()"
                         @focus="OnFocus" @blur="OnBlur"
                         v-model="item.contents_.store_time.start_time">
                         <option value="">選択してください</option>
@@ -92,7 +95,8 @@
                         ref="end_time"
                         class="a-form_select"
                         :data-value="item.contents_.store_time.end_time"
-                        @focus="OnFocus" @input="OnBlur" @blur="OnBlur"
+                        @input="_AdjustSelect($event); OnBlur()"
+                        @focus="OnFocus" @blur="OnBlur"
                         v-model="item.contents_.store_time.end_time">
                         <option value="">選択してください</option>
                         <option
@@ -133,6 +137,8 @@
 <script>
 import AdjustTextAreaHeight from '~/scripts/_adjustTextAreaHeight';
 import SetTimeOptions from '~/scripts/_setTimeOptions';
+import AdjustSelect from '~/scripts/_adjustSelect';
+
 export default {
     props: [
         "item",
@@ -156,6 +162,7 @@ export default {
         }
     },
     methods: {
+        _AdjustSelect(e) { AdjustSelect(e) },
         SetStartTime: function(e) {
             setTimeout(()=> {
                 this.SetEndTime(this.$refs.end_time)
@@ -173,8 +180,10 @@ export default {
             this.item.contents_.store_time.end_time = value;
         },
         DoAdjust() {
-            AdjustTextAreaHeight(this.$refs.textarea)
-            AdjustTextAreaHeight(this.$refs.textarea2)
+            let textarea = document.getElementsByClassName('a-form_textarea'),
+                select = document.getElementsByClassName('a-form_select');
+            for (var i = 0; i < textarea.length; i++) AdjustTextAreaHeight(textarea[i])
+            for (var i = 0; i < select.length; i++) AdjustSelect(select[i])
         }
     },
     mounted: function() {
