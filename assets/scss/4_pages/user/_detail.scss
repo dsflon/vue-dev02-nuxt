@@ -79,8 +79,8 @@
             .VueCarousel-wrapper {
                 order: 2;
                 width: 100%;
-                // transition: height 1s;
-                min-height: 50vh;
+                    min-height: calc(100vh - 46px - 46px - 90px - 20px);
+                    .is_ios &  { min-height: calc(100vh - 46px - 46px - 90px - 40px); }
             }
             .VueCarousel-pagination {
                 order: 1;
