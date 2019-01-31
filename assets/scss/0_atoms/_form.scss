@@ -2,9 +2,11 @@
 
 .fw {
 
-    button[disabled="disabled"] {
-        color: $black30;
-        .a-icon { color: $black30; }
+    button {
+        &[disabled="disabled"] {
+            color: $black30;
+            .a-icon { color: $black30; }
+        }
     }
 
     .a-date_tilde {

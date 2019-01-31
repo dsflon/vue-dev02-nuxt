@@ -4,7 +4,9 @@
 
         <div v-if="userData.info && userData.info.length !== 0" class="user_tab_inner user_tab_info">
 
-            <draggable v-model="userData.info" :options="{'disabled':!itemDraggable}">
+            <draggable
+                v-model="userData.info"
+                :options="{'disabled':!itemDraggable, animation: 150}">
 
                 <section
                     v-for="(item,i) in userData.info"

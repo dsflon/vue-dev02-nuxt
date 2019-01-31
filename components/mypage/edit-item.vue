@@ -140,24 +140,28 @@
         </div>
 
         <div class="user_tab">
-            <carousel :adjustableHeight="true" :perPage="1" :minSwipeDistance="100">
-                <slide>
+            <ul class="user_tab_btns">
+                <li :class="{is_active: tabIndex == 0}"><button type="button" @click="ToggleTab(0)">基本情報</button></li>
+                <li :class="{is_active: tabIndex == 1}"><button type="button" @click="ToggleTab(1)">メニュー</button></li>
+            </ul>
+            <div class="user_tab_detail">
+                <transition name="tab">
                     <edit-item-info
+                        v-if="tabIndex == 0"
                         :itemDraggable="itemDraggable"
                         :ToggleItemDraggable="ToggleItemDraggable"
                         :OnFocus="OnFocus"
                         :OnBlur="OnBlur"
                         :userData="userData" />
-                </slide>
-                <slide>
                     <detail-item-menu
+                        v-if="tabIndex == 1"
                         :itemDraggable="itemDraggable"
                         :ToggleItemDraggable="ToggleItemDraggable"
                         :OnFocus="OnFocus"
                         :OnBlur="OnBlur"
                         :userData="userData" />
-                </slide>
-            </carousel>
+                </transition>
+            </div>
         </div>
 
     </div>
@@ -189,14 +193,22 @@ export default {
         Carousel,
         Slide
     },
+    data() {
+        return {
+            tabIndex: 0
+        }
+    },
     methods: {
-        AdjustTabName() {
-            let tab = document.getElementsByClassName('VueCarousel-dot-button'),
-                tabTxt = [ "基本情報", "メニュー"];
-
-            for (var i = 0; i < tab.length; i++) {
-                tab[i].innerText = tabTxt[i];
-            }
+        // AdjustTabName() {
+        //     let tab = document.getElementsByClassName('VueCarousel-dot-button'),
+        //         tabTxt = [ "基本情報", "メニュー"];
+        //
+        //     for (var i = 0; i < tab.length; i++) {
+        //         tab[i].innerText = tabTxt[i];
+        //     }
+        // },
+        ToggleTab: function(i) {
+            this.tabIndex = i
         },
         _AdjustInputDate(e) {
             AdjustInputDate(e)
@@ -220,7 +232,7 @@ export default {
     mounted: function() {
         AdjustTextAreaHeight(this.$refs.textarea)
         AdjustInputDate(this.$refs.input_date)
-        setTimeout( this.AdjustTabName, 1 )
+        // setTimeout( this.AdjustTabName, 1 )
     }
 
 }

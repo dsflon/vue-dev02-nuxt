@@ -23,8 +23,42 @@
     }
 
     .user_tab {
-        .VueCarousel-pagination {
-            // position: sticky;
+        // .drag_disabled {
+        //     .VueCarousel-inner { transform: none !important; }
+        // }
+        // .VueCarousel-pagination {
+        //     // position: sticky;
+        // }
+        .user_tab_detail { min-height: 100vh; }
+        .user_tab_btns {
+            position: sticky;
+            top: 0;
+            z-index: 4;
+                background: #FFF;
+                display: flex;
+                padding: 0 15px;
+                justify-content: space-around;
+                margin-bottom: 20px;
+            li {
+                width: 100%;
+                margin: 0 !important;
+                padding: 0 !important;
+                button {
+                    display: block;
+                    text-align: center;
+                    width: 100% !important;
+                    height: 46px !important;
+                    color: $black50;
+                    @include bold;
+                    background: none !important;
+                    border-radius: 0;
+                    outline: none;
+                }
+                &.is_active button {
+                    color: $color_link;
+                    @include triangle($color:#FFF, $width:20, $height:10, $direction:bottom);
+                }
+            }
         }
         .user_tab_info {
 
@@ -131,9 +165,11 @@
                         text-align: left;
                         &:last-child { border-bottom: none; }
                         button {
+                            width: 100%;
                             color: #FFF;
                             line-height: 1;
                             padding: 14px 10px;
+                            text-align: left;
                             .a-icon_txt { margin-left: 8px; }
                         }
                     }

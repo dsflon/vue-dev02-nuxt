@@ -40,7 +40,7 @@
             <i class="a-icon a-icon-cross"></i>
         </button>
         <button class="a-btn is_blue" @click="SaveData">
-            <i class="a-icon a-icon-check"></i>
+            <i class="a-icon a-icon-memory a-icon-1_75x"></i>
         </button>
     </div>
 

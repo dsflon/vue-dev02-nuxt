@@ -21,18 +21,18 @@
 }
 
 .<%= className %>-lg {
-  font-size: 1.3333333333333333em;
+  font-size: 1.3333333333333333em !important;
   line-height: 0.75em;
   vertical-align: -15%;
 }
-.<%= className %>-1_5x { font-size: 1.5em; }
-.<%= className %>-1_75x { font-size: 1.75em; }
-.<%= className %>-2x { font-size: 2em; }
-.<%= className %>-3x { font-size: 3em; }
-.<%= className %>-4x { font-size: 4em; }
-.<%= className %>-5x { font-size: 5em; }
+.<%= className %>-1_5x { font-size: 1.5em !important; }
+.<%= className %>-1_75x { font-size: 1.75em !important; }
+.<%= className %>-2x { font-size: 2em !important; }
+.<%= className %>-3x { font-size: 3em !important; }
+.<%= className %>-4x { font-size: 4em !important; }
+.<%= className %>-5x { font-size: 5em !important; }
 .<%= className %>-fw {
-  width: 1.2857142857142858em;
+  width: 1.2857142857142858em !important;
   text-align: center;
 }
 
