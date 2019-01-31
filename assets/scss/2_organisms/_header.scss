@@ -62,10 +62,13 @@
                     padding:  20px;
                     text-align: left;
                     color: $color_text;
-                    // @include bold;
-                    &.is_arw {
-                        @include arrowAbs($color: $color_text, $size:8, $width:1, $layout:right, $position:20, $direction:right);
-                    }
+                    @include bold;
+                    .a-icon { width: 22px; text-align: center; }
+                    .a-icon_txt { margin-left: 8px; }
+                    &.is_signout { background: $black10; color: $black50; }
+                    // &.is_arw {
+                    //     @include arrowAbs($color: $color_text, $size:8, $width:1, $layout:right, $position:20, $direction:right);
+                    // }
                 }
             }
         }

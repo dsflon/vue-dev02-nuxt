@@ -30,12 +30,18 @@
                             <router-link
                                 class="header_menu_btn"
                                 :to="$route.path+'/edit'">
-                                <i class="a-icon a-icon-edit a-icon-lg"></i>
-                                <span class="a-icon_txt">プロフィール編集</span>
+                                <i class="a-icon a-icon-edit a-icon-lg"></i><span class="a-icon_txt">プロフィール編集</span>
                             </router-link>
                         </li>
                         <li>
-                            <button class="header_menu_btn" @click="SignOut()">サインアウト</button>
+                            <router-link
+                                class="header_menu_btn"
+                                :to="$route.path+'/account'">
+                                <i class="a-icon a-icon-user a-icon-1_5x"></i><span class="a-icon_txt">アカウント編集</span>
+                            </router-link>
+                        </li>
+                        <li>
+                            <button class="header_menu_btn is_signout" @click="SignOut()">サインアウト</button>
                         </li>
                     </ul>
                 </div>

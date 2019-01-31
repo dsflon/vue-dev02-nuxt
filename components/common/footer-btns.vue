@@ -28,7 +28,7 @@
 
     <div v-else-if="type == 'mypage'" class="m-btns is_sticky">
         <button class="a-btn" @click="backHome">
-            <i class="a-icon a-icon-cross"></i>
+            <i class="a-icon a-icon-arrow_left"></i>
         </button>
         <button class="a-btn is_l is_blue">
             <i class="a-icon a-icon-picture_plus"></i>

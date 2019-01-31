@@ -28,6 +28,7 @@
                     <li v-for="item in $store.state.search.stationList" :key="item.station_id">
                         <button :id="item.station_id" type="button" @click="SearchStart">
                             {{item.station_name}}
+                            <i class="a-icon a-icon-arrow_right is_gray20"></i>
                         </button>
                     </li>
                 </ul>

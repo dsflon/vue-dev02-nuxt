@@ -67,7 +67,7 @@ export default {
         }
         else {
             // 通常遷移
-            return "slide-down"
+            return "fade"
         }
 
     },
