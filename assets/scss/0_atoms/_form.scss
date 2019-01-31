@@ -60,6 +60,10 @@
             transform: translateY(-50%);
             line-height: 1;
             font-weight: normal;
+            white-space: nowrap;
+            overflow: hidden;
+            width: calc(100% - 35px);
+            pointer-events: none;
         }
         &.is_placeholder:before {
             color: $black30;
@@ -79,6 +83,10 @@
             transform: translateY(-50%);
             line-height: 1;
             font-weight: normal;
+            white-space: nowrap;
+            overflow: hidden;
+            width: calc(100% - 35px);
+            pointer-events: none;
         }
     }
 

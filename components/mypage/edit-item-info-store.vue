@@ -54,9 +54,9 @@
                         @focus="OnFocus" @blur="OnBlur"
                         v-model="item.contents_.store_address.transportation">
                         <option value="">選択してください</option>
-                        <option value="0">徒歩</option>
-                        <option value="1">バス</option>
-                        <option value="2">タクシー</option>
+                        <option value="徒歩">徒歩</option>
+                        <option value="バス">バス</option>
+                        <option value="タクシー">タクシー</option>
                     </select>
                 </label>
             </section>
