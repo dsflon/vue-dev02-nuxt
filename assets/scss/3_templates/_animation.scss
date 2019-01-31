@@ -147,3 +147,15 @@ $pageanim: 0.15s;
     transform: translateX(10px);
     opacity: 0;
 }
+
+
+
+// ----------------------------------------------------------
+// tab
+// ----------------------------------------------------------
+.tab-enter-active {
+    transition: opacity $pageanim * 2 ease;
+}
+.tab-enter {
+    opacity: 0;
+}
