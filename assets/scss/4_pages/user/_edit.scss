@@ -31,6 +31,7 @@
         // }
         .user_tab_detail {
             min-height: calc(100vh - 46px - 90px - 20px);
+            .is_ios &  { min-height: calc(100vh - 46px - 90px - 40px); }
             &.is_itemDraggable {
                 position: relative;
                 &:before {

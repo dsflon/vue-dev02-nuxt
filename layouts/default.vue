@@ -1,20 +1,38 @@
 <template>
     <div id="app" ref="app" data-message>
         <nuxt/>
-        <div
-            @click="ToggleMenu()"
-            :class="['overlay', $store.state.common.menu ? 'is_menu': null]"></div>
+        <app-footer :class="{is_hide: CheckPage}" />
+        <transition name="fade">
+            <div v-if="$store.state.common.menu" @click="ToggleMenu()" class="overlay"></div>
+        </transition>
     </div>
 </template>
 
 <script>
+import AppFooter from '~/components/common/footer.vue'
 import BodyMessage from '~/scripts/_bodyMessage';
 
 export default {
-    components: {},
+    components: {
+        AppFooter
+    },
     methods: {
         ToggleMenu: function() {
             this.$store.dispatch('common/ToggleMenu')
+        }
+    },
+    computed: {
+        CheckPage() {
+            switch (this.$route.name) {
+                case "index":
+                case "message":
+                case "timeline":
+                case "notification":
+                return false
+
+                default:
+                return true
+            }
         }
     },
     created: function() {
@@ -30,23 +48,9 @@ export default {
     mounted: function() {
         window.BodyMessage = new BodyMessage(this.$refs.app);
 
-        // if ( navigator.standalone || (screen.height-window.innerHeight<120) ) {
-        //     console.log("standalone");
-        //     let lastPage = localStorage.getItem('steplack_lastpage');
-        //         lastPage = lastPage ? JSON.parse(lastPage) : null;
-        //
-        //     if(lastPage) {
-        //         let limit = new Date().getTime() - lastPage.time;
-        //             limit = limit / (1000 * 60 * 60); // hour
-        //
-        //         // 離脱して24時間以内はリダイレクト
-        //         if(
-        //             location.pathname !== lastPage.page && Math.floor(limit) <= 24
-        //         ) {
-        //             this.$router.replace(lastPage.page);
-        //         }
-        //     }
-        // }
+        const currentName = this.$route.name;
+        console.log(currentName);
+
 
     }
 

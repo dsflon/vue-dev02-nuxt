@@ -4,7 +4,7 @@
             <button
                 class="a-btn_header is_m is_pink"
                 @click="follow">
-                <i class="a-icon a-icon-friends_check a-icon-1_75x"></i>
+                <i class="a-icon a-icon-friends_check a-icon-1_5x"></i>
             </button>
         </div>
     </transition>

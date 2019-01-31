@@ -35,7 +35,7 @@
                 </label>
             </div>
 
-            <section class="m-form_sec">
+            <!-- <section class="m-form_sec">
                 <h2 class="a-ttl is_s is_gray f-mb5 is_required">お名前</h2>
                 <label class="m-form_bg">
                     <input
@@ -134,7 +134,7 @@
                             v-model="userData.user_birthday">
                     </label>
                 </section>
-            </div>
+            </div> -->
 
         </div>
 

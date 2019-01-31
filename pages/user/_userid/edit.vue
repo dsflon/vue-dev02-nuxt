@@ -21,19 +21,17 @@
                         :userData="userData" />
                 </form>
 
-                <div v-if="!itemDraggable" class="m-btns is_sticky" :class="{is_focus: onfocus}">
-                    <button class="a-btn" @click="backMyPage">
+                <div class="m-btns is_sticky" :class="{is_focus: onfocus}">
+                    <button v-if="!itemDraggable" class="a-btn" @click="backMyPage">
                         <i class="a-icon a-icon-arrow_left"></i>
                     </button>
-                    <button class="a-btn" @click="ResetData">
+                    <button v-if="!itemDraggable" class="a-btn" @click="ResetData">
                         <i class="a-icon a-icon-rotate_left a-icon-1_75x"></i>
                     </button>
-                    <button class="a-btn is_blue" @click="SaveData">
+                    <button v-if="!itemDraggable" class="a-btn is_blue" @click="SaveData">
                         <i class="a-icon a-icon-memory a-icon-1_75x"></i>
                     </button>
-                </div>
-                <div v-else class="m-btns is_sticky">
-                    <button class="a-btn is_blue" @click="ToggleItemDraggable">
+                    <button v-if="itemDraggable" class="a-btn is_blue" @click="ToggleItemDraggable">
                         <i class="a-icon a-icon-check"></i>
                     </button>
                 </div>
