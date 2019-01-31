@@ -126,7 +126,7 @@ export default {
         if(!this.$route.params.userid) {
             this.error = "ユーザーが見つかりませんでした。"
         } else {
-            if( window.prev !== "post" ) {
+            if( window.prev !== "post" && window.prev != "edit" ) {
                 this.GetStart();
             } else if( window.prev === "post" && !this.$store.state.detail.detailResult ) {
                 this.GetStart();
@@ -150,7 +150,9 @@ export default {
         }
     },
     beforeCreate: function() {
-        if( window.prev !== "post" ) this.$store.dispatch('detail/SetDetailResult',null)
+        if( window.prev !== "post" && window.prev != "edit" ) {
+            this.$store.dispatch('detail/SetDetailResult',null)
+        }
     },
     destroyed: function(s) {
         window.prev = "user";

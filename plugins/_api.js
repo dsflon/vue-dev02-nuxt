@@ -11,7 +11,8 @@ const Api = location.hostname.indexOf("steplack.com") !== -1
     sendEmail: "//steplack.com/api/user_sign_up.php",
     sendOnetimePass: "//steplack.com/api/user_confirmation.php",
     signup: "/api_test/dammy.json",
-    signin: "/api_test/dammy.json"
+    signin: "/api_test/dammy.json",
+    saveMyData: "/api_test/dammy.json"
 } : { // local
     search: "/api_test/search.json",
     jobList: "/api_test/search_job_candidate.json",
@@ -22,7 +23,8 @@ const Api = location.hostname.indexOf("steplack.com") !== -1
     sendEmail: "/api_test/dammy.json",
     sendOnetimePass: "/api_test/dammy.json",
     signup: "/api_test/dammy.json",
-    signin: "/api_test/dammy.json"
+    signin: "/api_test/dammy.json",
+    saveMyData: "/api_test/dammy.json"
 }
 
 export default Api;

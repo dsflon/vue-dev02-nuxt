@@ -100,9 +100,17 @@ export default {
             });
         },
         SaveData() {
-            // alert("Save data !")
-            console.log(this.userData.info);
-            // this.$router.replace( location.pathname.split("/edit")[0] )
+
+            let res = confirm("変更を保存し公開しますか？");
+            if( res == true ) {
+
+                this.$store.dispatch('user/SaveEditData',this.userData)
+                .then((data)=> {
+                    this.$store.dispatch('detail/SetDetailResult',data)
+                    this.$router.replace( location.pathname.split("/edit")[0] )
+                })
+
+            }
         },
         ResetData() {
             let res = confirm("変更を取り消しますか？");
@@ -112,7 +120,7 @@ export default {
         },
         backMyPage() {
             if( this.CheckDiff() ) {
-                let res = confirm("変更を取り消しますか？");
+                let res = confirm("変更を取り消して前のページへ戻りますか？");
                 if( res == true ) {
                     this.$router.replace( location.pathname.split("/edit")[0] )
                 }

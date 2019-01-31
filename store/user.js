@@ -66,6 +66,34 @@ export const actions = {
     },
 
     /**
+     * プロフィール編集画面のデータをサーバに登録する
+     * @param {object} data - My Data
+     */
+    SaveEditData(context, data) {
+
+        window.Loading.Show();
+
+        return new Promise((resolve, reject) => {
+
+            // Fetch(Api.detail, postData, (json) => {
+            //     context.commit('registerEditData', data);
+            //     window.Loading.Hide();
+            //     resolve(json)
+            // },() => {
+            //     window.Loading.Hide();
+            //     reject("Error!! : detail/GetDetailResult","サーバーに接続できませんでした。");
+            // });
+            setTimeout(()=> {
+                context.commit('registerEditData', data);
+                window.Loading.Hide();
+                resolve(data)
+            },1000)
+
+
+        })
+    },
+
+    /**
      * サインアップ時のデータを一時保存する
      * @param {object} data - My Data
      */
