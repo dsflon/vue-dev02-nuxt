@@ -12,8 +12,7 @@
                         class="a-form_input is_bold"
                         type="text"
                         placeholder="タイトルを入力してください"
-                        @focus="OnFocus"
-                        @blur="OnBlur"
+                        @focus="OnFocus" @blur="OnBlur"
                         v-model="child.title">
                 </label>
             </div>
@@ -23,8 +22,7 @@
                         ref="textarea"
                         class="a-form_textarea"
                         :placeholder="(item.category==='links'?'URL':'テキスト')+'を入力してください'"
-                        @focus="OnFocus"
-                        @blur="OnBlur"
+                        @focus="OnFocus" @blur="OnBlur"
                         v-model="child.text"></textarea>
                 </label>
             </div>

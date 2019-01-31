@@ -15,7 +15,8 @@
                                 class="a-form_input"
                                 type="month"
                                 ref="input_date"
-                                @input="_AdjustInputDate"
+                                @input="_AdjustInputDate($event); OnBlur()"
+                                @focus="OnFocus" @blur="OnBlur"
                                 placeholder="年月を入力してください"
                                 v-model="child.date.start">
                         </label>
@@ -26,7 +27,8 @@
                                 class="a-form_input"
                                 type="month"
                                 ref="input_date"
-                                @input="_AdjustInputDate"
+                                @input="_AdjustInputDate($event); OnBlur()"
+                                @focus="OnFocus" @blur="OnBlur"
                                 placeholder="年月を入力してください"
                                 v-model="child.date.end">
                         </label>
@@ -40,8 +42,7 @@
                         ref="textarea"
                         class="a-form_textarea"
                         placeholder="テキストを入力してください"
-                        @focus="OnFocus"
-                        @blur="OnBlur"
+                        @focus="OnFocus" @blur="OnBlur"
                         v-model="child.text"></textarea>
                 </label>
             </div>

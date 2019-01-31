@@ -35,15 +35,6 @@
         </button>
     </div>
 
-    <div v-else-if="type == 'edit'" class="m-btns is_sticky">
-        <button class="a-btn" @click="backMyPage">
-            <i class="a-icon a-icon-cross"></i>
-        </button>
-        <button class="a-btn is_blue" @click="SaveData">
-            <i class="a-icon a-icon-memory a-icon-1_75x"></i>
-        </button>
-    </div>
-
 </template>
 
 
@@ -58,8 +49,7 @@ export default {
         }
     },
     props: [
-        "type",
-        "SaveData"
+        "type"
     ],
     computed : {
         CheckFollowed () { // ページタイトル部分のチラツキ対処
@@ -105,14 +95,6 @@ export default {
                     this.$router.replace( location.pathname.split("/post")[0] )
 
             }
-        },
-        backMyPage() {
-
-            let res = confirm("変更を取り消しますか？");
-            if( res == true ) {
-                this.$router.replace( location.pathname.split("/edit")[0] )
-            }
-
         },
         follow() {
             Follow(this)

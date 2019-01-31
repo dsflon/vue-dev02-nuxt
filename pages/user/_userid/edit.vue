@@ -20,14 +20,20 @@
                         :OnBlur="OnBlur"
                         :userData="userData" />
                 </form>
-                <footer-btns
-                    v-if="!itemDraggable"
-                    :itemDraggable="itemDraggable"
-                    :class="{is_focus: onfocus}"
-                    type="edit"
-                    :SaveData="SaveData" />
+
+                <div v-if="!itemDraggable" class="m-btns is_sticky" :class="{is_focus: onfocus}">
+                    <button class="a-btn" @click="backMyPage">
+                        <i class="a-icon a-icon-arrow_left"></i>
+                    </button>
+                    <button class="a-btn" @click="ResetData">
+                        <i class="a-icon a-icon-rotate_left a-icon-1_75x"></i>
+                    </button>
+                    <button class="a-btn is_blue" @click="SaveData">
+                        <i class="a-icon a-icon-memory a-icon-1_75x"></i>
+                    </button>
+                </div>
                 <div v-else class="m-btns is_sticky">
-                    <button class="a-btn is_gray" @click="ToggleItemDraggable">
+                    <button class="a-btn is_blue" @click="ToggleItemDraggable">
                         <i class="a-icon a-icon-check"></i>
                     </button>
                 </div>
@@ -72,6 +78,7 @@ export default {
             onfocus: false,
             userData: null,
             itemDraggable: false,
+            diff: false
         }
     },
     components: {
@@ -83,20 +90,45 @@ export default {
     methods: {
         OnFocus() { this.onfocus = true; },
         OnBlur() { this.onfocus = false; },
+        ToggleItemDraggable: function() {
+            this.itemDraggable = !this.itemDraggable;
+        },
+        SetEditData() {
+            this.$store.dispatch('user/SetEditData',this.$store.state.detail.detailResult)
+            .then((data) => {
+                this.userData = JSON.parse(JSON.stringify(data));
+            });
+        },
         SaveData() {
             // alert("Save data !")
             console.log(this.userData.info);
             // this.$router.replace( location.pathname.split("/edit")[0] )
         },
-        ToggleItemDraggable: function() {
-            this.itemDraggable = !this.itemDraggable;
+        ResetData() {
+            let res = confirm("変更を取り消しますか？");
+            if( res == true ) {
+                this.SetEditData();
+            }
+        },
+        backMyPage() {
+            if( this.CheckDiff() ) {
+                let res = confirm("変更を取り消しますか？");
+                if( res == true ) {
+                    this.$router.replace( location.pathname.split("/edit")[0] )
+                }
+            } else {
+                this.$router.replace( location.pathname.split("/edit")[0] )
+            }
+        },
+        CheckDiff() {
+            //内容の更新がある場合true
+            return JSON.stringify(this.$store.state.detail.detailResult)!==JSON.stringify(this.userData)
         }
     },
     created: function() {
-        this.$store.dispatch('user/SetEditData',this.$store.state.detail.detailResult)
-        .then((data) => {
-            this.userData = JSON.parse(JSON.stringify(data));
-        });
+        this.SetEditData();
+    },
+    updated: function() {
     },
     destroyed: function() {
         window.prev = "edit";

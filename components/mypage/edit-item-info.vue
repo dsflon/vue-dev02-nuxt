@@ -6,7 +6,7 @@
 
             <draggable
                 v-model="userData.info"
-                :options="{'disabled':!itemDraggable, animation: 150}">
+                :options="{disabled:!itemDraggable,animation:150}">
 
                 <section
                     v-for="(item,i) in userData.info"
@@ -23,8 +23,7 @@
                                     class="a-form_input is_bold"
                                     type="text"
                                     placeholder="グループ名を入力してください"
-                                    @focus="OnFocus"
-                                    @blur="OnBlur"
+                                    @focus="OnFocus" @blur="OnBlur"
                                     v-model="item.title">
                             </label>
                             <transition name="fade">
@@ -38,7 +37,7 @@
                         </div>
                         <div v-else>
                             <h2>{{item.title}}</h2>
-                            <button type="button" class="info_box_menu_btn">
+                            <button type="button" class="info_box_menu_btn draggable_btn">
                                 <i class="a-icon a-icon-move a-icon-lg is_gray"></i>
                             </button>
                         </div>
@@ -58,7 +57,7 @@
                                     </li> -->
                                     <li>
                                         <button :disabled="userData.info.length <= 1 ? true : false" type="button" @click="ItemDraggable()">
-                                            <i class="a-icon a-icon-move a-icon-lg is_gray"></i><span class="a-icon_txt">移動する</span>
+                                            <i class="a-icon a-icon-move a-icon-lg is_gray"></i><span class="a-icon_txt">並べ替える</span>
                                         </button>
                                     </li>
                                     <li>

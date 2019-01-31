@@ -9,8 +9,7 @@
                     class="a-form_input"
                     type="tel"
                     placeholder="000-0000"
-                    @focus="OnFocus"
-                    @blur="OnBlur"
+                    @focus="OnFocus" @blur="OnBlur"
                     v-model="item.contents_.store_address.postal">
             </label>
             <label class="m-form_bg m-form_label is_textarea">
@@ -18,8 +17,7 @@
                     ref="textarea"
                     class="a-form_textarea"
                     placeholder="住所を入力してください"
-                    @focus="OnFocus"
-                    @blur="OnBlur"
+                    @focus="OnFocus" @blur="OnBlur"
                     v-model="item.contents_.store_address.text"></textarea>
             </label>
         </section>
@@ -31,8 +29,7 @@
                         class="a-form_input"
                         type="text"
                         placeholder="最寄りの駅名を入力してください"
-                        @focus="OnFocus"
-                        @blur="OnBlur"
+                        @focus="OnFocus" @blur="OnBlur"
                         v-model="item.contents_.store_address.station">
                 </label>
             </section>
@@ -43,8 +40,7 @@
                         class="a-form_input"
                         type="text"
                         placeholder="改札・出口を入力してください"
-                        @focus="OnFocus"
-                        @blur="OnBlur"
+                        @focus="OnFocus" @blur="OnBlur"
                         v-model="item.contents_.store_address.gate">
                 </label>
             </section>
@@ -53,6 +49,7 @@
                 <label class="m-form_bg">
                     <select
                         class="a-form_select"
+                        @focus="OnFocus" @input="OnBlur" @blur="OnBlur"
                         v-model="item.contents_.store_address.transportation">
                         <option value="徒歩">徒歩</option>
                         <option value="バス">バス</option>
@@ -67,8 +64,7 @@
                         class="a-form_input"
                         type="text"
                         placeholder="駅からの時間を入力してください"
-                        @focus="OnFocus"
-                        @blur="OnBlur"
+                        @focus="OnFocus" @blur="OnBlur"
                         v-model="item.contents_.store_address.time">
                 </label>
             </section>
@@ -78,7 +74,8 @@
                     <select
                         ref="start_time"
                         class="a-form_select"
-                        @input="SetStartTime"
+                        @input="SetStartTime($event); OnBlur()"
+                        @focus="OnFocus" @blur="OnBlur"
                         v-model="item.contents_.store_time.start_time">
                         <option value="">選択してください</option>
                         <option
@@ -95,6 +92,7 @@
                         ref="end_time"
                         class="a-form_select"
                         :data-value="item.contents_.store_time.end_time"
+                        @focus="OnFocus" @input="OnBlur" @blur="OnBlur"
                         v-model="item.contents_.store_time.end_time">
                         <option value="">選択してください</option>
                         <option
@@ -112,8 +110,7 @@
                     class="a-form_input"
                     type="text"
                     placeholder="定休日を入力してください"
-                    @focus="OnFocus"
-                    @blur="OnBlur"
+                    @focus="OnFocus" @blur="OnBlur"
                     v-model="item.contents_.store_holiday.text">
             </label>
         </section>
@@ -124,8 +121,7 @@
                     ref="textarea2"
                     class="a-form_textarea"
                     placeholder="お店のURLを入力してください"
-                    @focus="OnFocus"
-                    @blur="OnBlur"
+                    @focus="OnFocus" @blur="OnBlur"
                     v-model="item.contents_.store_url.text"></textarea>
             </label>
         </section>

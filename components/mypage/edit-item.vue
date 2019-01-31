@@ -30,8 +30,7 @@
                         ref="textarea"
                         class="a-form_textarea"
                         placeholder="自己紹介を記入してください"
-                        @focus="OnFocus"
-                        @blur="OnBlur"
+                        @focus="OnFocus" @blur="OnBlur"
                         v-model="userData.description"></textarea>
                 </label>
             </div>
@@ -44,8 +43,7 @@
                         required
                         type="text"
                         placeholder="お名前を入力してください"
-                        @focus="OnFocus"
-                        @blur="OnBlur"
+                        @focus="OnFocus" @blur="OnBlur"
                         v-model="userData.user_fullname">
                 </label>
             </section>
@@ -57,8 +55,7 @@
                         required
                         type="text"
                         placeholder="ニックネームを入力してください"
-                        @focus="OnFocus"
-                        @blur="OnBlur"
+                        @focus="OnFocus" @blur="OnBlur"
                         v-model="userData.user_name">
                 </label>
             </section>
@@ -70,7 +67,8 @@
                         class="a-form_select"
                         tabIndex="-1"
                         ref="select"
-                        @input="AdjustJobName"
+                        @input="AdjustJobName($event); OnBlur()"
+                        @focus="OnFocus" @blur="OnBlur"
                         v-model="userData.job_id">
                         <option value="">選択してください</option>
                         <option
@@ -90,8 +88,7 @@
                             required
                             type="email"
                             placeholder="メールアドレスを入力してください"
-                            @focus="OnFocus"
-                            @blur="OnBlur"
+                            @focus="OnFocus" @blur="OnBlur"
                             v-model="userData.user_mail">
                     </label>
                 </section>
@@ -103,8 +100,7 @@
                             required
                             type="tel"
                             placeholder="電話番号を入力してください"
-                            @focus="OnFocus"
-                            @blur="OnBlur"
+                            @focus="OnFocus" @blur="OnBlur"
                             v-model="userData.tel">
                     </label>
                 </section>
@@ -116,6 +112,7 @@
                         <select
                             tabindex="-1"
                             class="a-form_select"
+                            @focus="OnFocus" @input="OnBlur" @blur="OnBlur"
                             v-model="userData.user_sex">
                             <option>選択してください</option>
                             <option value="0">女性</option>
@@ -131,7 +128,8 @@
                             required
                             type="date"
                             ref="input_date"
-                            @input="_AdjustInputDate"
+                            @input="_AdjustInputDate($event); OnBlur()"
+                            @focus="OnFocus" @blur="OnBlur"
                             v-model="userData.user_birthday">
                     </label>
                 </section>
@@ -150,15 +148,13 @@
                         v-if="tabIndex == 0"
                         :itemDraggable="itemDraggable"
                         :ToggleItemDraggable="ToggleItemDraggable"
-                        :OnFocus="OnFocus"
-                        :OnBlur="OnBlur"
+                        :OnFocus="OnFocus" :OnBlur="OnBlur"
                         :userData="userData" />
                     <detail-item-menu
                         v-if="tabIndex == 1"
                         :itemDraggable="itemDraggable"
                         :ToggleItemDraggable="ToggleItemDraggable"
-                        :OnFocus="OnFocus"
-                        :OnBlur="OnBlur"
+                        :OnFocus="OnFocus" :OnBlur="OnBlur"
                         :userData="userData" />
                 </transition>
             </div>
