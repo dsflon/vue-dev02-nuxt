@@ -16,8 +16,9 @@
     &.is_sticky {
         position: sticky;
     }
-    &.is_focus {
-        opacity: 0; pointer-events: none;
+
+    .is_android & {
+        &.is_focus { opacity: 0; pointer-events: none; }    
     }
 
     &.is_nobg {

@@ -55,7 +55,7 @@
 
         <div class="info_box_btn">
             <button type="button" @click="AddChild">
-                <i class="a-icon a-icon-plus is_gray a-icon-1_75x"></i>
+                <i class="a-icon a-icon-plus is_gray20 a-icon-1_75x"></i>
             </button>
         </div>
 

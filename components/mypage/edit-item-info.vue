@@ -1,16 +1,14 @@
 <template>
 
-    <div>
+    <div v-if="userData.info && userData.info.length !== 0" class="user_tab_inner user_tab_info">
 
-        <div v-if="userData.info && userData.info.length !== 0" class="user_tab_inner user_tab_info">
+        <draggable
+            v-model="userData.info"
+            :options="{disabled:!itemDraggable,animation:150}">
 
-            <draggable
-                v-model="userData.info"
-                :options="{disabled:!itemDraggable,animation:150}">
+            <div v-for="(item,i) in userData.info" :key="i">
 
-                <section
-                    v-for="(item,i) in userData.info"
-                    :key="i" class="info_box">
+                <section class="info_box" :class="{'f-mb0': i == userData.info.length - 1 }">
 
                     <transition name="fade">
                         <div v-if="itemMenu === i" class="box_overlay" @click="ToggleItemMenu(null)"></div>
@@ -81,28 +79,27 @@
 
                 </section>
 
-            </draggable>
-
-        </div>
-
-        <p v-else class="no_result">基本情報がありません</p>
-
-        <div v-if="!itemDraggable" class="info_box_btn">
-            <button type="button" @click="ToggleAddItemMenu">
-                <i class="a-icon a-icon-plus a-icon-1_75x is_blue" :class="{is_cross: addItemWindow}"></i>
-            </button>
-            <transition name="slide-down">
-                <div v-if="addItemWindow" class="info_box_btn_menu">
-                    <ul>
-                        <li><button type="button" @click="AddItem('store','info')"><i class="a-icon a-icon-plus a-icon-lg is_white"></i><span class="a-icon_txt">お店</span></button></li>
-                        <li><button type="button" @click="AddItem('career','info')"><i class="a-icon a-icon-plus a-icon-lg is_white"></i><span class="a-icon_txt">経歴</span></button></li>
-                        <li><button type="button" @click="AddItem('other','info')"><i class="a-icon a-icon-plus a-icon-lg is_white"></i><span class="a-icon_txt">自由項目</span></button></li>
-                    </ul>
+                <div v-if="!itemDraggable" class="info_box_btn">
+                    <button type="button" @click="ToggleAddItemMenu(i)">
+                        <i class="a-icon a-icon-plus a-icon-1_75x is_blue" :class="{is_cross: addItemWindow === i}"></i>
+                    </button>
+                    <transition name="slide-down">
+                        <div v-if="addItemWindow === i" class="info_box_btn_menu">
+                            <ul>
+                                <li><button type="button" @click="AddItem('store','info', i)"><i class="a-icon a-icon-plus a-icon-lg is_white"></i><span class="a-icon_txt">お店</span></button></li>
+                                <li><button type="button" @click="AddItem('career','info', i)"><i class="a-icon a-icon-plus a-icon-lg is_white"></i><span class="a-icon_txt">経歴</span></button></li>
+                                <li><button type="button" @click="AddItem('other','info', i)"><i class="a-icon a-icon-plus a-icon-lg is_white"></i><span class="a-icon_txt">自由項目</span></button></li>
+                            </ul>
+                        </div>
+                    </transition>
                 </div>
-            </transition>
-        </div>
+            </div>
+
+        </draggable>
 
     </div>
+
+    <p v-else class="no_result">基本情報がありません</p>
 
 </template>
 

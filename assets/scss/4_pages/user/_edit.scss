@@ -42,10 +42,12 @@
                         width: 80%; height: 100%;
                         position: absolute;
                         top: 0; left: 0;
-                        // background: #000;
                         z-index: 1;
                     }
-                    .info_box, .menu_box { box-shadow: 0 0 10px 0 rgba($black60,0.1); }
+                    .info_box, .menu_box {
+                        box-shadow: 0 0 10px 0 rgba($black60,0.1);
+                        margin-bottom: 15px;
+                    }
                     .info_box .info_box_ttl { border-bottom: none; }
                 }
             }
@@ -82,6 +84,8 @@
             .user_tab_info {
 
                 .info_box {
+
+                    margin-bottom: 0;
 
                     .info_box_ttl {
                         position: relative;
@@ -123,6 +127,7 @@
                 text-align: center;
                 position: relative;
                 padding: 15px 0;
+                z-index: 2;
                 .info_box_btn_menu {
                     position: absolute;
                     bottom: 50px;
@@ -157,7 +162,7 @@
             }//.info_box_btn
 
             .menu_box {
-                margin-bottom: 15px;
+                margin-bottom: 5px;
                 .menu_box_ttl {
                     position: relative;
                     .m-form_bg { padding-right: 20px; }

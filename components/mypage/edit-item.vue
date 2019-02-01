@@ -145,12 +145,13 @@ export default {
         ToggleTab: function(i) {
             this.tabIndex = i
         },
-        ToggleAddItemMenu() { //基本情報の場合のサブメニュー開閉
-            this.addItemWindow = !this.addItemWindow;
+        ToggleAddItemMenu(i) { //基本情報の場合のサブメニュー開閉
+            this.addItemWindow = this.addItemWindow === i ? false : i;
             this.itemMenu = false;
         },
-        AddItem: function(category, type) {
-            this.userData[type].push( JSON.parse(JSON.stringify(this.newItem[category])) )
+        AddItem: function(category, type, i) {
+            // this.userData[type].push( JSON.parse(JSON.stringify(this.newItem[category])) )
+            this.userData[type].splice(i+1, 0, JSON.parse(JSON.stringify(this.newItem[category])) )
             this.addItemWindow = false;
         },
         ToggleItemMenu: function(i) {

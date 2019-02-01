@@ -9,7 +9,9 @@
 
                 <section
                     v-for="(item,i) in userData.menus"
-                    :key="i" class="menu_box">
+                    :key="i"
+                    class="menu_box"
+                    :class="{'f-mb0': i == userData.menus.length - 1 }">
 
                     <transition name="fade">
                         <div v-if="itemMenu === i" class="box_overlay" @click="ToggleItemMenu(null)"></div>
@@ -77,17 +79,17 @@
 
                 </section>
 
+                <div v-if="!itemDraggable" class="info_box_btn">
+                    <button type="button" @click="AddItem('menus','menus', userData.menus.length-1)">
+                        <i class="a-icon a-icon-plus a-icon-1_75x is_blue"></i>
+                    </button>
+                </div>
+
             </draggable>
 
         </div>
 
         <p v-else class="no_result">メニューがありません</p>
-
-        <div v-if="!itemDraggable" class="info_box_btn">
-            <button type="button" @click="AddItem('menus','menus')">
-                <i class="a-icon a-icon-plus a-icon-1_75x is_blue"></i>
-            </button>
-        </div>
 
     </div>
 </template>

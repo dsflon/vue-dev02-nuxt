@@ -25,9 +25,9 @@
                     <button v-if="!itemDraggable" class="a-btn" @click="backMyPage">
                         <i class="a-icon a-icon-arrow_left"></i>
                     </button>
-                    <button v-if="!itemDraggable" class="a-btn" @click="ResetData">
+                    <!-- <button v-if="!itemDraggable" class="a-btn" @click="ResetData">
                         <i class="a-icon a-icon-rotate_left a-icon-1_75x"></i>
-                    </button>
+                    </button> -->
                     <button v-if="!itemDraggable" class="a-btn is_blue" @click="SaveData">
                         <i class="a-icon a-icon-memory a-icon-1_75x"></i>
                     </button>
@@ -104,18 +104,22 @@ export default {
                 this.$router.back();
             })
         },
-        ResetData() {
-            if( this.CheckDiff() ) {
-                let res = confirm("変更を取り消しますか？");
-                if( res == true ) this.SetEditData();
-            } else {
-                window.BodyMessage.AutoPlay("変更はありません。");
-            }
-        },
+        // ResetData() {
+        //     if( this.CheckDiff() ) {
+        //         let res = confirm("変更を取り消しますか？");
+        //         if( res == true ) this.SetEditData();
+        //     } else {
+        //         window.BodyMessage.AutoPlay("変更はありません。");
+        //     }
+        // },
         backMyPage() {
             if( this.CheckDiff() ) {
-                let res = confirm("変更を取り消して前のページへ戻りますか？");
-                if( res == true ) this.$router.back();
+                let res = confirm("下書きを保存しますか？");
+                if( res )  {
+                    this.$router.back();
+                } else {
+                    this.$router.back();
+                }
             } else {
                 this.$router.back();
             }
