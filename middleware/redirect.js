@@ -28,6 +28,7 @@ export default ({ route, redirect, store }) => {
         return Home(route, redirect, store)
 
         case "user-userid-edit":
+        case "user-userid-edit-account":
         return Edit(route, redirect, store)
 
         // case "sign-one-time-password":

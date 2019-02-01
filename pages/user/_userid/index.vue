@@ -48,7 +48,10 @@ export default {
             // return "user-home"
             return "slide-left"
         }
-        if( to == "user-userid" && from == "user-userid-edit" ) {
+        else if( to == "user-userid" && from == "user-userid-edit" ) {
+            return "slide-right"
+        }
+        else if( to == "user-userid" && from == "user-userid-edit-account" ) {
             return "slide-right"
         }
         else if( to == "user-userid" && from == "user-userid-post-postid" ) {

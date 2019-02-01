@@ -109,7 +109,7 @@ export default {
                 let res = confirm("変更を取り消しますか？");
                 if( res == true ) this.SetEditData();
             } else {
-                window.BodyMessage.AutoPlay("変更はありません");
+                window.BodyMessage.AutoPlay("変更はありません。");
             }
         },
         backMyPage() {

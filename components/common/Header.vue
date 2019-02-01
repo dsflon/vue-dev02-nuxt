@@ -36,7 +36,7 @@
                         <li>
                             <router-link
                                 class="header_menu_btn"
-                                :to="$route.path+'/account'">
+                                :to="$route.path+'/edit/account'">
                                 <i class="a-icon a-icon-user a-icon-1_5x"></i><span class="a-icon_txt">アカウント編集</span>
                             </router-link>
                         </li>

@@ -86,7 +86,7 @@ export const actions = {
             setTimeout(()=> {
                 context.commit('registerEditData', data);
                 window.Loading.Hide();
-                window.BodyMessage.AutoPlay("保存しました");
+                window.BodyMessage.AutoPlay("保存しました。");
                 resolve(data)
             },1000)
 
