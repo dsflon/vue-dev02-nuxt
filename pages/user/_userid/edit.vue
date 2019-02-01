@@ -98,32 +98,26 @@ export default {
             });
         },
         SaveData() {
-
-            let res = confirm("変更を保存し公開しますか？");
-            if( res == true ) {
-
-                this.$store.dispatch('user/SaveEditData',this.userData)
-                .then((data)=> {
-                    this.$store.dispatch('detail/SetDetailResult',data)
-                    this.$router.replace( location.pathname.split("/edit")[0] )
-                })
-
-            }
+            this.$store.dispatch('user/SaveEditData',this.userData)
+            .then((data)=> {
+                this.$store.dispatch('detail/SetDetailResult',data)
+                this.$router.back();
+            })
         },
         ResetData() {
-            let res = confirm("変更を取り消しますか？");
-            if( res == true ) {
-                this.SetEditData();
+            if( this.CheckDiff() ) {
+                let res = confirm("変更を取り消しますか？");
+                if( res == true ) this.SetEditData();
+            } else {
+                window.BodyMessage.AutoPlay("変更はありません");
             }
         },
         backMyPage() {
             if( this.CheckDiff() ) {
                 let res = confirm("変更を取り消して前のページへ戻りますか？");
-                if( res == true ) {
-                    this.$router.replace( location.pathname.split("/edit")[0] )
-                }
+                if( res == true ) this.$router.back();
             } else {
-                this.$router.replace( location.pathname.split("/edit")[0] )
+                this.$router.back();
             }
         },
         CheckDiff() {

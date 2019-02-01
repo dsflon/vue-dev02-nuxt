@@ -4,6 +4,8 @@
 
     #header { position: static; }
 
+        background: $black10;
+
     .user_inner {
         .user_header {
             .user_info {
@@ -43,6 +45,8 @@
                     // background: #000;
                     z-index: 1;
                 }
+                .info_box, .menu_box { box-shadow: 0 0 10px 0 rgba($black60,0.1); }
+                .info_box .info_box_ttl { border-bottom: none; }
             }
         }
         .user_tab_btns {
@@ -79,50 +83,9 @@
 
             .info_box {
 
-                box-shadow: 0 0 10px 0 rgba($black60,0.1);
-
                 .info_box_ttl {
                     position: relative;
                     .m-form_bg { padding-right: 20px; }
-                }
-                .info_box_menu_btn {
-                    position: absolute;
-                    top: 50%; right: 3px;
-                    transform: translateY(-50%);
-                    width: 32px; height: 46px;
-                    z-index: 3;
-                }
-                .info_box_menu {
-                    position: absolute;
-                    top: 10px; right: 42px;
-                    background: #FFF;
-                    border-radius: 4px;
-                    box-shadow: 0 0 10px 0 rgba(#000,0.2);
-                    z-index: 3;
-                    ul {
-                        @include triangle($color:#FFF, $width:10, $height:6, $direction:right);
-                        &:before { top: 25px; }
-                        li {
-                            line-height: 1;
-                            border-bottom: 1px solid $black20;
-                            text-align: left;
-                            &:last-child { border-bottom: none; }
-                            button {
-                                line-height: 1;
-                                padding: 14px 12px 14px 10px;
-                                width: 100%;
-                                text-align: left;
-                                .a-icon_txt { margin-left: 8px; }
-                            }
-                        }
-                    };
-                }
-                .info_box_overlay {
-                    position: absolute;
-                    top: 0; left: 0;
-                    width: 100%; height: 100%;
-                    background: rgba(#000,0.4);
-                    z-index: 2;
                 }
 
                 .info_box_wrap {
@@ -192,6 +155,66 @@
                 }
             }
         }//.info_box_btn
+
+        .menu_box {
+            margin-bottom: 15px;
+            .menu_box_ttl {
+                position: relative;
+                .m-form_bg { padding-right: 20px; }
+            }
+            .menu_box_inner {
+                padding-right: 20px;
+            }
+        }
+
+
+        .box_menu_btn {
+            position: absolute;
+            top: 50%; right: 3px;
+            transform: translateY(-50%);
+            width: 32px; height: 46px;
+            z-index: 3;
+            &.is_menus {
+                top: 12px;
+                transform: none;
+            }
+        }
+        .box_menu {
+            position: absolute;
+            top: 10px; right: 42px;
+            background: #FFF;
+            border-radius: 4px;
+            box-shadow: 0 0 10px 0 rgba(#000,0.2);
+            z-index: 3;
+            ul {
+                @include triangle($color:#FFF, $width:10, $height:6, $direction:right);
+                &:before { top: 25px; }
+                li {
+                    line-height: 1;
+                    border-bottom: 1px solid $black20;
+                    text-align: left;
+                    &:last-child { border-bottom: none; }
+                    button {
+                        line-height: 1;
+                        padding: 14px 12px 14px 10px;
+                        width: 100%;
+                        text-align: left;
+                        .a-icon_txt { margin-left: 8px; }
+                    }
+                }
+            };
+        }
+        .box_overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(#000,0.4);
+            z-index: 2;
+        }
+
+        .sortable-ghost {
+            opacity: 0;
+        }
 
     }
 

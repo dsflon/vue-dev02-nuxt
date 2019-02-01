@@ -150,13 +150,25 @@
                         :itemDraggable="itemDraggable"
                         :ToggleItemDraggable="ToggleItemDraggable"
                         :OnFocus="OnFocus" :OnBlur="OnBlur"
-                        :userData="userData" />
-                    <detail-item-menu
+                        :userData="userData"
+                        :addItemWindow="addItemWindow"
+                        :itemMenu="itemMenu"
+                        :ToggleAddItemMenu="ToggleAddItemMenu"
+                        :AddItem="AddItem"
+                        :ToggleItemMenu="ToggleItemMenu"
+                        :ChangeDraggable="ChangeDraggable"
+                        :RemoveItem="RemoveItem" />
+                    <edit-item-menu
                         v-if="tabIndex == 1"
                         :itemDraggable="itemDraggable"
                         :ToggleItemDraggable="ToggleItemDraggable"
                         :OnFocus="OnFocus" :OnBlur="OnBlur"
-                        :userData="userData" />
+                        :userData="userData"
+                        :itemMenu="itemMenu"
+                        :AddItem="AddItem"
+                        :ToggleItemMenu="ToggleItemMenu"
+                        :ChangeDraggable="ChangeDraggable"
+                        :RemoveItem="RemoveItem" />
                 </transition>
             </div>
         </div>
@@ -174,7 +186,7 @@ import AdjustSelect from '~/scripts/_adjustSelect';
 import ChangeTimeString from '~/components/common/changeTimeString.vue'
 
 import EditItemInfo from '~/components/mypage/edit-item-info.vue'
-import DetailItemMenu from '~/components/detail/detail-item-menu.vue'
+import EditItemMenu from '~/components/mypage/edit-item-menu.vue'
 
 export default {
     props: [
@@ -187,13 +199,39 @@ export default {
     components: {
         ChangeTimeString,
         EditItemInfo,
-        DetailItemMenu,
+        EditItemMenu,
         Carousel,
         Slide
     },
     data() {
         return {
-            tabIndex: 0
+            tabIndex: 0,
+            addItemWindow: false,
+            itemMenu: false,
+            newItem: {
+                "store": {
+                    "title": "お店",
+                    "category": "store",
+                    "contents_": {
+                        "store_name": { "text": "" },
+                        "store_address": { "postal": "", "station": "", "gate": "", "transportation": "", "time": "", "text": ""},
+                        "store_time": { "start_time": "", "end_time": "" },
+                        "store_holiday": { "text": "" },
+                        "store_url": { "text": "" }
+                    }
+                },
+                "career": {
+                    "title": "経歴",
+                    "category": "career",
+                    "contents_": [ { "date": { "start": "", "end": "" }, "text": "" } ]
+                },
+                "other": {
+                    "title": "その他",
+                    "category": "other",
+                    "contents": [ { "title": "", "text": "" } ]
+                },
+                "menus": { "id": "", "name": "メニュータイトル", "price": "", "description": "" }
+            }
         }
     },
     methods: {
@@ -218,6 +256,29 @@ export default {
                     this.userData.job_name = jobList[key].job_name;
                 }
             }
+        },
+        ToggleAddItemMenu() { //基本情報の場合のサブメニュー開閉
+            this.addItemWindow = !this.addItemWindow;
+            this.itemMenu = false;
+        },
+        AddItem: function(category, type) {
+            this.userData[type].push( JSON.parse(JSON.stringify(this.newItem[category])) )
+            this.addItemWindow = false;
+        },
+        ToggleItemMenu: function(i) {
+            this.itemMenu = i;
+            this.addItemWindow = false;
+        },
+        ChangeDraggable() {
+            this.ToggleItemDraggable()
+            this.itemMenu = false;
+        },
+        RemoveItem: function(index, type) {
+            let res = confirm("このグループを削除しますか？");
+            if( res == true ) {
+                this.userData[type].splice(index, 1);
+                this.itemMenu = false;
+            }
         }
     },
     created: function() {
@@ -227,14 +288,12 @@ export default {
         })
     },
     mounted: function() {
-        // setTimeout( ()=> {
-            let select = document.getElementsByClassName('a-form_select'),
-                date = document.getElementsByClassName('a-form_date'),
-                textarea = document.getElementsByClassName('a-form_textarea');
-            for (var i = 0; i < select.length; i++) AdjustSelect(select[i])
-            for (var i = 0; i < textarea.length; i++) AdjustTextAreaHeight(textarea[i])
-            for (var i = 0; i < date.length; i++) AdjustInputDate(date[i])
-        // }, 1 )
+        let select = document.getElementsByClassName('a-form_select'),
+            date = document.getElementsByClassName('a-form_date'),
+            textarea = document.getElementsByClassName('a-form_textarea');
+        for (var i = 0; i < select.length; i++) AdjustSelect(select[i])
+        for (var i = 0; i < textarea.length; i++) AdjustTextAreaHeight(textarea[i])
+        for (var i = 0; i < date.length; i++) AdjustInputDate(date[i])
     },
     updated: function() {
     }

@@ -8,7 +8,7 @@
             :key="i" class="menu_box">
 
             <h2 class="menu_box_ttl">{{item.name}}</h2>
-            <p class="menu_box_price">¥ {{item.price.toLocaleString()}}</p>
+            <p class="menu_box_price">¥ {{Number(item.price).toLocaleString()}}</p>
             <p v-if="item.description" class="menu_box_txt">{{item.description}}</p>
 
         </router-link>

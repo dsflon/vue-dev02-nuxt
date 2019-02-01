@@ -13,7 +13,7 @@
                     :key="i" class="info_box">
 
                     <transition name="fade">
-                        <div v-if="itemMenu === i" class="info_box_overlay" @click="ToggleItemMenu(null)"></div>
+                        <div v-if="itemMenu === i" class="box_overlay" @click="ToggleItemMenu(null)"></div>
                     </transition>
 
                     <div class="info_box_ttl">
@@ -27,41 +27,31 @@
                                     v-model="item.title">
                             </label>
                             <transition name="fade">
-                                <button v-if="itemMenu === i" type="button" class="info_box_menu_btn is_black" @click="ToggleItemMenu(null)">
+                                <button v-if="itemMenu === i" type="button" class="box_menu_btn is_black" @click="ToggleItemMenu(null)">
                                     <i class="a-icon a-icon-plus a-icon-1_75x is_white is_cross"></i>
                                 </button>
-                                <button v-else type="button" class="info_box_menu_btn is_black" @click="ToggleItemMenu(i)">
+                                <button v-else type="button" class="box_menu_btn is_black" @click="ToggleItemMenu(i)">
                                     <i class="a-icon a-icon-menu a-icon-lg"></i>
                                 </button>
                             </transition>
                         </div>
                         <div v-else>
                             <h2>{{item.title}}</h2>
-                            <button type="button" class="info_box_menu_btn draggable_btn">
+                            <button type="button" class="box_menu_btn draggable_btn">
                                 <i class="a-icon a-icon-move a-icon-lg is_gray"></i>
                             </button>
                         </div>
 
                         <transition name="slide-left-toggle">
-                            <div v-if="itemMenu === i" class="info_box_menu">
+                            <div v-if="itemMenu === i" class="box_menu">
                                 <ul>
-                                    <!-- <li v-if="i !== 0">
-                                        <button type="button" @click="MoveItem('top',i)">
-                                            <i class="a-icon a-icon-arrow_top a-icon-lg is_gray"></i><span class="a-icon_txt">一つ上に移動する</span>
-                                        </button>
-                                    </li>
-                                    <li v-if="i !== userData.info.length - 1">
-                                        <button type="button" @click="MoveItem('bottom',i)">
-                                            <i class="a-icon a-icon-arrow_bottom a-icon-lg is_gray"></i><span class="a-icon_txt">一つ下に移動する</span>
-                                        </button>
-                                    </li> -->
                                     <li>
-                                        <button :disabled="userData.info.length <= 1 ? true : false" type="button" @click="ItemDraggable()">
+                                        <button :disabled="userData.info.length <= 1 ? true : false" type="button" @click="ChangeDraggable">
                                             <i class="a-icon a-icon-move a-icon-lg is_gray"></i><span class="a-icon_txt">並べ替える</span>
                                         </button>
                                     </li>
                                     <li>
-                                        <button :disabled="userData.info.length <= 1 ? true : false" type="button" @click="RemoveItem(i)">
+                                        <button :disabled="userData.info.length <= 1 ? true : false" type="button" @click="RemoveItem(i, 'info')">
                                             <i class="a-icon a-icon-minus a-icon-lg is_gray"></i><span class="a-icon_txt">削除する</span>
                                         </button>
                                     </li>
@@ -104,9 +94,9 @@
             <transition name="slide-down">
                 <div v-if="addItemWindow" class="info_box_btn_menu">
                     <ul>
-                        <li><button type="button" @click="AddItem('store')"><i class="a-icon a-icon-plus a-icon-lg is_white"></i><span class="a-icon_txt">お店</span></button></li>
-                        <li><button type="button" @click="AddItem('career')"><i class="a-icon a-icon-plus a-icon-lg is_white"></i><span class="a-icon_txt">経歴</span></button></li>
-                        <li><button type="button" @click="AddItem('other')"><i class="a-icon a-icon-plus a-icon-lg is_white"></i><span class="a-icon_txt">自由項目</span></button></li>
+                        <li><button type="button" @click="AddItem('store','info')"><i class="a-icon a-icon-plus a-icon-lg is_white"></i><span class="a-icon_txt">お店</span></button></li>
+                        <li><button type="button" @click="AddItem('career','info')"><i class="a-icon a-icon-plus a-icon-lg is_white"></i><span class="a-icon_txt">経歴</span></button></li>
+                        <li><button type="button" @click="AddItem('other','info')"><i class="a-icon a-icon-plus a-icon-lg is_white"></i><span class="a-icon_txt">自由項目</span></button></li>
                     </ul>
                 </div>
             </transition>
@@ -131,8 +121,17 @@ export default {
         "userData",
         "OnFocus",
         "OnBlur",
+
         "itemDraggable",
-        "ToggleItemDraggable"
+        "ToggleItemDraggable",
+
+        "addItemWindow",
+        "itemMenu",
+        "ToggleAddItemMenu",
+        "AddItem",
+        "ToggleItemMenu",
+        "ChangeDraggable",
+        "RemoveItem"
     ],
     components: {
         EditItemInfoStore,
@@ -142,67 +141,11 @@ export default {
     },
     data () {
         return {
-            addItemWindow: false,
-            itemMenu: false,
-            newItem: {
-                "store": {
-                    "title": "お店",
-                    "category": "store",
-                    "contents_": {
-                        "store_name": { "text": "" },
-                        "store_address": { "postal": "", "station": "", "gate": "", "transportation": "", "time": "", "text": ""},
-                        "store_time": { "start_time": "", "end_time": "" },
-                        "store_holiday": { "text": "" },
-                        "store_url": { "text": "" }
-                    }
-                },
-                "career": {
-                    "title": "経歴",
-                    "category": "career",
-                    "contents_": [ { "date": { "start": "", "end": "" }, "text": "" } ]
-                },
-                "other": {
-                    "title": "その他",
-                    "category": "other",
-                    "contents": [ { "title": "", "text": "" } ]
-                }
-            }
         }
     },
     computed : {
     },
     methods: {
-        ToggleAddItemMenu() {
-            this.addItemWindow = !this.addItemWindow;
-            this.itemMenu = false;
-        },
-        AddItem: function(category) {
-            this.userData.info.push( JSON.parse(JSON.stringify(this.newItem[category])) )
-            this.addItemWindow = false;
-        },
-        ToggleItemMenu: function(i) {
-            this.itemMenu = i;
-            this.addItemWindow = false;
-        },
-        // MoveItem: function(type,index) {
-        //     if(type === 'bottom') {
-        //         this.userData.info.splice(index, 2, this.userData.info[index+1], this.userData.info[index]);
-        //     } else {
-        //         this.userData.info.splice(index-1, 2, this.userData.info[index], this.userData.info[index-1]);
-        //     }
-        //     this.itemMenu = false;
-        // },
-        ItemDraggable: function() {
-            this.ToggleItemDraggable()
-            this.itemMenu = false;
-        },
-        RemoveItem: function(index) {
-            let res = confirm("このグループを削除しますか？");
-            if( res == true ) {
-                this.userData.info.splice(index, 1);
-                this.itemMenu = false;
-            }
-        }
     },
     mounted: function() {
     },

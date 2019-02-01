@@ -189,6 +189,7 @@
                 position: relative;
                 display: block;
                 color: $color_text;
+                min-height: 50px;
                 &:last-child { margin-bottom: 0; }
                 .menu_box_ttl {
                     line-height: 1.4;

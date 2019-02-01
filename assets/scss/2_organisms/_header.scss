@@ -56,10 +56,10 @@
                 border-bottom: 1px solid $black10;
                 &:last-child { border-bottom: none; }
                 .header_menu_btn {
-                    display: block;
                     width: 100%;
                     line-height: 1;
-                    padding:  20px;
+                    height: 50px;
+                    padding: 0 20px;
                     text-align: left;
                     color: $color_text;
                     @include bold;
@@ -70,6 +70,7 @@
                     //     @include arrowAbs($color: $color_text, $size:8, $width:1, $layout:right, $position:20, $direction:right);
                     // }
                 }
+                a.header_menu_btn { display: flex; align-items: center; }
             }
         }
     }

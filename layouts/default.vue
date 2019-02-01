@@ -47,11 +47,6 @@ export default {
     },
     mounted: function() {
         window.BodyMessage = new BodyMessage(this.$refs.app);
-
-        const currentName = this.$route.name;
-        console.log(currentName);
-
-
     }
 
 }
