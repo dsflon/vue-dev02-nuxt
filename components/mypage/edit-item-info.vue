@@ -81,7 +81,7 @@
 
                 <div v-if="!itemDraggable" class="info_box_btn">
                     <button type="button" @click="ToggleAddItemMenu(i)">
-                        <i class="a-icon a-icon-plus a-icon-1_75x is_blue" :class="{is_cross: addItemWindow === i}"></i>
+                        <i class="a-icon a-icon-plus a-icon-2x is_blue" :class="{is_cross: addItemWindow === i}"></i>
                     </button>
                     <transition name="slide-down">
                         <div v-if="addItemWindow === i" class="info_box_btn_menu">
@@ -103,7 +103,7 @@
         <p class="no_result">基本情報がありません</p>
         <div class="info_box_btn is_front">
             <button type="button" @click="ToggleAddItemMenu(0)">
-                <i class="a-icon a-icon-plus a-icon-1_75x is_blue" :class="{is_cross: addItemWindow === 0}"></i>
+                <i class="a-icon a-icon-plus a-icon-2x is_blue" :class="{is_cross: addItemWindow === 0}"></i>
             </button>
             <transition name="slide-down">
                 <div v-if="addItemWindow === 0" class="info_box_btn_menu">

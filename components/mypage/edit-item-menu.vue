@@ -81,7 +81,7 @@
 
                 <div v-if="!itemDraggable" class="info_box_btn">
                     <button type="button" @click="AddItem('menus','menus', userData.menus.length-1)">
-                        <i class="a-icon a-icon-plus a-icon-1_75x is_blue"></i>
+                        <i class="a-icon a-icon-plus a-icon-2x is_blue"></i>
                     </button>
                 </div>
 
@@ -93,7 +93,7 @@
             <p class="no_result">メニューがありません</p>
             <div class="info_box_btn">
                 <button type="button" @click="AddItem('menus','menus', 0)">
-                    <i class="a-icon a-icon-plus a-icon-1_75x is_blue"></i>
+                    <i class="a-icon a-icon-plus a-icon-2x is_blue"></i>
                 </button>
             </div>
         </div>

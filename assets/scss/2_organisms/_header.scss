@@ -42,14 +42,16 @@
 
 
     #header_menu {
-        position: fixed;
+        position: fixed !important;
         top: 56px; right: 10px;
         width: 60vw;
         background: #FFF;
         z-index: 99;
         box-shadow: 0 0 6px 0 rgba(#000,0.2);
         border-radius: 4px;
-        overflow: hidden;
+        // overflow: hidden;
+        @include triangle($color:#FFF, $width:10, $height:6, $direction:top);
+        &:before { left: auto; right: 9px; margin-left: 0; }
 
         ul {
             li {
@@ -65,7 +67,8 @@
                     @include bold;
                     .a-icon { width: 22px; text-align: center; }
                     .a-icon_txt { margin-left: 8px; }
-                    &.is_signout { background: $black10; color: $black50; }
+                    &:last-child { border-radius: 0 0 4px 4px; }
+                    &.is_signout { background: $black10; color: $black50;}
                     // &.is_arw {
                     //     @include arrowAbs($color: $color_text, $size:8, $width:1, $layout:right, $position:20, $direction:right);
                     // }
