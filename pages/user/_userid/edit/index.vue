@@ -56,7 +56,7 @@
                         <p>下書きを適用しますか？</p>
                         <div class="m-box_confirm_btns">
                             <button class="is_no" type="button" @click="ToggleApplyDraftBox">いいえ</button>
-                            <button class="is_no" type="button" @click="RemoveDraft">削除</button>
+                            <button class="is_no" type="button" @click="RemoveDraft()">削除</button>
                             <button class="is_yes" type="button" @click="ApplyDraft">はい</button>
                         </div>
                     </div>
