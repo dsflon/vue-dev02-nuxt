@@ -64,12 +64,12 @@
                         <div v-if="itemMenu === i" class="box_menu">
                             <ul>
                                 <li>
-                                    <button :disabled="userData.info.length <= 1 ? true : false" type="button" @click="ChangeDraggable">
+                                    <button :disabled="userData.menus.length <= 1 ? true : false" type="button" @click="ChangeDraggable">
                                         <i class="a-icon a-icon-move a-icon-lg is_gray"></i><span class="a-icon_txt">並べ替える</span>
                                     </button>
                                 </li>
                                 <li>
-                                    <button :disabled="userData.info.length <= 1 ? true : false" type="button" @click="RemoveItem(i,'menus')">
+                                    <button type="button" @click="RemoveItem(i,'menus')">
                                         <i class="a-icon a-icon-minus a-icon-lg is_gray"></i><span class="a-icon_txt">削除する</span>
                                     </button>
                                 </li>
@@ -89,7 +89,14 @@
 
         </div>
 
-        <p v-else class="no_result">メニューがありません</p>
+        <div v-else>
+            <p class="no_result">メニューがありません</p>
+            <div class="info_box_btn">
+                <button type="button" @click="AddItem('menus','menus', 0)">
+                    <i class="a-icon a-icon-plus a-icon-1_75x is_blue"></i>
+                </button>
+            </div>
+        </div>
 
     </div>
 </template>

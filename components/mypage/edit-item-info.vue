@@ -49,7 +49,7 @@
                                         </button>
                                     </li>
                                     <li>
-                                        <button :disabled="userData.info.length <= 1 ? true : false" type="button" @click="RemoveItem(i, 'info')">
+                                        <button type="button" @click="RemoveItem(i, 'info')">
                                             <i class="a-icon a-icon-minus a-icon-lg is_gray"></i><span class="a-icon_txt">削除する</span>
                                         </button>
                                     </li>
@@ -99,7 +99,24 @@
 
     </div>
 
-    <p v-else class="no_result">基本情報がありません</p>
+    <div v-else>
+        <p class="no_result">基本情報がありません</p>
+        <div class="info_box_btn is_front">
+            <button type="button" @click="ToggleAddItemMenu(0)">
+                <i class="a-icon a-icon-plus a-icon-1_75x is_blue" :class="{is_cross: addItemWindow === 0}"></i>
+            </button>
+            <transition name="slide-down">
+                <div v-if="addItemWindow === 0" class="info_box_btn_menu">
+                    <ul>
+                        <li><button type="button" @click="AddItem('store','info', 0)"><i class="a-icon a-icon-plus a-icon-lg is_white"></i><span class="a-icon_txt">お店</span></button></li>
+                        <li><button type="button" @click="AddItem('career','info', 0)"><i class="a-icon a-icon-plus a-icon-lg is_white"></i><span class="a-icon_txt">経歴</span></button></li>
+                        <li><button type="button" @click="AddItem('other','info', 0)"><i class="a-icon a-icon-plus a-icon-lg is_white"></i><span class="a-icon_txt">自由項目</span></button></li>
+                    </ul>
+                </div>
+            </transition>
+        </div>
+    </div>
+
 
 </template>
 
