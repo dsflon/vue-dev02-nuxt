@@ -7,7 +7,7 @@
             :userId=" $route.params.userid ? $route.params.userid : ''"
             icon="" />
 
-        <button v-if="draft" class="a-btn_draft" type="button" @click="ToggleApplyDraftBox">下書き</button>
+        <!-- <button v-if="draft" class="a-btn_draft" type="button" @click="ToggleApplyDraftBox">下書き</button> -->
 
         <main id="detail" class="is_edit">
 
@@ -53,10 +53,10 @@
             <transition name="fade">
                 <div v-if="toggleApplyDraftBox" class="m-box_confirm">
                     <div class="m-box_confirm_inner">
-                        <p>下書きを適用しますか？</p>
+                        <p>保存された下書きがあります。<br>適用しますか？</p>
                         <div class="m-box_confirm_btns">
                             <button class="is_no" type="button" @click="ToggleApplyDraftBox">いいえ</button>
-                            <button class="is_no" type="button" @click="RemoveDraft()">削除</button>
+                            <button class="is_no" type="button" @click="RemoveDraft">削除</button>
                             <button class="is_yes" type="button" @click="ApplyDraft">はい</button>
                         </div>
                     </div>
@@ -164,22 +164,24 @@ export default {
         ToggleApplyDraftBox() { //下書き適用boxの開閉
             this.toggleApplyDraftBox = !this.toggleApplyDraftBox;
         },
-        RemoveDraft(message) { //下書きを削除する
+        RemoveDraft() { //下書きを削除する
             localStorage.removeItem(window.LSProfileDraft);
             this.draft = null;
             this.toggleApplyDraftBox = false;
-            window.BodyMessage.AutoPlay( message ? message : "下書きを削除しました。" );
+            window.BodyMessage.AutoPlay( "下書きを削除しました。" );
         },
         ApplyDraft() { //下書きを適用する
             this.userData.description = JSON.parse(this.draft).description;
             this.userData.info = JSON.parse(this.draft).info;
             this.userData.menus = JSON.parse(this.draft).menus;
-            this.RemoveDraft("下書きを適用しました。")
+            this.draft = null;
+            this.toggleApplyDraftBox = false;
+            window.BodyMessage.AutoPlay("下書きを適用しました。")
         }
     },
     created: function() {
         this.SetEditData();
-        this.draft = localStorage.getItem(window.LSProfileDraft);
+        this.toggleApplyDraftBox = this.draft = localStorage.getItem(window.LSProfileDraft);
     },
     updated: function() {
     },
