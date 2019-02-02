@@ -9,6 +9,7 @@ window.LSPost = "steplack_postData";
 window.LSJob = "steplack_selectJob";
 window.LSResult = "steplack_result";
 window.LSUser = "steplack_user";
+window.LSProfileDraft = "steplack_profile_draft";
 window.Loading = {
     Show: (delay = 0) => { setTimeout( () => { document.body.classList.add("loading") }, delay) },
     Hide: (delay = 0) => { setTimeout( () => { document.body.classList.remove("loading") }, delay) }

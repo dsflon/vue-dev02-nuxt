@@ -7,6 +7,8 @@
             :userId=" $route.params.userid ? $route.params.userid : ''"
             icon="" />
 
+        <button v-if="draft" class="a-btn_draft" type="button" @click="ToggleApplyDraftBox">下書き</button>
+
         <main id="detail" class="is_edit">
 
             <div class="detail_inner">
@@ -37,6 +39,30 @@
                 </div>
             </div>
 
+            <transition name="fade">
+                <div v-if="toggleSaveDraftBox" class="m-box_confirm">
+                    <div class="m-box_confirm_inner">
+                        <p>下書きを保存しますか？</p>
+                        <div class="m-box_confirm_btns">
+                            <button class="is_no" type="button" @click="SaveDraftNo">いいえ</button>
+                            <button class="is_yes" type="button" @click="SaveDraftYes">はい</button>
+                        </div>
+                    </div>
+                </div>
+            </transition>
+            <transition name="fade">
+                <div v-if="toggleApplyDraftBox" class="m-box_confirm">
+                    <div class="m-box_confirm_inner">
+                        <p>下書きを適用しますか？</p>
+                        <div class="m-box_confirm_btns">
+                            <button class="is_no" type="button" @click="ToggleApplyDraftBox">いいえ</button>
+                            <button class="is_no" type="button" @click="RemoveDraft">削除</button>
+                            <button class="is_yes" type="button" @click="ApplyDraft">はい</button>
+                        </div>
+                    </div>
+                </div>
+            </transition>
+
         </main>
 
     </div>
@@ -46,6 +72,7 @@
 import AppHeader from '~/components/common/header.vue'
 import AppFooter from '~/components/common/footer.vue'
 import FooterBtns from '~/components/common/footer-btns.vue'
+
 import EditItem from '~/components/mypage/edit-item.vue'
 
 export default {
@@ -76,7 +103,10 @@ export default {
             onfocus: false,
             userData: null,
             itemDraggable: false,
-            diff: false
+            diff: false,
+            toggleSaveDraftBox: false,
+            toggleApplyDraftBox: false,
+            draft: null //下書きデータ
         }
     },
     components: {
@@ -102,35 +132,54 @@ export default {
             .then((data)=> {
                 this.$store.dispatch('detail/SetDetailResult',data)
                 this.$router.back();
+                localStorage.removeItem(window.LSProfileDraft)
             })
         },
-        // ResetData() {
-        //     if( this.CheckDiff() ) {
-        //         let res = confirm("変更を取り消しますか？");
-        //         if( res == true ) this.SetEditData();
-        //     } else {
-        //         window.BodyMessage.AutoPlay("変更はありません。");
-        //     }
-        // },
         backMyPage() {
             if( this.CheckDiff() ) {
-                let res = confirm("下書きを保存しますか？");
-                if( res )  {
-                    this.$router.back();
-                } else {
-                    this.$router.back();
-                }
+                this.toggleSaveDraftBox = true;
             } else {
                 this.$router.back();
             }
         },
-        CheckDiff() {
-            //内容の更新がある場合true
+        CheckDiff() { //内容の更新がある場合true
             return JSON.stringify(this.$store.state.detail.detailResult)!==JSON.stringify(this.userData)
+        },
+
+        //下書き関連
+        SaveDraftYes() { //下書きを保存する
+            localStorage.setItem(window.LSProfileDraft, JSON.stringify({
+                description: this.userData.description,
+                info: this.userData.info,
+                menus: this.userData.menus
+            }));
+            this.toggleSaveDraftBox = false;
+            this.$router.back();
+            window.BodyMessage.AutoPlay( "下書きを保存しました。" );
+        },
+        SaveDraftNo() { //下書きを保存しないで前のページへ戻る
+            this.toggleSaveDraftBox = false;
+            this.$router.back();
+        },
+        ToggleApplyDraftBox() { //下書き適用boxの開閉
+            this.toggleApplyDraftBox = !this.toggleApplyDraftBox;
+        },
+        RemoveDraft(message) { //下書きを削除する
+            localStorage.removeItem(window.LSProfileDraft);
+            this.draft = null;
+            this.toggleApplyDraftBox = false;
+            window.BodyMessage.AutoPlay( message ? message : "下書きを削除しました。" );
+        },
+        ApplyDraft() { //下書きを適用する
+            this.userData.description = JSON.parse(this.draft).description;
+            this.userData.info = JSON.parse(this.draft).info;
+            this.userData.menus = JSON.parse(this.draft).menus;
+            this.RemoveDraft("下書きを適用しました。")
         }
     },
     created: function() {
         this.SetEditData();
+        this.draft = localStorage.getItem(window.LSProfileDraft);
     },
     updated: function() {
     },

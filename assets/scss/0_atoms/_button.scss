@@ -107,4 +107,13 @@
         }
     }
 
+    .a-btn_draft {
+        position: absolute;
+        top: 0px; right: 0;
+        color: $blue;
+        padding: 0 15px;
+        height: 46px;
+        z-index: 2;
+    }
+
 }//.fw

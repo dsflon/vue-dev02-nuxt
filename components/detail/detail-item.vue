@@ -37,7 +37,7 @@
                 </div>
             </div>
 
-            <div class="user_txt">
+            <div v-if="userData.description" class="user_txt">
                 <div class="user_txt_inner" ref="user_txt" v-html="AutoLink(userData.description)"></div>
                 <button
                     @click="showAllTxt()"

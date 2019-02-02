@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+.m-box_confirm {
+
+    font-size: 16px;
+    position: fixed;
+    width: 100vw; height: 100vh;
+    z-index: 9999;
+    top: 0; left: 0;
+
+    &:before {
+        content: "";
+        position: absolute;
+        width: 100vw; height: 100vh;
+        top: 0; left: 0;
+        background: rgba(#000,0.4);
+    }
+
+    .m-box_confirm_inner {
+
+        position: absolute;
+        top: 50%; left: 50%;
+        width: calc(100vw - 30px);
+        transform: translate(-50%, -50%);
+        background: #FFF;
+        border-radius: 6px;
+        padding: 25px 15px 10px 20px;
+        line-height: 1;
+
+        .m-box_confirm_btns {
+            text-align: right;
+            margin-top: 10px;
+            button {
+                color: $blue;
+                // margin-left: 30px;
+                padding: 10px 15px;
+                &:first-child { margin-left: 0; }
+                &.is_yes {
+                    font-weight: bold;
+                }
+            }
+        }
+
+    }
+
+}

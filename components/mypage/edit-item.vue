@@ -168,15 +168,18 @@ export default {
                 this.userData[type].splice(index, 1);
                 this.itemMenu = false;
             }
+        },
+        DoAdjust() {
+            AdjustTextAreaHeight(this.$refs.textarea)
         }
     },
     created: function() {
     },
     mounted: function() {
-        let textarea = document.getElementsByClassName('a-form_textarea');
-        for (var i = 0; i < textarea.length; i++) AdjustTextAreaHeight(textarea[i])
+        this.DoAdjust();
     },
     updated: function() {
+        this.DoAdjust();
     }
 
 }
