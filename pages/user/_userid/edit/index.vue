@@ -7,7 +7,7 @@
             :userId=" $route.params.userid ? $route.params.userid : ''"
             icon="" />
 
-        <!-- <button v-if="draft" class="a-btn_draft" type="button" @click="ToggleApplyDraftBox">下書き</button> -->
+        <button v-if="draft" class="a-btn_draft" type="button" @click="ToggleApplyDraftBox">下書き</button>
 
         <main id="detail" class="is_edit">
 
@@ -41,8 +41,10 @@
 
             <transition name="fade">
                 <div v-if="toggleSaveDraftBox" class="m-box_confirm">
+                    <div class="m-box_confirm_bg" @click="ToggleSaveDraftBox"></div>
                     <div class="m-box_confirm_inner">
-                        <p>下書きを保存しますか？</p>
+                        <p v-if="checkDraftDiff">下書きを上書き保存しますか？</p>
+                        <p v-else>下書きを保存しますか？</p>
                         <div class="m-box_confirm_btns">
                             <button class="is_no" type="button" @click="SaveDraftNo">いいえ</button>
                             <button class="is_yes" type="button" @click="SaveDraftYes">はい</button>
@@ -52,6 +54,7 @@
             </transition>
             <transition name="fade">
                 <div v-if="toggleApplyDraftBox" class="m-box_confirm">
+                    <div class="m-box_confirm_bg" @click="ToggleApplyDraftBox"></div>
                     <div class="m-box_confirm_inner">
                         <p>保存された下書きがあります。<br>適用しますか？</p>
                         <div class="m-box_confirm_btns">
@@ -115,6 +118,11 @@ export default {
         EditItem,
         FooterBtns
     },
+    computed: {
+        checkDraftDiff() { //下書きの内容から更新がある場合true
+            return this.draft && this.draft!==JSON.stringify(this.userData)
+        }
+    },
     methods: {
         OnFocus() { this.onfocus = true; },
         OnBlur() { this.onfocus = false; },
@@ -136,7 +144,7 @@ export default {
             })
         },
         backMyPage() {
-            if( this.CheckDiff() ) {
+            if( this.CheckDiff() && this.CheckDraftDiff() ) {
                 this.toggleSaveDraftBox = true;
             } else {
                 this.$router.back();
@@ -145,14 +153,21 @@ export default {
         CheckDiff() { //内容の更新がある場合true
             return JSON.stringify(this.$store.state.detail.detailResult)!==JSON.stringify(this.userData)
         },
+        CheckDraftDiff() { //下書きの内容から更新がある場合true
+            return this.draft!==JSON.stringify(this.userData)
+        },
 
         //下書き関連
+        ToggleSaveDraftBox() { //下書き適用boxの開閉
+            this.toggleSaveDraftBox = !this.toggleSaveDraftBox;
+        },
         SaveDraftYes() { //下書きを保存する
-            localStorage.setItem(window.LSProfileDraft, JSON.stringify({
-                description: this.userData.description,
-                info: this.userData.info,
-                menus: this.userData.menus
-            }));
+            let saveData = JSON.parse( JSON.stringify(this.userData) );
+                saveData.description = this.userData.description;
+                saveData.info = this.userData.info;
+                saveData.menus = this.userData.menus;
+            localStorage.setItem(window.LSProfileDraft, JSON.stringify(saveData));
+
             this.toggleSaveDraftBox = false;
             this.$router.back();
             window.BodyMessage.AutoPlay( "下書きを保存しました。" );
@@ -174,7 +189,6 @@ export default {
             this.userData.description = JSON.parse(this.draft).description;
             this.userData.info = JSON.parse(this.draft).info;
             this.userData.menus = JSON.parse(this.draft).menus;
-            this.draft = null;
             this.toggleApplyDraftBox = false;
             window.BodyMessage.AutoPlay("下書きを適用しました。")
         }

@@ -38,7 +38,7 @@
             </div>
 
             <div v-if="userData.description" class="user_txt">
-                <div class="user_txt_inner" ref="user_txt" v-html="AutoLink(userData.description)"></div>
+                <div class="user_txt_inner" ref="user_txt" v-html="autoLink(userData.description)"></div>
                 <button
                     @click="showAllTxt()"
                     class="a-link f-font_s"
@@ -66,6 +66,7 @@
 
 <script>
 import { Carousel, Slide } from 'vue-carousel';
+import AutoLink from '~/scripts/_autoLink'
 
 import ChangeTimeString from '~/components/common/changeTimeString.vue'
 
@@ -86,14 +87,8 @@ export default {
         Slide
     },
     computed : {
-        AutoLink: function () {
-            return function (str) {
-                let regexp_url = /((h?)(ttps?:\/\/[a-zA-Z0-9.\-_@:/~?%&;=+#',()*!]+))/g; // ']))/;
-                let regexp_makeLink = function(all, url, h, href) {
-                    return `<a href="h${href}" target="_blank">${url}</a>`;
-                }
-                return str.replace(regexp_url, regexp_makeLink);
-            }
+        autoLink: function () {
+            return str => AutoLink(str)
         }
     },
     methods: {
@@ -124,7 +119,7 @@ export default {
         }
     },
     mounted: function() {
-        this.userTxt()
+        if(this.$refs.user_txt) this.userTxt()
         setTimeout( this.AjustTabName, 1 )
     }
 

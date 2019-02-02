@@ -8,7 +8,7 @@
     z-index: 9999;
     top: 0; left: 0;
 
-    &:before {
+    &_bg {
         content: "";
         position: absolute;
         width: 100vw; height: 100vh;
@@ -16,7 +16,7 @@
         background: rgba(#000,0.4);
     }
 
-    .m-box_confirm_inner {
+    &_inner {
 
         position: absolute;
         top: 50%; left: 50%;

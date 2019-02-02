@@ -14,11 +14,7 @@
                     class="info_box_inner">
                     <h3 class="info_box_inner_ttl">{{child.title}}</h3>
 
-                    <!-- <p v-if="checkLink(child.text)" class="info_box_inner_txt">
-                        <a :href="child.text" class="a-link" target="_blank">{{child.text}}</a>
-                    </p>
-                    <p v-else class="info_box_inner_txt">{{child.text}}</p> -->
-                    <div class="info_box_inner_txt" v-html="AutoLink(child.text)"></div>
+                    <div class="info_box_inner_txt" v-html="autoLink(child.text)"></div>
 
                 </section>
             </div>
@@ -31,7 +27,7 @@
 </template>
 
 <script>
-
+import AutoLink from '~/scripts/_autoLink'
 export default {
     props: [
         "infoData"
@@ -45,14 +41,8 @@ export default {
                 return value.indexOf("http") !== -1;
             };
         },
-        AutoLink: function () {
-            return function (str) {
-                let regexp_url = /((h?)(ttps?:\/\/[a-zA-Z0-9.\-_@:/~?%&;=+#',()*!]+))/g; // ']))/;
-                let regexp_makeLink = function(all, url, h, href) {
-                    return `<a href="h${href}" target="_blank">${url}</a>`;
-                }
-                return str.replace(regexp_url, regexp_makeLink);
-            }
+        autoLink: function () {
+            return str => AutoLink(str)
         }
     },
     mounted: function() {
